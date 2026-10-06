@@ -20,7 +20,17 @@
       try {
         var c = localStorage.getItem('jt_country') || 'IN';
         var l = localStorage.getItem('jt_lang') || 'en';
-        var u = localStorage.getItem('moveonn_user') || null;
+        window.handleAvatarClick = window.handleAvatarClick || function(e) {
+                if (e) { e.preventDefault(); e.stopPropagation(); }
+                var d = document.getElementById('jtUserDropdown');
+                if (d) { d.classList.toggle('is-open'); }
+                else { window.location.href = 'profile.html'; }
+              };
+              window.openAuthModal = window.openAuthModal || function(tab) {
+                var modal = document.getElementById('jtAuthModal');
+                if (modal) { modal.classList.add('is-open'); }
+              };
+              var u = localStorage.getItem('moveonn_user') || null;
         document.documentElement.setAttribute('data-country', c);
         document.documentElement.setAttribute('data-lang', l);
         document.documentElement.setAttribute('lang', l);
@@ -41,7 +51,7 @@
       
       <!-- Brand Logo (Pure clickable link, zero inline event cancellation) -->
       <a href="index.html" class="jt-brand" aria-label="Move ONN Home">
-        <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo">
+        <img src="assets/images/moveonn-wordmark.png" alt="Move ONN" class="jt-logo">
       </a>
 
       <!-- Desktop Navigation Menu (Visible >= 992px) -->
@@ -145,7 +155,7 @@
       <div class="jt-drawer-backdrop" id="jtDrawerBackdrop"></div>
       <div class="jt-drawer-panel">
         <div class="jt-drawer-header">
-          <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo-sm">
+          <img src="assets/images/moveonn-wordmark.png" alt="Move ONN" class="jt-logo-sm">
           <button type="button" class="jt-drawer-close" id="jtDrawerCloseBtn" aria-label="Close menu">&times;</button>
         </div>
         <div class="jt-drawer-body">
@@ -205,12 +215,12 @@
                     </h2>
                     <div class="css-1x2s017 e1wnkr790" bis_skin_checked="1">
                       <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
-                        <p class="css-5l3f0p e1wnkr790">No matter the skills, experience or qualifications you’re looking for, you’ll find the right people here.</p>
+                        <p class="css-5l3f0p e1wnkr790" style="color:#ffffff !important; font-size:1.15rem; line-height:1.6; text-shadow:0 1px 3px rgba(0,0,0,0.3);">No matter the skills, experience or qualifications you’re looking for, you’ll find the right people here.</p>
                       </div>
                     </div>
                     <div class="css-gvr0dl e37uo190" bis_skin_checked="1">
                       <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-                        <a href="employer-dashboard.html" data-tn-element="webxHireHeroPostJobButton" class="css-8flg3 eac13zx0" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Post a job</a>
+                        <a href="employer-dashboard.html" data-tn-element="webxHireHeroPostJobButton" class="css-8flg3 eac13zx0" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center; background:#00a3ff !important; color:#ffffff !important; font-weight:700; box-shadow:0 4px 14px rgba(0,163,255,0.4);">Post a job</a>
                       </div>
                     </div>
                   </div>
@@ -1136,7 +1146,7 @@
         <!-- Brand Summary Column -->
         <div class="jt-footer-brand-col">
           <a href="index.html" class="jt-footer-brand" aria-label="Move ONN Home">
-            <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo-sm">
+            <img src="assets/images/moveonn-combo.png" alt="Move ONN" class="jt-footer-logo">
           </a>
           <p class="jt-footer-tagline">
             India's leading career acceleration and corporate recruitment portal. Empowering candidates and hiring managers with verified opportunities.

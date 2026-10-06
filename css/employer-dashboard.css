@@ -2225,9 +2225,9 @@ body.jt-modal-locked .jt-emp-workspace {
     justify-content: space-between;
     height: 50px;
     padding: 0 14px;
-    background: #0f172a;
-    color: #ffffff;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-bottom: 1px solid #e2e8f0 !important;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -2244,7 +2244,7 @@ body.jt-modal-locked .jt-emp-workspace {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #ffffff;
+    color: #0f172a !important;
   }
 
   .jt-emp-mob-logo {
@@ -2259,9 +2259,9 @@ body.jt-modal-locked .jt-emp-workspace {
   }
 
   .jt-emp-mob-view-badge {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: #93c5fd;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #004687;
     font-size: 11.5px;
     font-weight: 700;
     padding: 3px 12px;
@@ -2277,9 +2277,9 @@ body.jt-modal-locked .jt-emp-workspace {
   }
 
   .jt-emp-mob-menu-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a !important;
     width: 34px;
     height: 34px;
     border-radius: 6px;
@@ -2291,7 +2291,7 @@ body.jt-modal-locked .jt-emp-workspace {
   }
 
   .jt-emp-mob-menu-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
   }
 
   /* Sub-nav horizontal tabs completely hidden on mobile per user directive */

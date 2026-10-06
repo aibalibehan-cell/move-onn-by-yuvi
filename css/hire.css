@@ -506,16 +506,17 @@ html{box-sizing:border-box;}html *,html *::before,html *::after{box-sizing:inher
   font-size: clamp(0.95rem, 1.4vw, 1.05rem) !important;
   line-height: 1.55 !important;
   margin: 0 0 24px 0 !important;
+  color: #ffffff !important;
 }
 
 /* Scoped subtext coloring */
+.css-4q23eu .css-5l3f0p,
 .css-6yp0k2 .css-5l3f0p {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #ffffff !important;
 }
 
-:not(.css-6yp0k2) > .css-5l3f0p,
-:not(.css-6yp0k2) .css-5l3f0p {
-  color: #4b5563 !important;
+.css-4q23eu p {
+  color: #ffffff !important;
 }
 
 .css-8flg3 {

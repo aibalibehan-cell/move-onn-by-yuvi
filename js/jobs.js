@@ -662,8 +662,8 @@ const INITIAL_JOBS = [
 ];
 
 let allJobs = [...INITIAL_JOBS];
-let savedJobIds = JSON.parse(localStorage.getItem('Move ONN_saved_jobs') || '[]');
-let appliedJobIds = JSON.parse(localStorage.getItem('Move ONN_applied_jobs') || '[]');
+let savedJobIds = JSON.parse(localStorage.getItem('moveonn_saved_jobs') || localStorage.getItem('Move ONN_saved_jobs') || '[]');
+let appliedJobIds = JSON.parse(localStorage.getItem('moveonn_applied_jobs') || localStorage.getItem('Move ONN_applied_jobs') || '[]');
 let activeTab = 'recommended';
 let currentApplyJob = null;
 
@@ -860,7 +860,7 @@ function renderCards() {
     const isApplied = appliedJobIds.includes(job.id);
 
     return `
-      <article class="Move ONN-job-card" data-job-id="${job.id}">
+      <article class="moveonn-job-card" data-job-id="${job.id}">
         <div class="card-top">
           <div>
             <a class="job-title-link" onclick="openJobDetails(${job.id})">${job.title}</a>
@@ -917,7 +917,7 @@ function switchTab(tab) {
   activeTab = tab;
   // If switching to recommended and currently 0 results because of search filters, clear filters
   if (tab === 'recommended' && getFilteredJobs().length === 0) {
-    document.querySelectorAll('.Move ONN-filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.moveonn-filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
     const keywordEl = document.getElementById('searchKeyword');
     if (keywordEl) keywordEl.value = '';
     const locEl = document.getElementById('searchLocation');
@@ -943,7 +943,7 @@ function toggleSaveJob(id, e) {
     savedJobIds.push(id);
     triggerToast('Job saved to your profile!');
   }
-  localStorage.setItem('Move ONN_saved_jobs', JSON.stringify(savedJobIds));
+  localStorage.setItem('moveonn_saved_jobs', JSON.stringify(savedJobIds));
   renderCards();
 }
 
@@ -1037,7 +1037,7 @@ function closeJobDetails() {
 
 // 7. CLEAR ALL FILTERS
 function clearAllFilters() {
-  document.querySelectorAll('.Move ONN-filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.moveonn-filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
   const keywordEl = document.getElementById('searchKeyword');
   if (keywordEl) keywordEl.value = '';
   const locEl = document.getElementById('searchLocation');
@@ -1052,7 +1052,7 @@ function clearAllFilters() {
 }
 
 // 8. EVENT ATTACHMENT & INIT
-window.addEventListener('DOMContentLoaded', () => {
+function initJobsPage() {
   // Subtabs
   document.querySelectorAll('.subtab-btn').forEach(btn => {
     btn.onclick = () => switchTab(btn.dataset.tab);
@@ -1068,7 +1068,7 @@ window.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       if (!currentApplyJob) return;
       appliedJobIds.push(currentApplyJob.id);
-      localStorage.setItem('Move ONN_applied_jobs', JSON.stringify(appliedJobIds));
+      localStorage.setItem('moveonn_applied_jobs', JSON.stringify(appliedJobIds));
       closeQuickApplyModal();
       triggerToast('Application submitted successfully to ' + currentApplyJob.company + '!');
       renderCards();
@@ -1119,7 +1119,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (sortSelect) sortSelect.onchange = renderCards;
 
   // Checkbox changes
-  document.querySelectorAll('.Move ONN-filters-sidebar input[type="checkbox"]').forEach(cb => {
+  document.querySelectorAll('.moveonn-filters-sidebar input[type="checkbox"]').forEach(cb => {
     cb.onchange = renderCards;
   });
 
@@ -1132,10 +1132,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (q && keywordInput) keywordInput.value = q;
   if (l && locInput) locInput.value = l;
-  if (exp && expSelect) expSelect.value = exp;
+  if (exp && expInput) expInput.value = exp;
   if (tab) switchTab(tab);
   else renderCards();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initJobsPage);
+} else {
+  initJobsPage();
+}
 
 // Explicitly bind all UI event handlers to window
 window.switchTab = switchTab;

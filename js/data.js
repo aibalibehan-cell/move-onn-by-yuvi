@@ -1,6 +1,6 @@
 // Master Mock Data Engine for Move ONN (Home, Search, Company Reviews, Salary Guide)
 
-window.Move ONN_DATA = {
+window.MOVEONN_DATA = {
   // Search Autocomplete Keywords
   keywords: [
     "graphic design work from home",
@@ -716,3 +716,6 @@ window.Move ONN_DATA = {
     }
   ]
 };
+
+window.MoveONN_DATA = window.MOVEONN_DATA;
+window.MOVE_ONN_DATA = window.MOVEONN_DATA;

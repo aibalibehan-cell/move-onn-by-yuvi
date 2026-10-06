@@ -1498,7 +1498,6 @@ function initEditProfileModal() {
         u.name = newName;
         u.email = newEmail;
         localStorage.setItem('moveonn_user', JSON.stringify(u));
-        );
       }
     } catch (err) {}
 

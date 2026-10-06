@@ -61,7 +61,13 @@
   }
 }
 
-.jt-footer-logo,
+.jt-footer-logo {
+  height: 46px;
+  width: auto;
+  max-width: 175px;
+  object-fit: contain;
+  display: inline-block;
+}
 .jt-logo-sm {
   height: 40px;
   width: auto;

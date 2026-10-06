@@ -17,18 +17,18 @@
 }
 
 .jt-hero-brand-logo {
-  width: 200px;
-  max-width: 220px;
+  width: 150px;
+  max-width: 160px;
   height: auto;
-  margin: 0 auto 20px;
+  margin: 0 auto 18px;
   display: block;
   object-fit: contain;
 }
 
 @media (max-width: 576px) {
   .jt-hero-brand-logo {
-    width: 155px;
-    margin-bottom: 16px;
+    width: 130px;
+    margin-bottom: 14px;
   }
 }
 
@@ -1461,7 +1461,8 @@ html:not(.jt-user-logged-in) #jtAuthHomeSections {
     padding: 24px 10px 20px !important;
   }
   .jt-hero-brand-logo {
-    width: 135px !important;
+    width: 130px !important;
+    max-width: 140px !important;
     margin-bottom: 12px !important;
   }
   .jt-hero-title {

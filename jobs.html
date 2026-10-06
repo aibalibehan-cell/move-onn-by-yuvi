@@ -20,7 +20,17 @@
       try {
         var c = localStorage.getItem('jt_country') || 'IN';
         var l = localStorage.getItem('jt_lang') || 'en';
-        var u = localStorage.getItem('moveonn_user') || null;
+        window.handleAvatarClick = window.handleAvatarClick || function(e) {
+                if (e) { e.preventDefault(); e.stopPropagation(); }
+                var d = document.getElementById('jtUserDropdown');
+                if (d) { d.classList.toggle('is-open'); }
+                else { window.location.href = 'profile.html'; }
+              };
+              window.openAuthModal = window.openAuthModal || function(tab) {
+                var modal = document.getElementById('jtAuthModal');
+                if (modal) { modal.classList.add('is-open'); }
+              };
+              var u = localStorage.getItem('moveonn_user') || null;
         document.documentElement.setAttribute('data-country', c);
         document.documentElement.setAttribute('data-lang', l);
         document.documentElement.setAttribute('lang', l);
@@ -41,7 +51,7 @@
       
       <!-- Brand Logo (Pure clickable link, zero inline event cancellation) -->
       <a href="index.html" class="jt-brand" aria-label="Move ONN Home">
-        <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo">
+        <img src="assets/images/moveonn-icon.png" alt="Move ONN" class="jt-logo">
       </a>
 
       <!-- Desktop Navigation Menu (Visible >= 992px) -->
@@ -147,7 +157,7 @@
       <div class="jt-drawer-backdrop" id="jtDrawerBackdrop"></div>
       <div class="jt-drawer-panel">
         <div class="jt-drawer-header">
-          <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo-sm">
+          <img src="assets/images/moveonn-icon.png" alt="Move ONN" class="jt-logo-sm">
           <button type="button" class="jt-drawer-close" id="jtDrawerCloseBtn" aria-label="Close menu">&times;</button>
         </div>
         <div class="jt-drawer-body">
@@ -172,7 +182,7 @@
   <!-- ==========================================================================
        2. Floating Search Strip (Move ONN Keyword & Location Filters)
        ========================================================================== -->
-  <div class="Move ONN-search-strip">
+  <div class="moveonn-search-strip">
     <div class="search-strip-container">
       <div class="search-box-field">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -195,14 +205,14 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         <input type="text" id="searchLocation" placeholder="Enter location" autocomplete="off">
       </div>
-      <button type="button" id="btnMove ONNSearch" class="btn-Move ONN-search">Search</button>
+      <button type="button" id="btnMoveonnSearch" class="btn-moveonn-search">Search</button>
     </div>
   </div>
 
   <!-- ==========================================================================
        3. Subtabs Bar (Recommended, Top Matches, Saved, Applied)
        ========================================================================== -->
-  <div class="Move ONN-subtabs-bar">
+  <div class="moveonn-subtabs-bar">
     <div class="subtabs-inner">
       <button type="button" class="subtab-btn active" data-tab="recommended">
         <span>Recommended Jobs</span>
@@ -226,10 +236,10 @@
   <!-- ==========================================================================
        4. Main 2-Column Layout Grid (Filter Sidebar + Results Feed)
        ========================================================================== -->
-  <div class="Move ONN-layout">
+  <div class="moveonn-layout">
     
     <!-- LEFT FILTER SIDEBAR -->
-    <aside class="Move ONN-filters-sidebar">
+    <aside class="moveonn-filters-sidebar">
       <div class="filters-header">
         <span class="filters-title">All Filters</span>
         <button type="button" id="btnClearAllFilters" class="btn-clear-filters">Clear All</button>
@@ -347,7 +357,7 @@
     </aside>
 
     <!-- RIGHT RESULTS FEED -->
-    <main class="Move ONN-feed">
+    <main class="moveonn-feed">
       <div class="feed-header-bar">
         <div class="feed-summary-text" id="feedSummaryText">
           Showing <strong id="jobsCountText">22</strong> recommended jobs based on your profile
@@ -368,6 +378,66 @@
     </main>
 
   </div>
+
+  <!-- ==========================================================================
+       Move ONN Global Footer
+       ========================================================================== -->
+  <footer class="jt-footer">
+    <div class="container">
+      <div class="jt-footer-top">
+        
+        <!-- Brand Column -->
+        <div class="jt-footer-brand">
+          <img src="assets/images/moveonn-combo.png" alt="Move ONN" class="jt-footer-logo">
+          <p class="jt-footer-tagline">Innovate. Build. Empower. Connecting top engineering and executive talent with visionary enterprises across India and globally.</p>
+        </div>
+
+        <!-- Job Seekers Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Job Seekers</h3>
+          <ul class="jt-footer-links">
+            <li><a href="jobs.html" class="jt-footer-link">Browse Jobs</a></li>
+            <li><a href="salaries.html" class="jt-footer-link">Salary Calculator</a></li>
+            <li><a href="companies.html" class="jt-footer-link">Company Reviews</a></li>
+            <li><a href="#" onclick="window.openAuthModal('signup'); return false;" class="jt-footer-link">Create Candidate Profile</a></li>
+          </ul>
+        </div>
+
+        <!-- Employers Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Employers</h3>
+          <ul class="jt-footer-links">
+            <li><a href="hire.html" class="jt-footer-link">Post a Job</a></li>
+            <li><a href="hire.html#talent" class="jt-footer-link">Recruitment Solutions</a></li>
+            <li><a href="hire.html#pricing" class="jt-footer-link">Hiring Plans</a></li>
+            <li><a href="countries.html" class="jt-footer-link">Global Hiring</a></li>
+          </ul>
+        </div>
+
+        <!-- About & Legal Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Move ONN</h3>
+          <ul class="jt-footer-links">
+            <li><a href="companies.html" class="jt-footer-link">About Us</a></li>
+            <li><a href="countries.html" class="jt-footer-link">International Portals</a></li>
+            <li><a href="#" onclick="window.showToast('Security and Compliance: GDPR & ISO-27001 Certified.'); return false;" class="jt-footer-link">Trust & Safety</a></li>
+            <li><a href="#" onclick="window.showToast('Customer support is active 24/7.'); return false;" class="jt-footer-link">Help Center</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="jt-footer-bottom">
+        <div>© 2026 Move ONN Solutions. All rights reserved.</div>
+        <ul class="jt-footer-legal-links">
+          <li><a href="#" onclick="window.showToast('Privacy Policy: All candidate data is securely encrypted.'); return false;">Privacy Centre</a></li>
+          <li><a href="#" onclick="window.showToast('Terms: Move ONN is an equal opportunity recruitment consultancy.'); return false;">Terms of Service</a></li>
+          <li><a href="countries.html">Change Country</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
   <!-- ==========================================================================
        5. Quick Apply Modal

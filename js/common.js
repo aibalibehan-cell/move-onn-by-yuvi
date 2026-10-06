@@ -127,7 +127,6 @@
   function setStoredUser(user) {
     try {
       localStorage.setItem('moveonn_user', JSON.stringify(user));
-      );
       document.documentElement.classList.add('jt-user-logged-in');
     } catch (e) {}
   }
@@ -250,11 +249,11 @@
       e.preventDefault();
       e.stopPropagation();
     }
-    // Mobile viewport opens mobile drawer, desktop toggles dropdown
-    if (window.innerWidth <= 768) {
-      openMobileDrawer();
-    } else {
+    const dropdown = document.getElementById('jtUserDropdown');
+    if (dropdown) {
       toggleUserDropdown(e);
+    } else {
+      window.location.href = 'profile.html';
     }
   }
 

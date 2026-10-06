@@ -18,27 +18,27 @@
       }
       const iconContainer = el.classList.contains('gnav-Logo-icon') ? el : el.querySelector('.gnav-Logo-icon');
       if (iconContainer) {
-        if (!iconContainer.querySelector('img[src*="moveonn-logo"]')) {
-          iconContainer.innerHTML = '<img src="assets/images/moveonn-logo.png" alt="Move ONN" style="height:50px; width:auto; max-height:54px; display:inline-block; vertical-align:middle; object-fit:contain;">';
+        if (!iconContainer.querySelector('img[src*="moveonn-"]')) {
+          iconContainer.innerHTML = '<img src="assets/images/moveonn-icon.png" alt="Move ONN" style="height:40px; width:auto; max-height:44px; display:inline-block; vertical-align:middle; object-fit:contain;">';
         }
-      } else if (!el.querySelector('img[src*="moveonn-logo"]')) {
-        el.innerHTML = '<div class="gnav-Logo-icon" style="display:inline-flex; align-items:center;"><img src="assets/images/moveonn-logo.png" alt="Move ONN" style="height:50px; width:auto; max-height:54px; display:inline-block; vertical-align:middle; object-fit:contain;"></div>';
+      } else if (!el.querySelector('img[src*="moveonn-"]')) {
+        el.innerHTML = '<div class="gnav-Logo-icon" style="display:inline-flex; align-items:center;"><img src="assets/images/moveonn-icon.png" alt="Move ONN" style="height:40px; width:auto; max-height:44px; display:inline-block; vertical-align:middle; object-fit:contain;"></div>';
       }
     });
 
-    // 2. Employer header logo in hire.html
+    // 2. Employer header logo in hire.html (Text Only)
     const employerLogos = document.querySelectorAll('[data-testid="Move ONNLogoEmployerMegaMenu"]');
     employerLogos.forEach(svg => {
-      svg.outerHTML = '<a href="index.html" aria-label="Move ONN Home" style="display:inline-flex; align-items:center; text-decoration:none;"><img src="assets/images/moveonn-logo.png" alt="Move ONN" style="height:50px; width:auto; display:inline-block; vertical-align:middle; object-fit:contain;"></a>';
+      svg.outerHTML = '<a href="index.html" aria-label="Move ONN Home" style="display:inline-flex; align-items:center; text-decoration:none;"><img src="assets/images/moveonn-wordmark.png" alt="Move ONN" style="height:36px; width:auto; display:inline-block; vertical-align:middle; object-fit:contain;"></a>';
     });
 
-    // 3. Homepage Center Hero Logo
+    // 3. Homepage Center Hero Logo (Text Wordmark Only)
     const centerHeroes = document.querySelectorAll('[data-testid="account-focused-homepage"] .css-p4zop2, .css-p4zop2');
     centerHeroes.forEach(ch => {
       const svgs = ch.querySelectorAll('svg');
       svgs.forEach(s => s.remove());
       if (!ch.querySelector('img.moveonn-hero-brand-img')) {
-        ch.innerHTML = '<img src="assets/images/moveonn-logo.png" alt="Move ONN" class="moveonn-hero-brand-img" style="width:160px; max-width:160px; height:auto; display:block; margin:0 auto 16px; object-fit:contain;">';
+        ch.innerHTML = '<img src="assets/images/moveonn-wordmark.png" alt="Move ONN" class="moveonn-hero-brand-img" style="width:140px; max-width:150px; height:auto; display:block; margin:0 auto 16px; object-fit:contain;">';
       }
     });
 
@@ -89,7 +89,7 @@
     }
   };
 
-  function enforceMove ONNTrending() {
+  function enforceMoveOnnTrending() {
     const path = (window.location && window.location.pathname) ? window.location.pathname.toLowerCase() : '';
     const isHome = path.endsWith('index.html') || path === '/' || path.endsWith('/') || path.endsWith('\\index.html') || path === '' || !path.includes('.html');
 
@@ -107,8 +107,8 @@
 
     if (document.body) document.body.classList.add('homepage');
 
-    const Move ONNBody = document.getElementById('_r_1_-body');
-    if (Move ONNBody) Move ONNBody.style.setProperty('display', 'none', 'important');
+    const moveonnBody = document.getElementById('_r_1_-body');
+    if (moveonnBody) moveonnBody.style.setProperty('display', 'none', 'important');
 
     // Hide Move ONN's React accordion button and React accordion containers
     const allButtons = document.querySelectorAll('button');
@@ -266,16 +266,17 @@
         let img = p4zop2.querySelector('img');
         if (!img) {
           img = document.createElement('img');
-          img.src = 'assets/images/moveonn-logo.png';
+          img.src = 'assets/images/moveonn-wordmark.png';
           img.alt = 'Move ONN';
           img.className = 'moveonn-hero-brand-img';
-          img.style.cssText = 'width:160px; max-width:160px; height:auto; display:block; margin:0 auto 16px; object-fit:contain;';
+          img.style.cssText = 'width:140px; max-width:150px; height:auto; display:block; margin:0 auto 16px; object-fit:contain;';
           p4zop2.prepend(img);
         } else {
+          img.src = 'assets/images/moveonn-wordmark.png';
           img.style.setProperty('display', 'block', 'important');
           img.style.setProperty('visibility', 'visible', 'important');
-          img.style.setProperty('width', '160px', 'important');
-          img.style.setProperty('max-width', '160px', 'important');
+          img.style.setProperty('width', '140px', 'important');
+          img.style.setProperty('max-width', '150px', 'important');
           img.style.setProperty('margin', '0 auto 16px', 'important');
         }
       }
@@ -283,7 +284,7 @@
       if (injectedFeed) injectedFeed.remove();
     }
 
-    try { enforceMove ONNTrending(); } catch(err) {}
+    try { enforceMoveOnnTrending(); } catch(err) {}
     if (isEnforcingBranding) return;
     isEnforcingBranding = true;
     try {
@@ -339,11 +340,11 @@
       const origOpen = XMLHttpRequest.prototype.open;
       const origSend = XMLHttpRequest.prototype.send;
       XMLHttpRequest.prototype.open = function(method, url) {
-        this._isMove ONNExt = String(url || '').includes('Move ONN.com') || String(url || '').includes('gtm');
+        this._isMoveOnnExt = String(url || '').includes('Move ONN.com') || String(url || '').includes('gtm');
         return origOpen.apply(this, arguments);
       };
       XMLHttpRequest.prototype.send = function() {
-        if (this._isMove ONNExt) {
+        if (this._isMoveOnnExt) {
           Object.defineProperty(this, 'readyState', { value: 4, writable: true });
           Object.defineProperty(this, 'status', { value: 200, writable: true });
           Object.defineProperty(this, 'responseText', { value: '{"status":"ok"}', writable: true });
@@ -462,9 +463,9 @@
       if (!rawHref) return;
 
       // Never allow navigation to real Move ONN.com or external domain
-      const isExternalMove ONN = rawHref.includes('Move ONN.com') || rawHref.startsWith('http://') || rawHref.startsWith('https://');
+      const isExternalMoveOnn = rawHref.includes('Move ONN.com') || rawHref.startsWith('http://') || rawHref.startsWith('https://');
 
-      if (isExternalMove ONN) {
+      if (isExternalMoveOnn) {
         e.preventDefault();
         e.stopPropagation();
         const route = resolveInternalRoute(rawHref, anchor.textContent.trim());
@@ -816,15 +817,11 @@
       const defaultUser = { name: 'Yuvi', email: 'yuvi@gmail.com', avatar: 'assets/images/user-avatar.png' };
       try {
         localStorage.setItem('moveonn_user', JSON.stringify(defaultUser));
-            );
-        localStorage.setItem('Move ONN_user', JSON.stringify(defaultUser));
         localStorage.setItem('apex_user', JSON.stringify(defaultUser));
       } catch(e) {}
     } else if (urlParams.get('auth') === 'false') {
       try {
         localStorage.removeItem('moveonn_user');
-            localStorage.removeItem('moveonn_user');
-        localStorage.removeItem('Move ONN_user');
         localStorage.removeItem('apex_user');
       } catch(e) {}
     }
@@ -2480,7 +2477,7 @@
       <!-- Mobile Drawer Top Bar -->
       <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid #e4e2e0;">
         <a href="index.html" style="display:inline-flex; align-items:center; text-decoration:none;">
-          <img src="assets/images/moveonn-logo.png" alt="Move ONN" style="height:38px; width:auto; max-height:42px; object-fit:contain; display:block;">
+          <img src="assets/images/moveonn-icon.png" alt="Move ONN" style="height:36px; width:auto; max-height:40px; object-fit:contain; display:block;">
         </a>
         <button type="button" id="btnCloseMobileDrawer" aria-label="Close menu" style="background:transparent; border:none; font-size:26px; color:#2d2d2d; cursor:pointer; width:40px; height:40px; display:flex; align-items:center; justify-content:center; line-height:1;">&times;</button>
       </div>
