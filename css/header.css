@@ -1,0 +1,528 @@
+/* Universal Top Viewport Offset for Fixed/Sticky Header */
+body {
+  padding-top: 72px !important;
+}
+
+@media (max-width: 991px) {
+  body {
+    padding-top: 68px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    padding-top: 60px !important;
+  }
+}
+
+/* Move ONN - Single Unified Responsive Navbar (header.css) */
+.jt-header {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid var(--jt-border);
+  z-index: 99999 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.jt-header.jt-header-scrolled {
+  box-shadow: 0 4px 20px rgba(0, 41, 112, 0.1);
+  border-bottom-color: rgba(15, 90, 207, 0.15);
+}
+
+.jt-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 16px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .jt-navbar {
+    height: 72px;
+    padding: 0 24px;
+  }
+}
+
+/* 1. Brand Logo */
+.jt-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 4px 0;
+  margin-right: 28px;
+}
+.jt-brand:focus-visible {
+  outline: 2px solid var(--jt-primary);
+  border-radius: 6px;
+}
+.jt-logo {
+  height: 44px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .jt-navbar {
+    padding: 0 10px !important;
+    height: 60px !important;
+  }
+  .jt-brand {
+    margin-right: 8px !important;
+  }
+  .jt-logo {
+    height: 32px !important;
+    max-width: 120px !important;
+  }
+  .jt-nav-actions {
+    gap: 8px !important;
+  }
+  .jt-burger-btn {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 6px !important;
+  }
+  .jt-user-avatar-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+/* 2. Desktop Navigation Links */
+.jt-nav-menu {
+  display: none;
+  align-items: center;
+  height: 100%;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 992px) {
+  .jt-nav-menu {
+    display: flex;
+  }
+}
+
+.jt-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.jt-nav-item {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--jt-text-dark);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.jt-nav-item:hover {
+  color: var(--jt-primary);
+  border-bottom-color: var(--jt-primary);
+}
+.jt-nav-item.active {
+  color: var(--jt-primary);
+  font-weight: 700;
+  border-bottom-color: var(--jt-primary);
+}
+
+/* 3. Right Action Area */
+.jt-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 992px) {
+  .jt-nav-actions {
+    gap: 16px;
+  }
+}
+
+.jt-action-country {
+  display: none !important;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--jt-text-body);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+  min-height: 44px;
+}
+
+@media (min-width: 992px) {
+  .jt-action-country {
+    display: inline-flex !important;
+  }
+}
+
+.jt-action-country:hover {
+  background-color: #f3f4f6;
+  color: var(--jt-text-dark);
+}
+.jt-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.jt-nav-flag-img {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.jt-btn-hire {
+  display: none;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--jt-text-body);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.jt-btn-hire:hover {
+  background-color: #f3f4f6;
+  color: var(--jt-primary);
+}
+
+@media (min-width: 992px) {
+  .jt-btn-hire {
+    display: inline-flex;
+  }
+}
+/* Anti-FOUC (Flash of Unwanted Content): Instant Navbar Auth State */
+html.jt-user-logged-in .jt-btn-signin-nav {
+  display: none !important;
+}
+html.jt-user-logged-in #jtBurgerBtn {
+  display: none !important;
+}
+
+.jt-btn-signin-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--jt-primary);
+  background: #ffffff;
+  border: 1px solid var(--jt-border-dark);
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: var(--jt-shadow-sm);
+  transition: all 0.15s ease;
+  min-height: 44px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.jt-btn-signin-nav:hover {
+  background: #f0f5ff;
+  border-color: var(--jt-primary);
+  color: var(--jt-primary-hover);
+}
+
+/* User Avatar (Logged-in State) */
+.jt-user-avatar-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.jt-user-avatar-btn:hover {
+  border-color: #cbd5e1;
+  background: #e2e8f0;
+  transform: scale(1.04);
+}
+
+.jt-user-avatar-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.jt-user-avatar-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: #64748b;
+  display: block;
+}
+
+/* User Dropdown Menu */
+.jt-user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 12px;
+  box-shadow: var(--jt-shadow-lg);
+  padding: 8px 0;
+  display: none;
+  z-index: 10050;
+}
+.jt-user-dropdown.is-open {
+  display: block;
+}
+.jt-user-dropdown-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--jt-border-light);
+}
+.jt-user-dropdown-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--jt-text-dark);
+}
+.jt-user-dropdown-email {
+  font-size: 12px;
+  color: var(--jt-text-muted);
+  margin-top: 2px;
+}
+.jt-user-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--jt-text-body);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+.jt-user-dropdown-link:hover {
+  background-color: #f8f9fa;
+  color: var(--jt-primary);
+}
+.jt-user-dropdown-divider {
+  height: 1px;
+  background-color: var(--jt-border-light);
+  margin: 6px 0;
+}
+.jt-user-dropdown-signout {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--jt-danger);
+  cursor: pointer;
+}
+.jt-user-dropdown-signout:hover {
+  background-color: #fee2e2;
+}
+
+/* 4. Mobile Hamburger Button (Strictly hidden >= 992px) */
+.jt-burger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.15s ease;
+}
+.jt-burger-btn:hover {
+  background-color: #f3f4f6;
+}
+
+@media (min-width: 992px) {
+  .jt-burger-btn {
+    display: none !important;
+  }
+}
+
+.jt-burger-line {
+  display: block;
+  width: 22px;
+  height: 2.2px;
+  background-color: var(--jt-text-dark);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* 5. Mobile Drawer Overlay */
+.jt-mobile-drawer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 10001;
+  display: none;
+  visibility: hidden;
+}
+.jt-mobile-drawer.is-open {
+  display: block;
+  visibility: visible;
+}
+
+.jt-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.jt-mobile-drawer.is-open .jt-drawer-backdrop {
+  opacity: 1;
+}
+
+.jt-drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100dvh;
+  background: #ffffff;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior: contain !important;
+}
+.jt-mobile-drawer.is-open .jt-drawer-panel {
+  transform: translateX(0);
+}
+
+.jt-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--jt-border);
+  flex-shrink: 0;
+}
+.jt-logo-sm {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+.jt-drawer-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  border: none;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.jt-drawer-body {
+  padding: 20px 20px 100px 20px !important;
+  flex: 1 0 auto !important;
+  min-height: min-content !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.jt-drawer-auth {
+  margin-bottom: 24px;
+}
+
+.jt-drawer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jt-drawer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--jt-text-dark);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  min-height: 44px;
+}
+.jt-drawer-link:hover {
+  background-color: #f3f4f6;
+  color: var(--jt-primary);
+}
+.jt-drawer-link.active {
+  background-color: #eaf1ff;
+  color: var(--jt-primary);
+}
+.jt-drawer-divider {
+  height: 1px;
+  background-color: var(--jt-border);
+  margin: 16px 0;
+}

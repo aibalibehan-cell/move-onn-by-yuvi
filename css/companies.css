@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Move ONN Consultancy - Companies Page Stylesheet (css/companies.css)
+   Complies with PROJECT_STANDARDS.md - Pure Modular Architecture
+   Slim, Refined Typography ("patla font") & Responsive 3x2 Grid
+   ========================================================================== */
+
+/* 1. Global Page Reset & Smooth Font Rendering */
+body.page-companies {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  background-color: #ffffff !important;
+  line-height: 1.5 !important;
+}
+
+/* 2. Main Centered Layout Container */
+.css-1rzs9zm,
+.css-8mc88d {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Hero Section & Slim Typography */
+.css-1f2ikp3 {
+  max-width: 860px !important;
+  margin: 40px auto 44px !important;
+  text-align: left !important;
+}
+
+/* "Find great places to work" - Noticeably Slim & Elegant (font-weight: 400) */
+.css-7711ne {
+  font-size: 2.25rem !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.25 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+@media (max-width: 640px) {
+  .css-7711ne {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* "Get access to millions of company reviews" */
+.css-1jfskg5 {
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  color: #595959 !important;
+  margin: 0 0 24px 0 !important;
+  display: block !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* 4. Company Search Form */
+.css-17bned3 {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 640px) {
+  .css-17bned3 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+.css-58wbay {
+  flex: 1 !important;
+  margin: 0 !important;
+}
+
+.css-18butr7 {
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+}
+
+/* Input label - Clean, Slim (font-weight: 400) */
+.css-10g55w1 {
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  margin-bottom: 8px !important;
+  display: inline-block !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.css-1615w3r,
+.css-1bd60rl {
+  position: relative !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Search input field */
+.css-1okr4px {
+  width: 100% !important;
+  height: 50px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  padding: 8px 16px 8px 46px !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  background-color: #ffffff !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.css-1okr4px:focus {
+  border-color: var(--jt-primary, #0f5acf) !important;
+  box-shadow: 0 0 0 3px rgba(15, 90, 207, 0.12) !important;
+}
+
+/* Search icon inside input (20px scoped size) */
+.css-nhi90t {
+  position: absolute !important;
+  left: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  color: #595959 !important;
+}
+
+.css-1f4rn1b {
+  width: 20px !important;
+  height: 20px !important;
+  color: #595959 !important;
+}
+
+/* "Find Companies" CTA Button - Slim & Elegant (font-weight: 500) */
+.css-ss49jm {
+  height: 50px !important;
+  padding: 0 28px !important;
+  background-color: var(--jt-primary, #0f5acf) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  transition: background-color 0.15s ease !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.css-ss49jm:hover {
+  background-color: var(--jt-primary-hover, #0c47a4) !important;
+}
+
+/* Salary Search Sublink */
+.css-1p277c {
+  margin-top: 14px !important;
+}
+
+.css-1k2hae4 {
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  color: var(--jt-primary, #0f5acf) !important;
+  text-decoration: none !important;
+}
+
+.css-1k2hae4:hover {
+  text-decoration: underline !important;
+}
+
+/* 5. Popular Companies Section - Slim Heading (font-weight: 400) */
+.css-rvqay8 {
+  font-size: 1.35rem !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  margin: 40px 0 20px 0 !important;
+  letter-spacing: -0.01em !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* 3x2 Grid for Popular Companies */
+.css-1528nd,
+.css-3h4d9b {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 48px 0 !important;
+}
+
+@media (min-width: 640px) {
+  .css-1528nd,
+  .css-3h4d9b {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .css-1528nd,
+  .css-3h4d9b {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Company Card Item */
+.css-bhh8fm,
+.css-f1udej {
+  background: #ffffff !important;
+  border: 1px solid var(--jt-border, #e4e2e0) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.css-bhh8fm:hover,
+.css-f1udej:hover {
+  border-color: var(--jt-primary, #0f5acf) !important;
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.08) !important;
+  transform: translateY(-2px) !important;
+}
+
+.css-ctk3l3 {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.css-3ng5dh {
+  flex-shrink: 0 !important;
+}
+
+.css-1vu5v7s {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+.css-1vr6jiy {
+  max-width: 42px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
+}
+
+/* Company Title Link - Slim (font-weight: 400) */
+.css-1h1y3iw,
+.css-w5iap {
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  color: #2d2d2d !important;
+  text-decoration: none !important;
+  line-height: 1.3 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.css-1y3kqd5:hover .css-1h1y3iw,
+.css-1y3kqd5:hover .css-w5iap {
+  color: var(--jt-primary, #0f5acf) !important;
+  text-decoration: underline !important;
+}
+
+/* Star Rating & Review Count */
+.css-1uyfi54 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 4px !important;
+}
+
+.css-t7mimy {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+.css-t7mimy svg {
+  width: 15px !important;
+  height: 15px !important;
+  color: #f59e0b !important;
+}
+
+.css-93smez {
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: var(--jt-primary, #0f5acf) !important;
+  text-decoration: none !important;
+}
+
+.css-93smez:hover {
+  text-decoration: underline !important;
+}
+
+/* Action Links under card (Salaries, Questions, Open jobs) */
+.css-1fdsiw {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 14px !important;
+  border-top: 1px solid #f3f4f6 !important;
+  list-style: none !important;
+  margin: 0 !important;
+}
+
+.css-1t3rggk {
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  color: var(--jt-primary, #0f5acf) !important;
+  text-decoration: none !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.css-1y3kqd5:hover .css-1t3rggk {
+  text-decoration: underline !important;
+}
+
+@media (max-width: 480px) {
+  .css-1rzs9zm,
+  .css-8mc88d {
+    padding: 0 10px !important;
+  }
+  .css-1f2ikp3 {
+    margin: 24px auto 28px !important;
+  }
+  .css-7711ne {
+    font-size: 1.5rem !important;
+  }
+  .css-bhh8fm,
+  .css-f1udej {
+    padding: 14px 12px !important;
+  }
+  .css-1fdsiw {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    justify-content: flex-start !important;
+  }
+  .css-1fdsiw li {
+    margin-right: 12px !important;
+  }
+}

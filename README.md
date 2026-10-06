@@ -10,11 +10,9 @@
 
 ---
 
-### 📦 Project Backup ZIP (Direct Root Files)
-- Download the complete production backup ZIP directly:  
-  👉 **[Download move-onn-by-yuvi.zip](https://github.com/aibalibehan-cell/move-onn-by-yuvi/raw/main/move-onn-by-yuvi.zip)**
-
-*When you open or extract `move-onn-by-yuvi.zip`, all files (`index.html`, `jobs.html`, `companies.html`, `salaries.html`, `hire.html`, `profile.html`, `employer-dashboard.html`, `countries.html`, `css/`, `js/`, `assets/`, etc.) are located directly at the root without any nested wrapper folder.*
+### ⚡ Direct Root-Level ZIP Download (Zero Subfolders)
+If you want a ZIP that opens immediately with all files without any outer folder, download directly from here:  
+👉 **[Download move-onn-by-yuvi.zip](https://github.com/aibalibehan-cell/move-onn-by-yuvi/releases/download/v1.0.0/move-onn-by-yuvi.zip)**
 
 ---
 
@@ -28,3 +26,4 @@
 - `employer-dashboard.html` — Enterprise SaaS ATS & Sourcing Workspace
 - `countries.html` — International Operations Directory
 - `DESIGN.md` — Complete Architecture & Design Token Specification
+- `PROJECT_STANDARDS.md` — Engineering & Code Quality Standards

@@ -1,0 +1,1559 @@
+/* Move ONN - Dedicated Homepage Styling (homepage.css) */
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.jt-hero-section {
+  padding: 48px 16px 32px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, var(--jt-bg) 100%);
+}
+
+@media (min-width: 768px) {
+  .jt-hero-section {
+    padding: 64px 24px 44px;
+  }
+}
+
+.jt-hero-brand-logo {
+  width: 200px;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 576px) {
+  .jt-hero-brand-logo {
+    width: 155px;
+    margin-bottom: 16px;
+  }
+}
+
+.jt-hero-title {
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--jt-text-dark);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 768px) {
+  .jt-hero-title {
+    font-size: 38px;
+    font-weight: 400;
+  }
+}
+
+.jt-hero-subtitle {
+  font-size: 15px;
+  color: var(--jt-text-body);
+  max-width: 540px;
+  margin: 0 auto 28px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .jt-hero-subtitle {
+    font-size: 16px;
+  }
+}
+
+/* ==========================================================================
+   Search Capsule (moveonn Style What + Where)
+   ========================================================================== */
+.jt-search-wrapper {
+  max-width: 880px;
+  margin: 0 auto 28px;
+  width: 100%;
+}
+
+.jt-search-capsule {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--jt-border-dark);
+  border-radius: 16px;
+  box-shadow: var(--jt-shadow-capsule);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.jt-search-capsule:focus-within {
+  border-color: var(--jt-action);
+  box-shadow: 0 6px 24px rgba(15, 90, 207, 0.14);
+}
+
+@media (min-width: 768px) {
+  .jt-search-capsule {
+    flex-direction: row;
+    align-items: center;
+    border-radius: 9999px;
+    height: 60px;
+    padding: 4px 6px 4px 16px;
+  }
+}
+
+.jt-search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  flex: 1 1 50%;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .jt-search-field {
+    padding: 0 12px 0 0;
+    height: 100%;
+  }
+}
+
+.jt-search-field-icon {
+  color: var(--jt-text-muted);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.jt-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--jt-text-dark);
+  outline: none;
+  padding: 0;
+}
+.jt-search-input::placeholder {
+  color: #8b92a5;
+  font-weight: 400;
+}
+
+.jt-search-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--jt-border);
+}
+
+@media (min-width: 768px) {
+  .jt-search-divider {
+    width: 1px;
+    height: 32px;
+    flex-shrink: 0;
+    margin: 0 8px;
+  }
+}
+
+.jt-search-btn-container {
+  padding: 8px 12px 12px;
+}
+
+@media (min-width: 768px) {
+  .jt-search-btn-container {
+    padding: 0;
+    flex-shrink: 0;
+  }
+}
+
+.jt-btn-search {
+  width: 100%;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--jt-primary);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+@media (min-width: 768px) {
+  .jt-btn-search {
+    width: auto;
+    padding: 0 28px;
+    border-radius: 9999px;
+    height: 48px;
+  }
+}
+.jt-btn-search:hover {
+  background-color: var(--jt-primary-hover);
+}
+.jt-btn-search:active {
+  transform: translateY(1px);
+}
+
+/* Hero CTA */
+.jt-hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Trending Section (Accordion & 3-Column Category Grid)
+   ========================================================================== */
+.jt-trending-section {
+  max-width: 1140px;
+  margin: 32px auto 64px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-trending-toggle-wrap {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.jt-trending-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--jt-border-dark);
+  color: var(--jt-text-dark);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  box-shadow: var(--jt-shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+.jt-trending-pill-btn:hover {
+  background: #f8f9fa;
+  border-color: var(--jt-primary);
+  color: var(--jt-primary);
+}
+
+.jt-chevron-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jt-trending-pill-btn.is-open .jt-chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* Collapsible Body */
+.jt-trending-body {
+  display: none;
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--jt-shadow-md);
+  margin-top: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.jt-trending-body.is-open {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .jt-trending-body {
+    padding: 32px;
+  }
+}
+
+/* Responsive Grid: 1 col on mobile (<768px), 2 cols on tablet (768-991px), 3 cols on desktop (>=992px) */
+.jt-trending-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .jt-trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (min-width: 992px) {
+  .jt-trending-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+}
+
+.jt-trending-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.jt-trending-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--jt-text-dark);
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--jt-primary);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.jt-trending-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jt-trending-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 4px;
+  font-size: 13.5px;
+  color: var(--jt-text-body);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+.jt-trending-link:hover {
+  color: var(--jt-primary);
+  background-color: #f0f5ff;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.jt-trending-link span:first-child {
+  font-weight: 500;
+}
+
+/* Anti-FOUC: Instant Dashboard vs Guest Promo Synchronization */
+html.jt-user-logged-in #jtGuestHeroPromo {
+  display: none !important;
+}
+html.jt-user-logged-in #jtUserDashboard {
+  display: block !important;
+}
+html.jt-user-logged-in #jtAuthHomeSections {
+  display: block !important;
+}
+
+html:not(.jt-user-logged-in) #jtUserDashboard {
+  display: none !important;
+}
+html:not(.jt-user-logged-in) #jtAuthHomeSections {
+  display: none !important;
+}
+
+/* ==========================================================================
+   4. Authenticated User Dashboard: "Jobs for you" (Complies with reference)
+   ========================================================================== */
+.jt-user-dashboard {
+  max-width: 880px;
+  margin: 0 auto 36px;
+  width: 100%;
+  text-align: left;
+}
+
+.jt-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.jt-dashboard-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--jt-text-dark, #121224);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.jt-dashboard-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--jt-primary, #0f5acf);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+}
+
+.jt-dashboard-link:hover {
+  text-decoration: underline;
+  color: var(--jt-primary-hover, #0c47a4);
+}
+
+.jt-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .jt-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jt-dash-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-border, #e4e2e0);
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+}
+
+.jt-dash-card:hover {
+  border-color: var(--jt-primary, #0f5acf);
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.08);
+  transform: translateY(-2px);
+}
+
+.jt-dash-card-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.jt-dash-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.jt-dash-badge-blue {
+  background-color: #eaf1ff;
+  color: var(--jt-primary, #0f5acf);
+}
+
+.jt-dash-badge-sub {
+  font-size: 12px;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.jt-dash-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.jt-dash-card-title a {
+  color: var(--jt-text-dark, #121224);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.jt-dash-card-title a:hover {
+  color: var(--jt-primary, #0f5acf);
+  text-decoration: underline;
+}
+
+.jt-dash-card-company {
+  font-size: 13px;
+  color: var(--jt-text-muted, #717b9e);
+  margin-bottom: 8px;
+}
+
+.jt-dash-card-salary {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--jt-text-dark, #121224);
+  margin-bottom: 16px;
+}
+
+.jt-dash-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.btn-jt-dash-apply {
+  background: var(--jt-primary, #0f5acf) !important;
+  color: #ffffff !important;
+  border: none !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  line-height: 38px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(15, 90, 207, 0.15) !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+}
+
+.btn-jt-dash-apply:hover {
+  background: var(--jt-primary-hover, #0c47a4) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 90, 207, 0.25) !important;
+}
+
+.btn-jt-dash-apply:active {
+  transform: translateY(0);
+}
+
+.btn-jt-dash-apply.applied {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  cursor: default !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.jt-dash-card-meta {
+  font-size: 12px;
+  color: var(--jt-text-muted, #717b9e);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .jt-dash-card {
+    padding: 16px 14px !important;
+  }
+  .jt-dash-card-action {
+    gap: 8px;
+  }
+  .btn-jt-dash-apply {
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    line-height: 36px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+  }
+  .jt-dash-card-meta {
+    font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   5. Search Capsule Experience Level Select
+   ========================================================================== */
+.jt-search-field-exp {
+  flex: 0 0 auto;
+  min-width: 180px;
+}
+
+.jt-search-select {
+  width: 100%;
+  min-width: 170px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--jt-text-dark);
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23717b9e' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  padding-right: 24px;
+  white-space: nowrap;
+}
+
+.jt-search-select option {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .jt-search-field-exp {
+    flex: 1 1 auto;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 12px 16px;
+    box-sizing: border-box;
+  }
+  .jt-search-select {
+    font-size: 16px !important;
+    text-align: left !important;
+  }
+}
+
+/* ==========================================================================
+   6. Authenticated Home Sections Wrapper & Universal Headers
+   ========================================================================== */
+.jt-auth-home-sections {
+  width: 100%;
+}
+
+.jt-section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.jt-section-header-flex {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.jt-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--jt-text-dark);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.jt-section-subtitle {
+  font-size: 14.5px;
+  color: var(--jt-text-body);
+  max-width: 620px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.jt-section-header .jt-section-subtitle {
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .jt-section-title {
+    font-size: 20px;
+  }
+  .jt-section-subtitle {
+    font-size: 13.5px;
+  }
+}
+
+/* ==========================================================================
+   7. Popular & Trending Job Categories Grid
+   ========================================================================== */
+.jt-categories-section {
+  max-width: 1140px;
+  margin: 16px auto 48px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 991px) {
+  .jt-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .jt-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .jt-category-card {
+    padding: 12px 10px !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+  }
+  .jt-cat-icon-wrap {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+  .jt-cat-info {
+    min-width: 0 !important;
+    flex: 1 !important;
+    overflow: hidden !important;
+  }
+  .jt-cat-title {
+    font-size: 14px !important;
+    margin: 0 0 2px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+  }
+  .jt-cat-count {
+    font-size: 12px !important;
+  }
+  .jt-cat-arrow {
+    flex-shrink: 0 !important;
+  }
+}
+
+.jt-category-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.jt-category-card:hover {
+  border-color: var(--jt-primary);
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.09);
+  transform: translateY(-2px);
+}
+
+.jt-cat-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #f0f5ff;
+  color: var(--jt-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.jt-category-card:hover .jt-cat-icon-wrap {
+  background: var(--jt-primary);
+  color: #ffffff;
+}
+
+.jt-cat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.jt-cat-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--jt-text-dark);
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jt-cat-count {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #16a34a;
+}
+
+.jt-cat-arrow {
+  color: #8b92a5;
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.jt-category-card:hover .jt-cat-arrow {
+  color: var(--jt-primary);
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   8. Quick Profile & Single-Click Resume Upload Banner
+   ========================================================================== */
+.jt-resume-upload-section {
+  max-width: 1140px;
+  margin: 0 auto 52px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-resume-banner-box {
+  background: linear-gradient(135deg, #002970 0%, #0f5acf 60%, #005bb5 100%);
+  border-radius: 16px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  color: #ffffff;
+  box-shadow: 0 8px 28px rgba(0, 41, 112, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.jt-resume-banner-box::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.jt-resume-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.jt-resume-banner-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.jt-resume-banner-desc {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+  max-width: 580px;
+  line-height: 1.5;
+}
+
+.jt-resume-banner-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-jt-upload-resume {
+  background: #ffffff;
+  color: #002970;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-jt-upload-resume:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.jt-resume-supported-text {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 991px) {
+  .jt-resume-banner-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    gap: 20px;
+  }
+  .jt-resume-banner-content {
+    width: 100%;
+    gap: 10px;
+  }
+  .jt-resume-banner-title {
+    font-size: 21px;
+    line-height: 1.3;
+  }
+  .jt-resume-banner-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+  .jt-resume-banner-action {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .btn-jt-upload-resume {
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .jt-resume-banner-box {
+    padding: 18px 12px !important;
+    gap: 14px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .jt-resume-banner-title {
+    font-size: 17px !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+  }
+  .jt-resume-banner-desc {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  .jt-resume-banner-action {
+    align-items: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .btn-jt-upload-resume {
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px 14px !important;
+    font-size: 13.5px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    display: flex !important;
+  }
+  .jt-resume-supported-text {
+    text-align: center !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ==========================================================================
+   9. Featured & Recommended Jobs Grid with 4 Tab Filters
+   ========================================================================== */
+.jt-featured-jobs-section {
+  max-width: 1140px;
+  margin: 0 auto 56px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-job-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.jt-tab-btn {
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  color: var(--jt-text-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jt-tab-btn:hover {
+  border-color: var(--jt-primary);
+  color: var(--jt-primary);
+}
+
+.jt-tab-btn.active {
+  background: var(--jt-primary);
+  color: #ffffff;
+  border-color: var(--jt-primary);
+  box-shadow: 0 2px 8px rgba(15, 90, 207, 0.2);
+}
+
+.jt-featured-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 768px) {
+  .jt-featured-jobs-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jt-featured-jobs-grid {
+    gap: 12px;
+  }
+  .jt-featured-card {
+    padding: 14px 12px !important;
+    min-height: unset !important;
+    border-radius: 10px !important;
+  }
+  .jt-job-tabs {
+    gap: 6px !important;
+  }
+  .jt-tab-btn {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+}
+
+.jt-featured-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 205px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.jt-featured-card:hover {
+  border-color: var(--jt-primary);
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.08);
+  transform: translateY(-2px);
+}
+
+.jt-featured-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.jt-featured-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #eaf1ff;
+  color: var(--jt-primary);
+}
+
+.jt-featured-badge-green {
+  background: #eaf8ee;
+  color: #16a34a;
+}
+
+.jt-featured-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.jt-featured-title a {
+  color: var(--jt-text-dark);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.jt-featured-title a:hover {
+  color: var(--jt-primary);
+  text-decoration: underline;
+}
+
+.jt-featured-company {
+  font-size: 13.5px;
+  color: var(--jt-text-muted);
+  margin-bottom: 8px;
+}
+
+.jt-featured-salary {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--jt-text-dark);
+  margin-bottom: 14px;
+}
+
+.jt-featured-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+@media (max-width: 480px) {
+  .jt-featured-action-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+}
+
+.jt-featured-exp-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555e77;
+  background: #f1f3f7;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   10. Top Hiring Companies Showcase
+   ========================================================================== */
+.jt-companies-showcase-section {
+  max-width: 1140px;
+  margin: 0 auto 56px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-companies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 991px) {
+  .jt-companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .jt-companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .jt-companies-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.jt-company-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+  .jt-company-card {
+    padding: 14px 10px !important;
+  }
+}
+
+.jt-company-card:hover {
+  border-color: var(--jt-primary);
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.09);
+  transform: translateY(-2px);
+}
+
+.jt-company-logo-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #f0f4fa;
+  color: var(--jt-primary);
+  font-weight: 800;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.jt-company-card-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--jt-text-dark);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.jt-company-rating-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #16a34a;
+  background: #eaf8ee;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.jt-company-openings-count {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--jt-text-muted);
+}
+
+/* ==========================================================================
+   11. Career Services Suite (Resume Score, Salary Estimator, Advice)
+   ========================================================================== */
+.jt-career-services-section {
+  max-width: 1140px;
+  margin: 0 auto 64px;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jt-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .jt-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jt-service-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-border);
+  border-radius: 14px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.jt-service-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.jt-service-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #f0f5ff;
+  color: var(--jt-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.jt-service-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--jt-text-dark);
+  margin: 0 0 2px;
+}
+
+.jt-service-card-desc {
+  font-size: 13.5px;
+  color: var(--jt-text-body);
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.jt-service-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jt-service-input,
+.jt-service-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--jt-border-dark);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--jt-text-dark);
+  box-sizing: border-box;
+  outline: none;
+  background: #ffffff;
+}
+
+.jt-service-input:focus,
+.jt-service-select:focus {
+  border-color: var(--jt-primary);
+}
+
+.btn-jt-service-action {
+  background: var(--jt-primary);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-jt-service-action:hover {
+  background: var(--jt-primary-hover);
+}
+
+/* Result Callout */
+.jt-service-result-box {
+  margin-top: 16px;
+  padding: 14px;
+  background: #f8f9fc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.jt-ats-score-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.jt-ats-score-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.jt-ats-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.jt-ats-progress-bar {
+  height: 100%;
+  background: #16a34a;
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Advice Articles List */
+.jt-advice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jt-advice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.jt-advice-item:hover {
+  background: #f0f5ff;
+}
+
+.jt-advice-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #eaf1ff;
+  color: var(--jt-primary);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.jt-advice-headline {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--jt-text-dark);
+  margin: 0 0 2px;
+  line-height: 1.35;
+}
+
+.jt-advice-meta {
+  font-size: 11.5px;
+  color: var(--jt-text-muted);
+}
+
+@keyframes jtSpin {
+  100% { transform: rotate(360deg); }
+}
+.jt-spin-icon {
+  animation: jtSpin 1s linear infinite;
+}
+
+/* ==========================================================================
+   12. Universal Mobile Viewport Containment & Anti-Clipping Standards
+   Supports down to 260px Narrow Screen Devices (DevTools Mobile Standard)
+   ========================================================================== */
+@media (max-width: 576px) {
+  .jt-hero-section {
+    padding: 24px 10px 20px !important;
+  }
+  .jt-hero-brand-logo {
+    width: 135px !important;
+    margin-bottom: 12px !important;
+  }
+  .jt-hero-title {
+    font-size: 21px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+    word-break: break-word !important;
+  }
+  .jt-hero-subtitle {
+    font-size: 13px !important;
+    margin-bottom: 18px !important;
+    line-height: 1.45 !important;
+  }
+  .jt-search-wrapper {
+    margin: 0 auto 18px !important;
+  }
+  .jt-search-field {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+  .jt-search-input {
+    font-size: 14px !important;
+  }
+  .jt-search-select {
+    font-size: 14px !important;
+    min-width: 0 !important;
+  }
+  .jt-search-btn-container {
+    padding: 6px 10px 10px !important;
+  }
+  .jt-btn-search {
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+  .jt-section-title {
+    font-size: 18.5px !important;
+    word-break: break-word !important;
+  }
+  .jt-section-subtitle {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  .jt-service-card {
+    padding: 18px 14px !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .jt-categories-section,
+  .jt-resume-upload-section,
+  .jt-featured-jobs-section,
+  .jt-companies-showcase-section,
+  .jt-career-services-section,
+  .jt-trending-section {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    margin-bottom: 32px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .jt-categories-section .container,
+  .jt-resume-upload-section .container,
+  .jt-featured-jobs-section .container,
+  .jt-companies-showcase-section .container,
+  .jt-career-services-section .container,
+  .jt-hero-section .container,
+  .jt-trending-section .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .jt-user-welcome-strip .jt-dashboard-header {
+    padding: 14px 12px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .jt-hero-section,
+  .jt-categories-section,
+  .jt-resume-upload-section,
+  .jt-featured-jobs-section,
+  .jt-companies-showcase-section,
+  .jt-career-services-section,
+  .jt-trending-section {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+

@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Hire Top Talent & Post Jobs - Move ONN Consultancy</title>
+  <meta name="description" content="Connect with pre-vetted senior engineers, designers, analysts, and leaders with Move ONN Recruitment Solutions.">
+  <link rel="icon" href="assets/images/moveonn-icon.png" type="image/png">
+
+  <!-- Local Offline CSS Engine (Strictly Modular, Zero External CDN) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hire.css">
+  <link rel="stylesheet" href="css/footer.css">
+
+  <!-- Instant Pre-Hydration & Zero-FOUC Engine -->
+  <script>
+    (function() {
+      try {
+        var c = localStorage.getItem('jt_country') || 'IN';
+        var l = localStorage.getItem('jt_lang') || 'en';
+        var u = localStorage.getItem('moveonn_user') || null;
+        document.documentElement.setAttribute('data-country', c);
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.setAttribute('lang', l);
+        if (u) {
+          document.documentElement.classList.add('jt-user-logged-in');
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="page-hire">
+
+  <!-- ==========================================================================
+       1. Single Unified Responsive Navbar (Complies with PROJECT_STANDARDS.md)
+       ========================================================================== -->
+  <header class="jt-header">
+    <div class="container jt-navbar">
+      
+      <!-- Brand Logo (Pure clickable link, zero inline event cancellation) -->
+      <a href="index.html" class="jt-brand" aria-label="Move ONN Home">
+        <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo">
+      </a>
+
+      <!-- Desktop Navigation Menu (Visible >= 992px) -->
+      <nav class="jt-nav-menu" aria-label="Main Navigation">
+        <ul class="jt-nav-list">
+          <li><a href="index.html" class="jt-nav-item">Home</a></li>
+          <li><a href="jobs.html" class="jt-nav-item">Jobs</a></li>
+          <li><a href="companies.html" class="jt-nav-item">Company reviews</a></li>
+          <li><a href="salaries.html" class="jt-nav-item">Salary guide</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action Area -->
+      <div class="jt-nav-actions">
+        <a href="hire.html" class="jt-btn-hire">Employer Portal</a>
+        <!-- Country Selector -->
+        <a href="countries.html" class="jt-action-country" aria-label="Change country">
+          <span class="jt-flag"><img src="assets/flags/in.svg" alt="India" class="jt-nav-flag-img"></span> <span class="jt-lang">En</span>
+        </a>
+        <script>
+          (function(){
+            try {
+              var f = localStorage.getItem('jt_flag');
+              var l = localStorage.getItem('jt_lang');
+              if (f) {
+                var el = document.currentScript.previousElementSibling.querySelector('.jt-nav-flag-img');
+                if (el) el.src = f;
+              }
+              if (l) {
+                var tl = document.currentScript.previousElementSibling.querySelector('.jt-lang');
+                if (tl) tl.textContent = l.toUpperCase();
+              }
+            } catch(e){}
+          })();
+        </script>
+
+        <!-- Dynamic Auth Button (Sign In Button / Profile Avatar) -->
+        <div id="jtAuthButtonContainer">
+          <button type="button" class="jt-btn-signin-nav" onclick="window.openAuthModal('signin')">
+            Sign in
+          </button>
+        </div>
+        <script>
+          (function(){
+            try {
+              var u = localStorage.getItem('moveonn_user') || null;
+              if (u) {
+                var user = JSON.parse(u);
+                var email = (user && user.email) ? user.email.toLowerCase().trim() : '';
+                var safeEmail = email ? email.replace(/[^a-z0-9]/g, '_') : '';
+                var cImg = null;
+                if (safeEmail) {
+                  cImg = localStorage.getItem('jt_user_avatar_img__' + safeEmail);
+                }
+                if (!cImg && email) {
+                  cImg = localStorage.getItem('jt_user_avatar_img__' + email);
+                }
+                if (!cImg) {
+                  cImg = localStorage.getItem('jt_user_avatar_img') || (user ? user.avatar : null);
+                }
+                var avatarInner = cImg 
+                  ? '<img src="' + cImg + '" alt="' + (user.name || '') + '" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">'
+                  : '<svg viewBox="0 0 24 24" width="22" height="22" fill="#64748b" style="display:block;"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" /></svg>';
+                
+                var plan = email ? (localStorage.getItem('jt_user_plan__' + email) || 'free') : 'free';
+                var planBadge = '';
+                if (plan === 'growth') planBadge = '<span style="margin-left:auto; font-size:10px; padding:2px 6px; background:#004687; color:#fff; border-radius:4px; font-weight:700;">PRO</span>';
+                else if (plan === 'enterprise') planBadge = '<span style="margin-left:auto; font-size:10px; padding:2px 6px; background:#004687; color:#fff; border-radius:4px; font-weight:700;">ENTERPRISE</span>';
+                
+                var c = document.getElementById('jtAuthButtonContainer');
+                if (c) {
+                  c.innerHTML = '<div class="position-relative">' +
+                    '<button type="button" class="jt-user-avatar-btn" id="jtUserAvatarBtn" aria-label="User account menu" aria-expanded="false" onclick="window.handleAvatarClick(event)">' +
+                    avatarInner +
+                    '</button>' +
+                    '<div class="jt-user-dropdown" id="jtUserDropdown">' +
+                    '<a href="profile.html" class="jt-user-dropdown-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Profile Dashboard</span>' + planBadge + '</a>' +
+                    '<a href="jobs.html?tab=saved" class="jt-user-dropdown-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg><span>My Saved Jobs</span></a>' +
+                    '<a href="employer-dashboard.html" class="jt-user-dropdown-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg><span>Employer Portal</span></a>' +
+                    '<div class="jt-user-dropdown-divider"></div>' +
+                    '<button type="button" class="jt-user-dropdown-signout" onclick="window.performSignOut()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg><span>Sign out</span></button>' +
+                    '</div></div>';
+                }
+              }
+            } catch(e) {}
+          })();
+        </script>
+
+        <!-- Mobile Hamburger Toggle (Strictly hidden >= 992px) -->
+        <button type="button" class="jt-burger-btn" id="jtBurgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="jt-burger-line"></span>
+          <span class="jt-burger-line"></span>
+          <span class="jt-burger-line"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Off-Canvas Drawer (Unified within same component) -->
+    <div class="jt-mobile-drawer" id="jtMobileDrawer">
+      <div class="jt-drawer-backdrop" id="jtDrawerBackdrop"></div>
+      <div class="jt-drawer-panel">
+        <div class="jt-drawer-header">
+          <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo-sm">
+          <button type="button" class="jt-drawer-close" id="jtDrawerCloseBtn" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="jt-drawer-body">
+          <!-- Injected Mobile Auth Profile or Sign-in button -->
+          <div id="jtDrawerAuthSection" class="jt-drawer-auth"></div>
+          
+          <ul class="jt-drawer-links">
+            <li><a href="index.html" class="jt-drawer-link"><span>Home</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+            <li><a href="jobs.html" class="jt-drawer-link"><span>Jobs</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+            <li><a href="companies.html" class="jt-drawer-link"><span>Company reviews</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+            <li><a href="salaries.html" class="jt-drawer-link"><span>Salary guide</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+            <li class="jt-drawer-divider"></li>
+            <li><a href="hire.html#pricing" class="jt-drawer-link"><span>Pricing &amp; Plans</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+            <li class="jt-drawer-divider"></li>
+            <li><a href="countries.html" class="jt-drawer-link"><span>Change country: India <img src="assets/flags/in.svg" alt="India" class="jt-nav-flag-img" style="margin-left:6px;"></span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. Main Content (Employer Portal Suite)
+       ========================================================================== -->
+  <main class="css-u74ql7 eu4oa1w0">
+    <div class="css-u74ql7 eu4oa1w0" data-tn-section="main" bis_skin_checked="1">
+
+      <!-- BLOCK 1: Hero Layered Shape Section -->
+      <div data-scroll-tracking-id="impr-tracked-comp" data-tn-element="block1_heroLayeredShape" data-tn-component="block1_heroLayeredShape" class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+        <section class="css-1hx1238 eu4oa1w0">
+          <div class="css-1sm8id2 eu4oa1w0" bis_skin_checked="1">
+            <div class="css-1s089is eu4oa1w0" bis_skin_checked="1"></div>
+            <div class="css-1ud3kyp eu4oa1w0" bis_skin_checked="1">
+              <div class="css-4q23eu eu4oa1w0" bis_skin_checked="1">
+                <div class="css-gk9upa eu4oa1w0" bis_skin_checked="1">
+                  
+                  <!-- Ambient Watermark SVG Arch -->
+                  <div class="css-1a8xm5r eu4oa1w0" bis_skin_checked="1">
+                    <svg role="presentation" viewBox="480 0 1019 808" fill="none" xmlns="http://www.w3.org/2000/svg" class="css-1f6eeob eu4oa1w0">
+                      <defs>
+                        <linearGradient id="_R_1lak6ktal5fivdb_">
+                          <stop offset="0" class="css-e84xgb eu4oa1w0"></stop>
+                          <stop offset="100" class="css-1d8n99g eu4oa1w0"></stop>
+                        </linearGradient>
+                      </defs>
+                      <path d="M1710.23 186C911.56 121.218 1124.14 808 459.671 808C34.6989 808 -43.4934 333.614 18.9655 0H224.029H1919C1919 154.084 1801.51 193.404 1710.23 186Z" fill="url(#_R_1lak6ktal5fivdb_)"></path>
+                    </svg>
+                  </div>
+
+                  <!-- Hero Left: Content -->
+                  <div class="css-6yp0k2 eu4oa1w0" bis_skin_checked="1">
+                    <h1 class="css-19fhnq5 e1tiznh50">Move ONN for Employers</h1>
+                    <h2 class="css-18g36sx e1tiznh50">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <span>Let’s hire your next great candidate. <em>Fast</em>.</span>
+                      </div>
+                    </h2>
+                    <div class="css-1x2s017 e1wnkr790" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <p class="css-5l3f0p e1wnkr790">No matter the skills, experience or qualifications you’re looking for, you’ll find the right people here.</p>
+                      </div>
+                    </div>
+                    <div class="css-gvr0dl e37uo190" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                        <a href="employer-dashboard.html" data-tn-element="webxHireHeroPostJobButton" class="css-8flg3 eac13zx0" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Post a job</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Hero Right: Professional Photography -->
+                  <div class="css-nxsixi eu4oa1w0" bis_skin_checked="1">
+                    <div class="css-11djek6 eu4oa1w0" bis_skin_checked="1">
+                      <img alt="a professional man wearing glasses preparing to use Move ONN's matching and hiring platform to hire his next candidate" width="1000" height="857" src="assets/images/employer_hero_in.webp" fetchpriority="high" class="css-woq1zf eu4oa1w0">
+                      <img alt="" width="1000" height="857" src="assets/images/employer_hero_bg.webp" class="css-10qceif eu4oa1w0">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="scroll-tracked-el" bis_skin_checked="1"></div>
+      </div>
+
+      <!-- SPEC SECTION 1: Recruiter Resume Search Bar -->
+      <section class="jt-employer-spec-section" style="padding-top: 36px; padding-bottom: 24px;" id="empResumeSearchSection">
+        <div class="jt-emp-search-wrap">
+          <div class="jt-emp-section-header" style="margin-bottom: 24px;">
+            <span class="jt-emp-section-tag">Candidate Database Search</span>
+            <h2 class="jt-emp-section-title">Search 20M+ Verified Candidate Resumes</h2>
+            <p class="jt-emp-section-subtitle">Instantly preview pre-screened talent across engineering, product, sales, and corporate operations</p>
+          </div>
+          <form class="jt-emp-search-capsule" id="jtEmpResumeSearchForm">
+            <div class="jt-emp-search-field">
+              <svg width="20" height="20" fill="none" stroke="#64748b" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="jt-emp-search-input" id="jtEmpSearchRole" placeholder="Skill or job title" autocomplete="off">
+            </div>
+            <div class="jt-emp-search-divider"></div>
+            <div class="jt-emp-search-field">
+              <svg width="20" height="20" fill="none" stroke="#64748b" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <input type="text" class="jt-emp-search-input" id="jtEmpSearchLoc" placeholder="City or location" autocomplete="off">
+            </div>
+            <button type="submit" class="btn-jt-emp-search">
+              <span>Search Resumes</span>
+            </button>
+          </form>
+          <!-- Live Search Results Preview Container -->
+          <div id="jtEmpSearchResults" style="display:none; margin-top: 24px;"></div>
+        </div>
+      </section>
+
+      <!-- SPEC SECTION 2: Employer Benefits & Live Stats Counter -->
+      <section class="jt-employer-spec-section jt-employer-spec-bg" id="empBenefitsSection">
+        <div class="jt-emp-section-header">
+          <span class="jt-emp-section-tag">Why Choose Us</span>
+          <h2 class="jt-emp-section-title">Built for Faster, Predictable Corporate Hiring</h2>
+          <p class="jt-emp-section-subtitle">Empowering 500+ enterprises with AI candidate matching, automated screening, and verified talent pipelines</p>
+        </div>
+        <div class="jt-emp-stats-grid">
+          <div class="jt-emp-stat-card">
+            <div class="jt-emp-stat-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="jt-emp-stat-num">20.1M+</div>
+            <p class="jt-emp-stat-label">Registered Candidates</p>
+          </div>
+          <div class="jt-emp-stat-card">
+            <div class="jt-emp-stat-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <div class="jt-emp-stat-num">8.5M+</div>
+            <p class="jt-emp-stat-label">Active Verified Resumes</p>
+          </div>
+          <div class="jt-emp-stat-card">
+            <div class="jt-emp-stat-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="jt-emp-stat-num">150,000+</div>
+            <p class="jt-emp-stat-label">Successful Hires Made</p>
+          </div>
+          <div class="jt-emp-stat-card">
+            <div class="jt-emp-stat-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="jt-emp-stat-num">&lt; 24h</div>
+            <p class="jt-emp-stat-label">Avg. Candidate Response</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK 2: Pillar Group (Manage your hiring from start to finish) -->
+      <div data-scroll-tracking-id="impr-tracked-comp" data-tn-element="block2_pillarGroup" data-tn-component="block2_pillarGroup" class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+        <section class="css-1hx1238 eu4oa1w0">
+          <div class="css-1sm8id2 eu4oa1w0" bis_skin_checked="1">
+            <div class="css-tw3ba1 eu4oa1w0" bis_skin_checked="1">
+              <header class="css-xgatr3 e37uo190" style="margin-bottom: 24px;">
+                <h2 class="css-hxyl4h e1tiznh50">Manage your hiring from start to finish</h2>
+                <p style="font-size: 15px; color: #474d6a; margin-top: 8px;">Explore end-to-end recruitment capabilities designed to scale your team efficiently</p>
+              </header>
+            </div>
+            <div class="css-tw3ba1 eu4oa1w0" bis_skin_checked="1">
+              <div class="css-1rfy1y9 eu4oa1w0" bis_skin_checked="1">
+                <div class="css-wj0of1 eu4oa1w0" bis_skin_checked="1">
+                  
+                  <div class="css-yu5l5a e37uo190" bis_skin_checked="1">
+                    <h3 class="css-1xiz8vv e1tiznh50">Post a job</h3>
+                    <div class="css-1cpsvkk e1wnkr790" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <p class="css-5l3f0p e1wnkr790">Get started with a job post. Move ONN has 20.1M unique monthly users to deliver verified applicants.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="css-yu5l5a e37uo190" bis_skin_checked="1">
+                    <h3 class="css-1xiz8vv e1tiznh50">Find quality applicants</h3>
+                    <div class="css-1cpsvkk e1wnkr790" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <p class="css-5l3f0p e1wnkr790">Customise your post with screening tools to help narrow down to potential top-tier candidates.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="css-yu5l5a e37uo190" bis_skin_checked="1">
+                    <h3 class="css-1xiz8vv e1tiznh50">Make connections</h3>
+                    <div class="css-1cpsvkk e1wnkr790" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <p class="css-5l3f0p e1wnkr790">Track, message, invite and interview directly on Move ONN with no extra apps to download.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="css-yu5l5a e37uo190" bis_skin_checked="1">
+                    <h3 class="css-1xiz8vv e1tiznh50">Hire confidently</h3>
+                    <div class="css-1cpsvkk e1wnkr790" bis_skin_checked="1">
+                      <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                        <p class="css-5l3f0p e1wnkr790">You’re not alone on your hiring journey. We have helpful resources for every step of the hiring process.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="scroll-tracked-el" bis_skin_checked="1"></div>
+      </div>
+
+      <!-- BLOCK 3: Interactive Candidates Dashboard -->
+      <div data-scroll-tracking-id="impr-tracked-comp" data-tn-element="block3_featureDense" data-tn-component="block3_featureDense" class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+        <section class="css-1hx1238 eu4oa1w0">
+          <div class="css-1sm8id2 eu4oa1w0" bis_skin_checked="1">
+            <div class="css-tw3ba1 eu4oa1w0" bis_skin_checked="1">
+              <header class="css-62x9sb e37uo190" style="margin-bottom: 24px;">
+                <h2 class="css-19k35fy e1tiznh50">Interactive Candidate Pipeline</h2>
+                <p style="font-size: 15px; color: #474d6a; margin-top: 8px;">Monitor applicants, review skill assessments, and conduct live interviews in real time</p>
+              </header>
+            </div>
+            
+            <div class="jt-employer-dashboard-box">
+              <div class="jt-employer-dashboard-sidebar" role="tablist" aria-label="Dashboard Features">
+                <button type="button" class="jt-dash-feature-item active" data-dash-tab="manage" role="tab" aria-selected="true" aria-controls="jtDashCardsContainer">
+                  <div class="jt-dash-dot"></div>
+                  <div class="jt-dash-item-text">
+                    <h3 class="jt-dash-feature-title">Manage your jobs</h3>
+                    <p class="jt-dash-feature-desc">View applicants, edit descriptions, adjust budgets, and monitor candidate status in real time.</p>
+                  </div>
+                </button>
+                <button type="button" class="jt-dash-feature-item" data-dash-tab="choose" role="tab" aria-selected="false" aria-controls="jtDashCardsContainer">
+                  <div class="jt-dash-dot"></div>
+                  <div class="jt-dash-item-text">
+                    <h3 class="jt-dash-feature-title">Choose who moves forward</h3>
+                    <p class="jt-dash-feature-desc">Filter by match score, assessment results, and recruiter notes to shortlist candidates fast.</p>
+                  </div>
+                </button>
+                <button type="button" class="jt-dash-feature-item" data-dash-tab="interview" role="tab" aria-selected="false" aria-controls="jtDashCardsContainer">
+                  <div class="jt-dash-dot"></div>
+                  <div class="jt-dash-item-text">
+                    <h3 class="jt-dash-feature-title">Interview anywhere</h3>
+                    <p class="jt-dash-feature-desc">Conduct 1-click video calls with built-in screener rubrics right inside your browser.</p>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Interactive Dashboard Preview Card -->
+              <div class="jt-employer-dashboard-preview">
+                <div class="jt-dash-preview-header">
+                  <div class="jt-dash-preview-badge-wrap">
+                    <span class="jt-dash-status-dot-pulse"></span>
+                    <span class="jt-dash-preview-badge" id="jtDashBadge">Live Candidate Pipeline</span>
+                  </div>
+                  <span class="jt-dash-active-count" id="jtDashCount">2 New Matches</span>
+                </div>
+                
+                <div id="jtDashCardsContainer" class="jt-dash-cards-container">
+                  <div class="jt-dash-candidate-card">
+                    <div class="jt-dash-avatar">RV</div>
+                    <div class="jt-dash-info">
+                      <div class="jt-dash-name">Rajesh Verma <span class="jt-dash-match">98% Match</span></div>
+                      <div class="jt-dash-role">Senior Full Stack Engineer • Bangalore</div>
+                      <div class="jt-dash-skills">
+                        <span>Node.js</span>
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>AWS</span>
+                      </div>
+                    </div>
+                    <span class="jt-dash-status-pill status-new">New Applicant</span>
+                  </div>
+
+                  <div class="jt-dash-candidate-card">
+                    <div class="jt-dash-avatar">AS</div>
+                    <div class="jt-dash-info">
+                      <div class="jt-dash-name">Anamika Singh <span class="jt-dash-match">95% Match</span></div>
+                      <div class="jt-dash-role">Lead Product Designer • Remote</div>
+                      <div class="jt-dash-skills">
+                        <span>Figma</span>
+                        <span>Design Systems</span>
+                        <span>User Research</span>
+                      </div>
+                    </div>
+                    <span class="jt-dash-status-pill status-review">Under Review</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <div class="scroll-tracked-el" bis_skin_checked="1"></div>
+      </div>
+
+      <!-- BLOCK 4: Smart Sourcing Feature Section -->
+      <section class="jt-employer-feature-section">
+        <div class="jt-employer-container">
+          <div class="jt-employer-grid-2col">
+            <div class="jt-employer-img-col">
+              <img alt="product representation of a matched candidate in Move ONN Smart Sourcing" width="600" height="525" src="assets/images/employer_copy_image.png" class="jt-employer-feature-img">
+            </div>
+            <div class="jt-employer-feature-text">
+              <h2 class="css-vaxq1m e1tiznh50">Unlock matched candidates with Move ONN Smart Sourcing</h2>
+              <div class="css-1ap3djd e1wnkr790">
+                <p class="css-5l3f0p e1wnkr790">When you have a job posted and add a Move ONN Smart Sourcing subscription, you immediately start seeing candidates whose CVs on Move ONN fit your job description. When someone stands out, invite them to apply directly.</p>
+              </div>
+              <button type="button" data-tn-element="webxEmployerSmartSourcingButton" id="jtSmartSourcingBtn" class="css-1oskdiz eac13zx0 jt-employer-action-link" style="border:none; background:none; cursor:pointer; font-family:inherit; padding:0; display:inline-flex; align-items:center; gap:8px;">
+                <span>Explore Smart Sourcing</span>
+                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12.409 12L8.604 8.195a1.08 1.08 0 01-.316-.795A1.08 1.08 0 019.4 6.287c.32 0 .585.106.796.317l4.594 4.594c.112.112.193.236.245.373a1.2 1.2 0 01.078.429 1.2 1.2 0 01-.078.428 1.053 1.053 0 01-.245.373l-4.594 4.594a1.08 1.08 0 01-.796.317A1.08 1.08 0 018.288 16.6c0-.32.105-.585.316-.796L12.41 12z"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK 5: Hiring Resources & Help Centre Section -->
+      <section class="jt-employer-feature-section jt-bg-light">
+        <div class="jt-employer-container">
+          <div class="jt-employer-grid-2col">
+            <div class="jt-employer-feature-text">
+              <h2 class="css-vaxq1m e1tiznh50">Hiring resources for every step of the process</h2>
+              <div class="css-1ap3djd e1wnkr790">
+                <p class="css-5l3f0p e1wnkr790">You’re not alone on your hiring journey. We have helpful resources for every step of the hiring process, including interview guides, competitive market salary reports, and compliance playbooks.</p>
+              </div>
+              <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px;">
+                <button type="button" data-tn-element="webxEmployerWebHelpCenter" id="jtEmployerHelpCenterBtn" class="css-1oskdiz eac13zx0 jt-employer-action-link" style="border:none; background:none; cursor:pointer; font-family:inherit; padding:0; display:inline-flex; align-items:center; gap:8px;">
+                  <span>Employer Help Centre</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12.409 12L8.604 8.195a1.08 1.08 0 01-.316-.795A1.08 1.08 0 019.4 6.287c.32 0 .585.106.796.317l4.594 4.594c.112.112.193.236.245.373a1.2 1.2 0 01.078.429 1.2 1.2 0 01-.078.428 1.053 1.053 0 01-.245.373l-4.594 4.594a1.08 1.08 0 01-.796.317A1.08 1.08 0 018.288 16.6c0-.32.105-.585.316-.796L12.41 12z"></path></svg>
+                </button>
+                <button type="button" data-tn-element="webxEmployerWebResourceLibrary" id="jtEmployerResourceLibBtn" class="css-1oskdiz eac13zx0 jt-employer-action-link" style="border:none; background:none; cursor:pointer; font-family:inherit; padding:0; display:inline-flex; align-items:center; gap:8px;">
+                  <span>Employer Resource Library</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12.409 12L8.604 8.195a1.08 1.08 0 01-.316-.795A1.08 1.08 0 019.4 6.287c.32 0 .585.106.796.317l4.594 4.594c.112.112.193.236.245.373a1.2 1.2 0 01.078.429 1.2 1.2 0 01-.078.428 1.053 1.053 0 01-.245.373l-4.594 4.594a1.08 1.08 0 01-.796.317A1.08 1.08 0 018.288 16.6c0-.32.105-.585.316-.796L12.41 12z"></path></svg>
+                </button>
+              </div>
+            </div>
+            <div class="jt-employer-img-col">
+              <img alt="a woman climbing a ladder to reach books on a high shelf in a library, representing the many resources available in Move ONN’s Help Centre" width="600" height="378" src="assets/images/employer_ladder_person.webp" class="jt-employer-feature-img">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK 6: Lower CTA Section -->
+      <section class="jt-employer-feature-section">
+        <div class="jt-employer-container">
+          <div class="jt-employer-grid-2col">
+            <div class="jt-employer-img-col">
+              <img alt="a young professional exploring Move ONN's matching and hiring platform on a laptop" width="600" height="380" src="assets/images/employer_lower_cta.webp" class="jt-employer-feature-img">
+            </div>
+            <div class="jt-employer-feature-text">
+              <h2 class="css-vaxq1m e1tiznh50">Ready to find your next hired candidate?</h2>
+              <div class="css-1ap3djd e1wnkr790">
+                <p class="css-5l3f0p e1wnkr790">Create a job post in minutes and tap into India's largest verified talent network of top engineers, executives, and specialists.</p>
+              </div>
+              <a href="employer-dashboard.html" data-tn-element="webxEmployerLowerCtaPostJobButton" class="css-8flg3 eac13zx0" style="margin-top: 8px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Post a job</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SPEC SECTION 3: Featured Candidates Showcase (Top Talent Preview) -->
+      <section class="jt-employer-spec-section" id="empFeaturedCandidatesSection">
+        <div class="jt-emp-section-header">
+          <span class="jt-emp-section-tag">Top Talent Preview</span>
+          <h2 class="jt-emp-section-title">Pre-Screened, Top-Rated Candidates Ready to Hire</h2>
+          <p class="jt-emp-section-subtitle">Browse vetted professionals with high-demand skillsets and proven industry track records</p>
+        </div>
+        <div class="jt-candidates-grid">
+          
+          <!-- Candidate 1 -->
+          <article class="jt-candidate-profile-card">
+            <div>
+              <div class="jt-cand-top-row">
+                <div class="jt-cand-user-meta">
+                  <div class="jt-cand-avatar">RV</div>
+                  <div>
+                    <h3 class="jt-cand-name">Rajesh Verma</h3>
+                    <p class="jt-cand-title">Senior Full Stack Engineer</p>
+                  </div>
+                </div>
+                <span class="jt-cand-match-pill">98% Match</span>
+              </div>
+              <div class="jt-cand-detail-chips">
+                <span class="jt-cand-chip">5 Yrs Exp</span>
+                <span class="jt-cand-chip">Bengaluru (Open to Remote)</span>
+                <span class="jt-cand-chip">₹18 LPA Current</span>
+              </div>
+              <div class="jt-cand-skills-row">
+                <span class="jt-cand-skill-tag">React</span>
+                <span class="jt-cand-skill-tag">Node.js</span>
+                <span class="jt-cand-skill-tag">AWS</span>
+                <span class="jt-cand-skill-tag">TypeScript</span>
+                <span class="jt-cand-skill-tag">PostgreSQL</span>
+              </div>
+            </div>
+            <div class="jt-cand-action-row">
+              <span class="jt-cand-notice">Notice: Immediate Joiner (0 Days)</span>
+              <button type="button" class="btn-jt-cand-contact" disabled style="opacity:0.65; cursor:default; pointer-events:none;">View Profile</button>
+            </div>
+          </article>
+
+          <!-- Candidate 2 -->
+          <article class="jt-candidate-profile-card">
+            <div>
+              <div class="jt-cand-top-row">
+                <div class="jt-cand-user-meta">
+                  <div class="jt-cand-avatar" style="background:#0284c7;">PM</div>
+                  <div>
+                    <h3 class="jt-cand-name">Pooja Mishra</h3>
+                    <p class="jt-cand-title">Enterprise Sales & BD Head</p>
+                  </div>
+                </div>
+                <span class="jt-cand-match-pill">96% Match</span>
+              </div>
+              <div class="jt-cand-detail-chips">
+                <span class="jt-cand-chip">8 Yrs Exp</span>
+                <span class="jt-cand-chip">Gurugram / Delhi NCR</span>
+                <span class="jt-cand-chip">₹24 LPA Current</span>
+              </div>
+              <div class="jt-cand-skills-row">
+                <span class="jt-cand-skill-tag">B2B SaaS</span>
+                <span class="jt-cand-skill-tag">Key Account Mgmt</span>
+                <span class="jt-cand-skill-tag">Salesforce</span>
+                <span class="jt-cand-skill-tag">Team Leadership</span>
+              </div>
+            </div>
+            <div class="jt-cand-action-row">
+              <span class="jt-cand-notice">Notice: 15 Days Notice</span>
+              <button type="button" class="btn-jt-cand-contact" disabled style="opacity:0.65; cursor:default; pointer-events:none;">View Profile</button>
+            </div>
+          </article>
+
+          <!-- Candidate 3 -->
+          <article class="jt-candidate-profile-card">
+            <div>
+              <div class="jt-cand-top-row">
+                <div class="jt-cand-user-meta">
+                  <div class="jt-cand-avatar" style="background:#7c3aed;">AS</div>
+                  <div>
+                    <h3 class="jt-cand-name">Ananya Sengupta</h3>
+                    <p class="jt-cand-title">Lead HR Business Partner</p>
+                  </div>
+                </div>
+                <span class="jt-cand-match-pill">94% Match</span>
+              </div>
+              <div class="jt-cand-detail-chips">
+                <span class="jt-cand-chip">6 Yrs Exp</span>
+                <span class="jt-cand-chip">Mumbai, Maharashtra</span>
+                <span class="jt-cand-chip">₹16 LPA Current</span>
+              </div>
+              <div class="jt-cand-skills-row">
+                <span class="jt-cand-skill-tag">Talent Acquisition</span>
+                <span class="jt-cand-skill-tag">People Ops</span>
+                <span class="jt-cand-skill-tag">HR Compliance</span>
+                <span class="jt-cand-skill-tag">Employee Relations</span>
+              </div>
+            </div>
+            <div class="jt-cand-action-row">
+              <span class="jt-cand-notice">Notice: Immediate Joiner</span>
+              <button type="button" class="btn-jt-cand-contact" disabled style="opacity:0.65; cursor:default; pointer-events:none;">View Profile</button>
+            </div>
+          </article>
+
+          <!-- Candidate 4 -->
+          <article class="jt-candidate-profile-card">
+            <div>
+              <div class="jt-cand-top-row">
+                <div class="jt-cand-user-meta">
+                  <div class="jt-cand-avatar" style="background:#059669;">VR</div>
+                  <div>
+                    <h3 class="jt-cand-name">Vikram Roy</h3>
+                    <p class="jt-cand-title">Data Scientist & AI Specialist</p>
+                  </div>
+                </div>
+                <span class="jt-cand-match-pill">95% Match</span>
+              </div>
+              <div class="jt-cand-detail-chips">
+                <span class="jt-cand-chip">4 Yrs Exp</span>
+                <span class="jt-cand-chip">Hyderabad (Remote)</span>
+                <span class="jt-cand-chip">₹20 LPA Current</span>
+              </div>
+              <div class="jt-cand-skills-row">
+                <span class="jt-cand-skill-tag">Python</span>
+                <span class="jt-cand-skill-tag">PyTorch</span>
+                <span class="jt-cand-skill-tag">LLM Fine-tuning</span>
+                <span class="jt-cand-skill-tag">BigQuery</span>
+              </div>
+            </div>
+            <div class="jt-cand-action-row">
+              <span class="jt-cand-notice">Notice: 30 Days Notice</span>
+              <button type="button" class="btn-jt-cand-contact" disabled style="opacity:0.65; cursor:default; pointer-events:none;">View Profile</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SPEC SECTION 4: Quick Hiring Calculator & ROI Widget (Pricing & Savings) -->
+      <div id="pricing" class="jt-pricing-anchor" style="position:relative; top:-70px; height:1px;"></div>
+      <section class="jt-employer-spec-section jt-employer-spec-bg" id="empCalculatorSection">
+        <div class="jt-emp-section-header">
+          <span class="jt-emp-section-tag">Interactive Enterprise ROI</span>
+          <h2 class="jt-emp-section-title">Calculate Your Time-to-Hire & Budget Savings</h2>
+          <p class="jt-emp-section-subtitle">See how much time and agency commission you save using our direct talent sourcing network</p>
+        </div>
+        <div class="jt-calculator-card jt-pro-calc-card">
+          <div class="jt-calc-layout">
+            <div class="jt-calc-form-col">
+              <div class="jt-calc-field-group">
+                <label class="jt-calc-label" for="jtCalcRoleSelect">Target Job Profile / Role</label>
+                <div class="jt-calc-select-wrap">
+                  <select id="jtCalcRoleSelect" class="jt-calc-select">
+                    <option value="software" selected>Software & Cloud Engineers</option>
+                    <option value="sales">Sales & Business Development</option>
+                    <option value="data">Data Analysts & AI Specialists</option>
+                    <option value="product">Product & Engineering Managers</option>
+                    <option value="operations">Operations & Customer Support</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="jt-calc-field-group">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <label class="jt-calc-label" for="jtCalcHeadcountRange">Positions to Fill (Headcount)</label>
+                  <span id="jtCalcHeadcountDisplay" class="jt-calc-count-val">3 Hires</span>
+                </div>
+                <!-- Quick Preset Chips -->
+                <div class="jt-calc-preset-chips" role="group" aria-label="Headcount Presets">
+                  <button type="button" class="jt-preset-chip" data-count="1">1 Hire</button>
+                  <button type="button" class="jt-preset-chip active" data-count="3">3 Hires</button>
+                  <button type="button" class="jt-preset-chip" data-count="5">5 Hires</button>
+                  <button type="button" class="jt-preset-chip" data-count="10">10 Hires</button>
+                  <button type="button" class="jt-preset-chip" data-count="20">20+ Hires</button>
+                </div>
+                <div class="jt-calc-slider-wrap">
+                  <input type="range" id="jtCalcHeadcountRange" min="1" max="20" value="3" class="jt-calc-range" aria-label="Positions to Fill Range">
+                </div>
+              </div>
+
+              <div class="jt-calc-guarantee-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>Calculated against standard 8.33% consultancy placement fees and 45-day traditional hiring cycles.</span>
+              </div>
+            </div>
+
+            <div class="jt-calc-results-col jt-pro-metrics-col">
+              <div class="jt-calc-results-header">
+                <span class="jt-kpi-badge">Enterprise Talent Intelligence</span>
+                <span class="jt-roi-badge">3.8x Faster Velocity</span>
+              </div>
+              
+              <div class="jt-calc-metric-box">
+                <div class="jt-metric-meta">
+                  <span class="jt-calc-metric-label">Estimated Time-to-Hire</span>
+                  <span class="jt-metric-sub">vs. 45 days traditional</span>
+                </div>
+                <span id="jtCalcTimeResult" class="jt-calc-metric-value">9 - 14 Days</span>
+              </div>
+
+              <div class="jt-calc-metric-box highlight-box">
+                <div class="jt-metric-meta">
+                  <span class="jt-calc-metric-label">Estimated Agency Cost Saved</span>
+                  <span class="jt-metric-sub">Direct recruiter savings</span>
+                </div>
+                <span id="jtCalcCostResult" class="jt-calc-metric-value highlight-green">₹2,85,000</span>
+              </div>
+
+              <div class="jt-calc-metric-box">
+                <div class="jt-metric-meta">
+                  <span class="jt-calc-metric-label">Matching Profiles in Talent Pool</span>
+                  <span class="jt-metric-sub">Ready to interview</span>
+                </div>
+                <span id="jtCalcPoolResult" class="jt-calc-metric-value">4,350+ Active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPEC SECTION 6: Client Testimonials & Employer Branding -->
+      <section class="jt-employer-spec-section jt-employer-spec-bg" id="empTestimonialsSection">
+        <div class="jt-emp-section-header">
+          <span class="jt-emp-section-tag">Client Reviews</span>
+          <h2 class="jt-emp-section-title">What Hiring Managers Say About Us</h2>
+          <p class="jt-emp-section-subtitle">Real experiences from talent acquisition leaders who transformed their hiring velocity</p>
+        </div>
+
+        <div class="jt-testimonials-grid">
+          
+          <div class="jt-testimonial-card">
+            <div class="jt-testimonial-stars">★★★★★</div>
+            <p class="jt-testimonial-quote">"Reduced our engineering time-to-hire from 42 days to just 11 days. The Smart Sourcing candidate recommendations were spot-on with verified experience."</p>
+            <div class="jt-testimonial-author">
+              <div class="jt-test-avatar">PS</div>
+              <div>
+                <h4 class="jt-test-name">Priya Sharma</h4>
+                <p class="jt-test-company">VP Talent Acquisition, CloudMatrix India</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="jt-testimonial-card">
+            <div class="jt-testimonial-stars">★★★★★</div>
+            <p class="jt-testimonial-quote">"We filled 14 critical developer and data science positions within 3 weeks. The verified phone and pre-screened assessment scores saved our recruiters hundreds of hours."</p>
+            <div class="jt-testimonial-author">
+              <div class="jt-test-avatar" style="background:#e0e7ff; color:#3730a3;">AR</div>
+              <div>
+                <h4 class="jt-test-name">Amitava Roy</h4>
+                <p class="jt-test-company">Head of People & Culture, FinTech Labs</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="jt-testimonial-card">
+            <div class="jt-testimonial-stars">★★★★★</div>
+            <p class="jt-testimonial-quote">"Best ROI of any hiring portal in India. Direct candidate messaging and integrated interview scheduling made candidate coordination seamless."</p>
+            <div class="jt-testimonial-author">
+              <div class="jt-test-avatar" style="background:#fef3c7; color:#92400e;">SN</div>
+              <div>
+                <h4 class="jt-test-name">Sunita Nair</h4>
+                <p class="jt-test-company">Director of HR, RetailTech Solutions</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Trusted by 500+ Companies Strip -->
+        <div class="jt-trust-strip">
+          <h4 class="jt-trust-title">Trusted by 500+ Leading Companies & Rapidly Growing Startups</h4>
+          <div class="jt-trust-logos">
+            <span class="jt-trust-pill">Tata Consultancy Services</span>
+            <span class="jt-trust-pill">Infosys</span>
+            <span class="jt-trust-pill">Wipro</span>
+            <span class="jt-trust-pill">Google India</span>
+            <span class="jt-trust-pill">Amazon</span>
+            <span class="jt-trust-pill">L&amp;T Technology</span>
+            <span class="jt-trust-pill">Urban Company</span>
+            <span class="jt-trust-pill">Apex Consultancy</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK 7: Frequently Asked Questions Accordion -->
+      <section class="css-1hx1238 eu4oa1w0" style="padding: 64px 0;" id="empFaqSection">
+        <div class="css-1sm8id2 eu4oa1w0" bis_skin_checked="1">
+          <header class="css-62x9sb e37uo190">
+            <h2 class="css-hxyl4h e1tiznh50">Frequently Asked Questions</h2>
+          </header>
+          
+          <div class="jt-faq-wrap">
+            <div class="css-owpy2o eu4oa1w0" bis_skin_checked="1">
+              <div class="css-1atc7zd eu4oa1w0" data-orientation="vertical" bis_skin_checked="1">
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem1_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_1dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_1dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How do I create a Move ONN for Employers account for free?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_1dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_1dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>You can register for an employer account in minutes by clicking 'Post a job' or 'Sign in' and choosing Register. Simply enter your company work email, full name, and password to immediately access candidate screening, job management, and messaging.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem2_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_2dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_2dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Does Move ONN integrate with my ATS?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_2dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_2dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Yes. Move ONN integrates seamlessly with all leading Applicant Tracking Systems (ATS) including Greenhouse, Lever, Workday, BambooHR, and custom webhook solutions to synchronize job postings, applicant statuses, and candidate notes.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem3_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_3dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_3dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How can I contact candidates who have not applied to my job?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_3dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_3dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Use Move ONN Smart Sourcing to search our CV database of over 20 million verified candidates. Filter candidates by exact skills, years of experience, and location, and invite them directly to apply for your vacancies.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem4_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_4dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_4dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How does Move ONN help me screen candidates?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_4dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_4dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>You can add customized screener questions, required qualifications, and pre-employment assessment tests to your job post to automatically highlight top applicants and filter out non-matching submissions.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem5_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_5dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_5dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Can Move ONN help with high-volume hiring?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_5dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_5dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Absolutely. Our enterprise recruitment suite provides bulk candidate imports, automated interview scheduling, collaborative hiring team permissions, and prioritized job syndication across our entire partner network.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem6_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_6dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_6dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  What are the benefits of a Sponsored Job?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_6dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_6dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Sponsored Jobs receive prime placement in search results and targeted candidate recommendations, delivering up to 4.5x more applications and significantly reducing time-to-hire compared to organic listings.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem7_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_7dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_7dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Can sponsoring improve time-to-hire?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_7dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_7dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Yes. Sponsored Jobs achieve higher daily impressions and applicant velocity, allowing hiring managers to make quality hires in an average of under 14 business days.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem8_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_8dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_8dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How can I improve visibility?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_8dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_8dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Craft a clear, descriptive job title, provide transparent salary expectations, specify detailed requirements, and sponsor your post to ensure it remains prominently displayed to matching jobseekers.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem9_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_9dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_9dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How do I attract top talent?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_9dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_9dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Highlight your company culture, competitive perks, flexible remote policies, and verified company reviews on your Move ONN Company Profile to stand out to passive senior talent.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem10_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_10dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_10dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How can Move ONN help with Employer Branding?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_10dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_10dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>A verified Move ONN Company Page allows you to showcase office photos, CEO ratings, employee testimonials, company updates, and your open roles to over 20 million career-focused professionals.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem11_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_11dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_11dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How much does it cost to sponsor?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_11dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_11dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Move ONN offers flexible performance-based hiring budgets. You set a daily or monthly budget that fits your hiring needs, and you only pay when interested candidates engage with your job post.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem12_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_12dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_12dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Can I post without listing the salary?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_12dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_12dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Yes, listing salary is optional. However, postings with transparent salary ranges receive on average 35% more verified candidate applications and faster candidate responses.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem13_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_13dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_13dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How long until my job is visible?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_13dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_13dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Most posts go live within 24 to 48 hours after a standard quality and compliance review.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem14_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_14dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_14dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Why is my job here if I did not post it?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_14dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_14dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Move ONN pulls postings from career sites and boards to help jobseekers find all available roles in one place.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem15_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_15dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_15dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How do I manage/cancel my post?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_15dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_15dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>In your Dashboard, click 'Edit Job' and change the status to 'Paused' or 'Closed.'</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem16_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_16dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_16dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  Does Move ONN remove job postings?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_16dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_16dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Yes. Move ONN reserves the right to remove any job that violates our quality standards.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-state="closed" data-orientation="vertical" data-tn-action-click="true" data-tn-element="FAQItem17_Accordion" class="css-hw6ea4 eu4oa1w0" bis_skin_checked="1">
+              <h3 class="css-ywdcoa e1tiznh50">
+                <button type="button" aria-controls="radix-_R_17dal6ktal5fivdb_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_R_btn_17dal6ktal5fivdb_" class="css-rx3jok e37uo190" data-radix-collection-item="">
+                  How is Move ONN different from other places where I can post jobs?
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="css-1cxkwid eac13zx0">
+                    <path d="M11.713 15.825a1.2 1.2 0 01-.43-.077 1.053 1.053 0 01-.372-.246l-4.594-4.594A1.08 1.08 0 016 10.113 1.08 1.08 0 017.112 9c.32 0 .585.106.796.317l3.804 3.804 3.805-3.804A1.08 1.08 0 0116.313 9a1.08 1.08 0 011.112 1.113c0 .319-.106.584-.317.795l-4.594 4.594a1.054 1.054 0 01-.373.245 1.2 1.2 0 01-.428.078z"></path>
+                  </svg>
+                </button>
+              </h3>
+              <div data-state="closed" id="radix-_R_17dal6ktal5fivdb_" role="region" aria-labelledby="radix-_R_btn_17dal6ktal5fivdb_" data-orientation="vertical" class="css-12vdxil eu4oa1w0" style="display: none;">
+                <div class="css-1it50zj eu4oa1w0" bis_skin_checked="1">
+                  <div class="xds-accordion-item-content-text css-35vk6j e1wnkr790" bis_skin_checked="1">
+                    <div class="css-u74ql7 eu4oa1w0" bis_skin_checked="1">
+                      <p class="css-5l3f0p e1wnkr790"><span>Move ONN is both a job search engine and an all-in-one hiring platform. Beyond jobs posted directly by employers, Move ONN also aggregates job listings from thousands of sources across the internet. Employers gain access to features like virtual interviews and 'Hiring Insights'.</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="jt-footer">
+    <div class="container">
+      <div class="jt-footer-grid">
+        
+        <!-- Brand Summary Column -->
+        <div class="jt-footer-brand-col">
+          <a href="index.html" class="jt-footer-brand" aria-label="Move ONN Home">
+            <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-logo-sm">
+          </a>
+          <p class="jt-footer-tagline">
+            India's leading career acceleration and corporate recruitment portal. Empowering candidates and hiring managers with verified opportunities.
+          </p>
+        </div>
+
+        <!-- Job Seekers Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Job Seekers</h3>
+          <ul class="jt-footer-links">
+            <li><a href="jobs.html" class="jt-footer-link">Browse Jobs</a></li>
+            <li><a href="salaries.html" class="jt-footer-link">Salary Calculator</a></li>
+            <li><a href="companies.html" class="jt-footer-link">Company Reviews</a></li>
+            <li><a href="#" onclick="window.openAuthModal('signup'); return false;" class="jt-footer-link">Create Candidate Profile</a></li>
+          </ul>
+        </div>
+
+        <!-- Employers Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Employers</h3>
+          <ul class="jt-footer-links">
+            <li><a href="hire.html" class="jt-footer-link">Post a Job</a></li>
+            <li><a href="hire.html#talent" class="jt-footer-link">Recruitment Solutions</a></li>
+            <li><a href="hire.html#pricing" class="jt-footer-link">Hiring Plans</a></li>
+            <li><a href="countries.html" class="jt-footer-link">Global Hiring</a></li>
+          </ul>
+        </div>
+
+        <!-- About & Legal Column -->
+        <div>
+          <h3 class="jt-footer-col-title">Move ONN</h3>
+          <ul class="jt-footer-links">
+            <li><a href="companies.html" class="jt-footer-link">About Us</a></li>
+            <li><a href="countries.html" class="jt-footer-link">International Portals</a></li>
+            <li><a href="#" onclick="window.showToast('Security and Compliance: GDPR & ISO-27001 Certified.'); return false;" class="jt-footer-link">Trust & Safety</a></li>
+            <li><a href="#" onclick="window.showToast('Customer support is active 24/7.'); return false;" class="jt-footer-link">Help Center</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="jt-footer-bottom">
+        <div>© 2026 Move ONN Solutions. All rights reserved.</div>
+        <ul class="jt-footer-legal-links">
+          <li><a href="#" onclick="window.showToast('Privacy Policy: All candidate data is securely encrypted.'); return false;">Privacy Centre</a></li>
+          <li><a href="#" onclick="window.showToast('Terms: Move ONN is an equal opportunity recruitment consultancy.'); return false;">Terms of Service</a></li>
+          <li><a href="countries.html">Change Country</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+    <!-- ==========================================================================
+       Responsive Auth Popup Modal System (Sliding Diagonal Animated Layout)
+       ========================================================================== -->
+  <!-- ==========================================================================
+       Move ONN Dynamic Responsive Authentication Modal Dialog
+       ========================================================================== -->
+  <div class="jt-modal-backdrop" id="jtAuthModal" role="dialog" aria-modal="true" aria-labelledby="jtAuthTitle">
+    <div class="jt-modal-dialog-wrap">
+      
+      <div class="wrapper" id="jtAuthWrapper">
+        <button type="button" class="jt-modal-close" id="jtAuthCloseBtn" aria-label="Close authentication modal">&times;</button>
+        <span class="bg-animate"></span>
+        <span class="bg-animate2"></span>
+
+        <!-- ================= LOGIN FORM BOX ================= -->
+        <div class="form-box login">
+          <h2 class="animation" style="--i:0; --j:21;" id="jtAuthTitle">Welcome Back</h2>
+          <p class="subtext animation" style="--i:1; --j:22;">Sign in to your Move ONN account</p>
+
+          <!-- Social OAuth Buttons -->
+          <div class="jt-social-auth-wrap animation" style="--i:1; --j:22;">
+            <button type="button" class="jt-btn-social jt-btn-google" id="jtGoogleBtn" onclick="window.handleGoogleLogin(event)">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Google</span>
+            </button>
+            <button type="button" class="jt-btn-social jt-btn-apple" id="jtAppleBtn" onclick="window.handleAppleLogin(event)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.1.65-2.76 1.42-.58.68-1.09 1.76-1.03 2.81 1.07.08 2.16-.58 2.78-1.36z"/></svg>
+              <span>Apple</span>
+            </button>
+          </div>
+
+          <div class="jt-auth-or-line animation" style="--i:1; --j:22;"><span>or with email</span></div>
+
+          <form id="loginForm" class="jt-auth-form" action="#" autocomplete="off" onsubmit="window.handleLoginFormSubmit(event)">
+            <div class="input-box animation" style="--i:1; --j:22;">
+              <input type="email" id="login-username" required autocomplete="off" value="" placeholder=" ">
+              <label for="login-username">Company Email</label>
+              <span class="input-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+            </div>
+
+            <div class="input-box animation" style="--i:2; --j:23;">
+              <input type="password" id="login-password" required autocomplete="new-password" value="" placeholder=" ">
+              <label for="login-password">Password</label>
+              <span class="toggle-password" data-target="login-password" title="Show / Hide Password">
+                <svg class="eye-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
+            </div>
+
+            <button type="submit" class="btn animation" id="jtLoginSubmitBtn" style="--i:3; --j:24;">Sign In</button>
+            
+            <div class="logreg-link animation" style="--i:4; --j:25;">
+              <p>Don't have an account? <a href="javascript:void(0)" class="register-link" onclick="window.switchAuthTab('signup')">Sign Up</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- ================= DESKTOP INFO: LOGIN ================= -->
+        <div class="info-text login">
+          <h2 class="animation" style="--i:0; --j:20;">Welcome <span class="cyan-text" style="color: #0ccbe8 !important;">Back!</span></h2>
+          <p class="animation" style="--i:1; --j:21;">Empowering your high-performance career opportunities and enterprise recruitment workflows.</p>
+        </div>
+
+        <!-- ================= REGISTER FORM BOX ================= -->
+        <div class="form-box register">
+          <h2 class="animation" style="--i:17; --j:0;">Create Account</h2>
+          <p class="subtext animation" style="--i:18; --j:1;">Join the Move ONN community</p>
+
+          <!-- Social OAuth Buttons -->
+          <div class="jt-social-auth-wrap animation" style="--i:18; --j:1;">
+            <button type="button" class="jt-btn-social jt-btn-google" id="jtRegGoogleBtn" onclick="window.handleGoogleLogin(event)">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Google</span>
+            </button>
+            <button type="button" class="jt-btn-social jt-btn-apple" id="jtRegAppleBtn" onclick="window.handleAppleLogin(event)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.1.65-2.76 1.42-.58.68-1.09 1.76-1.03 2.81 1.07.08 2.16-.58 2.78-1.36z"/></svg>
+              <span>Apple</span>
+            </button>
+          </div>
+
+          <div class="jt-auth-or-line animation" style="--i:18; --j:1;"><span>or with email</span></div>
+
+          <form id="registerForm" class="jt-auth-form" action="#" autocomplete="off" onsubmit="window.handleRegFormSubmit(event)">
+            <div class="input-box animation" style="--i:18; --j:1;">
+              <input type="text" id="reg-name" required autocomplete="off" value="" placeholder=" ">
+              <label for="reg-name">Full Name</label>
+              <span class="input-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+            </div>
+
+            <div class="input-box animation" style="--i:19; --j:2;">
+              <input type="email" id="reg-email" required autocomplete="off" value="" placeholder=" ">
+              <label for="reg-email">Company Email</label>
+              <span class="input-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+            </div>
+
+            <div class="input-box animation" style="--i:20; --j:3;">
+              <input type="password" id="reg-password" required autocomplete="new-password" value="" placeholder=" ">
+              <label for="reg-password">Password</label>
+              <span class="toggle-password" data-target="reg-password" title="Show / Hide Password">
+                <svg class="eye-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
+            </div>
+
+            <button type="submit" class="btn animation" id="jtRegSubmitBtn" style="--i:21; --j:4;">Create Account</button>
+            
+            <div class="logreg-link animation" style="--i:22; --j:5;">
+              <p>Already have an account? <a href="javascript:void(0)" class="login-link" onclick="window.switchAuthTab('signin')">Sign In</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- ================= DESKTOP INFO: REGISTER ================= -->
+        <div class="info-text register">
+          <h2 class="animation" style="--i:17; --j:0;"><span class="cyan-text" style="color: #0ccbe8 !important;">JOIN</span> US TODAY!</h2>
+          <p class="animation" style="--i:18; --j:1;">Build, scale and innovate with our next-generation digital cloud architecture and tools.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Employer Job Posting Interactive Modal Dialog
+       ========================================================================== -->
+  <div class="jt-post-job-modal-backdrop" id="jtPostJobModalBackdrop" style="display:none;" aria-hidden="true">
+    <div class="jt-post-job-modal" role="dialog" aria-modal="true" aria-labelledby="jtPostJobModalTitle">
+      <div class="jt-post-job-modal-header">
+        <div>
+          <h2 class="jt-post-job-modal-title" id="jtPostJobModalTitle">Post a New Job Opening</h2>
+          <p class="jt-post-job-modal-subtitle">Connect with 20M+ verified professionals across India</p>
+        </div>
+        <button type="button" class="jt-post-job-modal-close" id="jtPostJobCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form id="jtPostJobForm" class="jt-post-job-form">
+        <div class="jt-post-job-form-grid">
+          <div class="jt-post-job-field">
+            <label for="jtJobTitleInput" class="jt-post-job-label">Job Title *</label>
+            <input type="text" id="jtJobTitleInput" class="jt-post-job-input" required placeholder="Enter job title">
+          </div>
+
+          <div class="jt-post-job-field">
+            <label for="jtJobCompanyInput" class="jt-post-job-label">Company Name *</label>
+            <input type="text" id="jtJobCompanyInput" class="jt-post-job-input" required placeholder="Enter company name">
+          </div>
+
+          <div class="jt-post-job-field">
+            <label for="jtJobLocationInput" class="jt-post-job-label">Job Location *</label>
+            <input type="text" id="jtJobLocationInput" class="jt-post-job-input" required placeholder="Job location">
+          </div>
+
+          <div class="jt-post-job-field">
+            <label for="jtJobExpSelect" class="jt-post-job-label">Experience Required *</label>
+            <select id="jtJobExpSelect" class="jt-post-job-select" required>
+              <option value="0-1">Freshers / Entry Level (0-1 Yrs)</option>
+              <option value="1-3" selected>1 - 3 Years</option>
+              <option value="3-5">3 - 5 Years</option>
+              <option value="5-8">5 - 8 Years (Mid-Senior)</option>
+              <option value="8+">8+ Years (Lead / Architect)</option>
+            </select>
+          </div>
+
+          <div class="jt-post-job-field">
+            <label for="jtJobSalaryInput" class="jt-post-job-label">Salary / Compensation (Annual CTC)</label>
+            <input type="text" id="jtJobSalaryInput" class="jt-post-job-input" placeholder="Annual salary range">
+          </div>
+
+          <div class="jt-post-job-field">
+            <label for="jtJobSkillsInput" class="jt-post-job-label">Key Skills / Technologies *</label>
+            <input type="text" id="jtJobSkillsInput" class="jt-post-job-input" required placeholder="Required skills">
+          </div>
+        </div>
+
+        <div class="jt-post-job-field" style="margin-top: 14px;">
+          <label for="jtJobDescTextarea" class="jt-post-job-label">Job Description & Responsibilities *</label>
+          <textarea id="jtJobDescTextarea" class="jt-post-job-textarea" rows="4" required placeholder="Job description and skills"></textarea>
+        </div>
+
+        <div class="jt-post-job-modal-footer">
+          <button type="button" class="btn-jt-cancel" id="jtPostJobCancelBtn">Cancel</button>
+          <button type="submit" class="btn-jt-submit-post" id="jtPostJobSubmitBtn">
+            <span>Publish Job Post</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Employer Smart Sourcing Interactive Modal Dialog
+       ========================================================================== -->
+  <div class="jt-smart-sourcing-modal-backdrop" id="jtSmartSourcingModalBackdrop" style="display:none;" aria-hidden="true">
+    <div class="jt-smart-sourcing-modal" role="dialog" aria-modal="true" aria-labelledby="jtSmartSourcingTitle">
+      <div class="jt-post-job-modal-header">
+        <div>
+          <h2 class="jt-post-job-modal-title" id="jtSmartSourcingTitle">Move ONN Smart Sourcing™</h2>
+          <p class="jt-post-job-modal-subtitle">Direct, AI-powered candidate discovery & recruiter outreach</p>
+        </div>
+        <button type="button" class="jt-post-job-modal-close" id="jtSmartSourcingCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="jt-smart-sourcing-body">
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6M8 11h6"></path></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Instant AI Matchmaking</h3>
+            <p class="jt-feature-highlight-desc">Our neural algorithm scans 20.1M+ verified candidate profiles to automatically present candidates matching your exact job requirements.</p>
+          </div>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Direct Candidate InMail</h3>
+            <p class="jt-feature-highlight-desc">Send personalized interview invitations directly to active and passive talent with 3x higher response rates than standard outreach.</p>
+          </div>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Verified Skill Assessments</h3>
+            <p class="jt-feature-highlight-desc">Access validated coding test scores, technical rubrics, and notice period verification before sending an interview invite.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="jt-post-job-modal-footer">
+        <button type="button" class="btn-jt-cancel" id="jtSmartSourcingCancelBtn">Close</button>
+        <button type="button" class="btn-jt-submit-post" id="jtSmartSourcingSearchBtn">
+          <span>Search Resumes Now</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Employer Help Centre Interactive Modal Dialog
+       ========================================================================== -->
+  <div class="jt-employer-help-modal-backdrop" id="jtEmployerHelpModalBackdrop" style="display:none;" aria-hidden="true">
+    <div class="jt-employer-help-modal" role="dialog" aria-modal="true" aria-labelledby="jtHelpCentreTitle">
+      <div class="jt-post-job-modal-header">
+        <div>
+          <h2 class="jt-post-job-modal-title" id="jtHelpCentreTitle">Employer Help Centre & Support</h2>
+          <p class="jt-post-job-modal-subtitle">Dedicated assistance for recruiter onboarding, billing, and candidate screening</p>
+        </div>
+        <button type="button" class="jt-post-job-modal-close" id="jtEmployerHelpCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="jt-employer-help-body">
+        <div style="background: #eaf1fb; border-radius: 12px; padding: 16px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-weight: 700; color: #002970; font-size: 14.5px;">Recruiter Hotline Support (Active 24/7)</div>
+            <div style="font-size: 13px; color: #475569; margin-top: 2px;">Phone: +91 (800) 456-7890 • Email: employers@moveonn.com</div>
+          </div>
+          <span style="background: #16a34a; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px;">Live Support</span>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Job Posting & Management Guide</h3>
+            <p class="jt-feature-highlight-desc">Learn how to configure candidate screening questions, set custom salary bands, and edit active vacancies.</p>
+          </div>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Invoicing & GST Billing Assistance</h3>
+            <p class="jt-feature-highlight-desc">Download official GST tax invoices, manage enterprise corporate payment methods, and adjust recruiter seats.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="jt-post-job-modal-footer">
+        <button type="button" class="btn-jt-cancel" id="jtEmployerHelpCancelBtn">Close</button>
+        <button type="button" class="btn-jt-submit-post" id="jtEmployerHelpFaqBtn">
+          <span>Read Frequently Asked Questions</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Employer Resource Library Interactive Modal Dialog
+       ========================================================================== -->
+  <div class="jt-employer-resources-modal-backdrop" id="jtEmployerResourceModalBackdrop" style="display:none;" aria-hidden="true">
+    <div class="jt-employer-resources-modal" role="dialog" aria-modal="true" aria-labelledby="jtResourceLibTitle">
+      <div class="jt-post-job-modal-header">
+        <div>
+          <h2 class="jt-post-job-modal-title" id="jtResourceLibTitle">Recruiter Resource Library</h2>
+          <p class="jt-post-job-modal-subtitle">Curated recruitment playbooks, interview rubrics, and salary benchmarks</p>
+        </div>
+        <button type="button" class="jt-post-job-modal-close" id="jtEmployerResourceCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="jt-employer-resources-body">
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">2026 Tech Compensation Benchmark Report</h3>
+            <p class="jt-feature-highlight-desc">Detailed compensation data across Bangalore, Hyderabad, Pune, NCR, and remote Indian hubs for 50+ tech roles.</p>
+          </div>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">Structured Behavioral Interview Playbook</h3>
+            <p class="jt-feature-highlight-desc">Role-specific behavioral question templates and scoring criteria to evaluate high-performing candidates.</p>
+          </div>
+        </div>
+
+        <div class="jt-feature-highlight-card">
+          <div class="jt-feature-highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+          </div>
+          <div>
+            <h3 class="jt-feature-highlight-title">ATS-Optimized Job Description Frameworks</h3>
+            <p class="jt-feature-highlight-desc">Tested job description templates engineered to boost qualified applicant conversion by over 40%.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="jt-post-job-modal-footer">
+        <button type="button" class="btn-jt-cancel" id="jtEmployerResourceCancelBtn">Close</button>
+        <button type="button" class="btn-jt-submit-post" id="jtDownloadResourcePackBtn">
+          <span>Download Resource Pack (PDF)</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- Application Controllers -->
+  <script src="js/common.js"></script>
+  <script src="js/hire.js"></script>
+</body>
+</html>

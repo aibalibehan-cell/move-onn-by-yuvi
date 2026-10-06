@@ -1,0 +1,2852 @@
+/* ==========================================================================
+   Move ONN Employer SaaS Workspace & ATS Stylesheet (moveonn 2026 Recruiter Standard)
+   Modular architecture: css/employer-dashboard.css
+   Brand Colors: Move ONN Blue #0f5acf, Accent Cyan #0ccbe8, Border #e2e8f0
+   ========================================================================== */
+
+:root {
+  --jt-rec-blue: #0f5acf;
+  --jt-rec-blue-hover: #0c47a4;
+  --jt-rec-blue-light: #eff6ff;
+  --jt-rec-orange: #0ccbe8;
+  --jt-rec-orange-hover: #e06e00;
+  --jt-rec-dark: #0f172a;
+  --jt-rec-text: #1e293b;
+  --jt-rec-muted: #64748b;
+  --jt-rec-border: #e2e8f0;
+  --jt-rec-bg: #f8fafc;
+  --jt-rec-card-bg: #ffffff;
+  --jt-rec-green: #16a34a;
+  --jt-rec-green-bg: #f0fdf4;
+  --jt-rec-gold: #d97706;
+  --jt-rec-gold-bg: #fef3c7;
+  --jt-header-height: 64px;
+  --jt-rail-width: 240px;
+}
+
+html.jt-emp-html,
+html:has(body.jt-emp-body) {
+  height: 100% !important;
+  overflow: hidden !important;
+  scrollbar-gutter: auto !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body.jt-emp-body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--jt-rec-bg);
+  color: var(--jt-rec-text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden !important;
+}
+
+/* ==========================================================================
+   1. Header Bar (Top Navigation)
+   ========================================================================== */
+.jt-emp-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid var(--jt-rec-border);
+  height: var(--jt-header-height);
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.jt-emp-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.jt-emp-brand-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.jt-emp-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.jt-emp-logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.jt-emp-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  padding: 3px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.jt-emp-divider-v {
+  width: 1px;
+  height: 24px;
+  background: var(--jt-rec-border);
+}
+
+.jt-emp-portal-tag {
+  display: flex;
+  align-items: center;
+}
+
+.jt-emp-portal-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+}
+
+/* Actions Right Area */
+.jt-emp-actions-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jt-emp-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--jt-rec-border);
+  color: var(--jt-rec-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.jt-emp-icon-btn:hover {
+  background: #f1f5f9;
+  color: var(--jt-rec-text);
+}
+
+.jt-emp-notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+/* Notifications Dropdown */
+.jt-emp-notif-wrap, .jt-emp-profile-wrap {
+  position: relative;
+}
+
+.jt-emp-notif-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 10px;
+  display: none;
+  z-index: 1010;
+}
+
+.jt-emp-notif-menu.show {
+  display: block;
+}
+
+.jt-emp-notif-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--jt-rec-border);
+  margin-bottom: 8px;
+}
+
+.jt-emp-notif-item {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #475569;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.jt-emp-notif-item.unread {
+  background: var(--jt-rec-blue-light);
+}
+
+.jt-emp-notif-time {
+  display: block;
+  font-size: 10px;
+  color: var(--jt-rec-muted);
+  margin-top: 3px;
+}
+
+/* Avatar & Dropdown */
+.jt-emp-avatar-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #0f5acf;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--jt-rec-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.jt-emp-avatar-text {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.jt-emp-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 250px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 8px;
+  display: none;
+  z-index: 1010;
+}
+
+.jt-emp-dropdown-menu.show {
+  display: block;
+}
+
+.jt-emp-user-card {
+  padding: 8px 10px;
+}
+
+.jt-emp-user-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+}
+
+.jt-emp-user-role {
+  display: block;
+  font-size: 11px;
+  color: var(--jt-rec-muted);
+  margin-top: 2px;
+}
+
+.jt-emp-menu-divider {
+  height: 1px;
+  background: var(--jt-rec-border);
+  margin: 6px 0;
+}
+
+.jt-emp-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--jt-rec-text);
+  text-decoration: none;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.jt-emp-menu-link:hover {
+  background: var(--jt-rec-bg);
+  color: var(--jt-rec-blue);
+}
+
+.jt-emp-signout {
+  color: #ef4444;
+}
+
+.jt-emp-signout:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   2. Workspace Shell & Left Rail
+   ========================================================================== */
+.jt-emp-workspace {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Left Rail Navigation */
+.jt-emp-rail {
+  width: var(--jt-rail-width, 240px);
+  background: #ffffff;
+  border-right: 1px solid var(--jt-rec-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 12px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rail Header Bar (Brand + 3-Line Hamburger Collapse Button) */
+.jt-rail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 0 4px;
+  min-height: 38px;
+}
+
+.jt-rail-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.jt-rail-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.jt-rail-logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.jt-rail-brand-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--jt-rec-blue);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.jt-rail-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1px solid var(--jt-rec-border);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--jt-rec-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.jt-rail-collapse-btn:hover {
+  background: #e2e8f0;
+  color: var(--jt-rec-text);
+}
+
+.jt-hamburger-icon {
+  display: block;
+}
+
+.jt-btn-rail-post {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.jt-btn-rail-post:hover {
+  background: var(--jt-rec-blue-hover);
+}
+
+.jt-rail-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jt-rail-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--jt-rec-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.jt-rail-link:hover {
+  background: #f1f5f9;
+  color: var(--jt-rec-text);
+}
+
+.jt-rail-link.active {
+  background: var(--jt-rec-blue-light);
+  color: var(--jt-rec-blue);
+  font-weight: 700;
+}
+
+.jt-rail-link.active svg {
+  stroke: var(--jt-rec-blue);
+}
+
+.jt-rail-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: #e2e8f0;
+  color: var(--jt-rec-text);
+}
+
+.jt-rail-link.active .jt-rail-badge {
+  background: #dbeafe;
+  color: var(--jt-rec-blue);
+}
+
+.jt-badge-alert {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+/* Bottom Profile Item in Rail */
+.jt-emp-rail-bottom {
+  padding-top: 14px;
+  border-top: 1px solid var(--jt-rec-border);
+}
+
+.jt-rail-profile-wrap {
+  position: relative;
+}
+
+.jt-rail-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid var(--jt-rec-border);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.jt-rail-profile-btn:hover {
+  background: #e2e8f0;
+}
+
+.jt-rail-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.jt-rail-profile-meta {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.jt-rail-user-name {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jt-rail-user-role {
+  display: block;
+  font-size: 10.5px;
+  color: var(--jt-rec-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jt-rail-chevron-icon {
+  color: var(--jt-rec-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.jt-rail-profile-wrap.menu-open .jt-rail-chevron-icon,
+.jt-rail-profile-btn.active .jt-rail-chevron-icon {
+  transform: rotate(180deg);
+}
+
+.jt-emp-menu-email-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  word-break: break-all;
+}
+
+.jt-emp-menu-email-row svg {
+  flex-shrink: 0;
+}
+
+.jt-menu-dropup {
+  position: absolute;
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  padding: 8px;
+  display: none;
+  z-index: 1050;
+}
+
+.jt-menu-dropup.show {
+  display: block;
+}
+
+/* Collapsed State: Zero jumping, smooth horizontal collapse */
+.jt-emp-workspace.rail-collapsed .jt-emp-rail {
+  width: 68px;
+  padding: 16px 8px;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-rail-header {
+  justify-content: center;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-rail-brand {
+  display: none;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-rail-text,
+.jt-emp-workspace.rail-collapsed .jt-rail-badge {
+  display: none !important;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-btn-rail-post {
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-rail-link {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-rail-profile-btn {
+  justify-content: center;
+  padding: 6px 0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.jt-emp-workspace.rail-collapsed .jt-menu-dropup {
+  left: calc(100% + 10px);
+  bottom: 0;
+  width: 220px;
+}
+
+/* Mobile Tabs Bar (< 900px) */
+.jt-emp-mobile-tabs {
+  display: none;
+}
+
+/* ==========================================================================
+   3. Main Content Views
+   ========================================================================== */
+.jt-emp-main-area {
+  flex: 1;
+  padding: 24px 32px;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.jt-emp-main-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.jt-emp-main-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.jt-emp-main-area::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.jt-emp-main-area::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+.jt-emp-view {
+  display: none;
+  animation: jtFadeIn 0.15s ease-in-out;
+}
+
+.jt-emp-view.active {
+  display: block;
+}
+
+@keyframes jtFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.jt-view-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.jt-view-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--jt-rec-text);
+  margin: 0 0 4px 0;
+}
+
+.jt-view-subtitle {
+  font-size: 13px;
+  color: var(--jt-rec-muted);
+  margin: 0;
+}
+
+.jt-view-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jt-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.jt-btn-primary:hover {
+  background: var(--jt-rec-blue-hover);
+}
+
+.jt-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: var(--jt-rec-text);
+  border: 1px solid var(--jt-rec-border);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.jt-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   4. View 1: Jobs Management Table (Ref: moveonn Screenshot 3)
+   ========================================================================== */
+.jt-table-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jt-status-tabs {
+  display: flex;
+  background: #e2e8f0;
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.jt-status-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--jt-rec-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.jt-status-tab:hover {
+  color: var(--jt-rec-text);
+}
+
+.jt-status-tab.active {
+  background: #ffffff;
+  color: var(--jt-rec-blue);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.jt-tab-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--jt-rec-muted);
+}
+
+.jt-status-tab.active .jt-tab-pill {
+  background: var(--jt-rec-blue-light);
+  color: var(--jt-rec-blue);
+}
+
+.jt-table-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  min-width: 260px;
+}
+
+.jt-table-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--jt-rec-text);
+  width: 100%;
+}
+
+.jt-jobs-table-wrap {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.jt-jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.jt-jobs-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--jt-rec-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--jt-rec-border);
+}
+
+.jt-jobs-table td {
+  padding: 16px;
+  font-size: 13px;
+  color: var(--jt-rec-text);
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.jt-jobs-table tbody tr:hover {
+  background: #fcfdfe;
+}
+
+.jt-job-cell-title {
+  font-weight: 700;
+  color: var(--jt-rec-blue);
+  font-size: 14px;
+  margin-bottom: 3px;
+  display: block;
+}
+
+.jt-job-cell-meta {
+  font-size: 12px;
+  color: var(--jt-rec-muted);
+}
+
+/* Pipeline Pill Cluster */
+.jt-pipeline-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.jt-pipeline-stage-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.jt-pipeline-stage-btn:hover {
+  background: var(--jt-rec-blue-light);
+  border-color: #cbd5e1;
+  color: var(--jt-rec-blue);
+}
+
+.jt-stage-highlight {
+  background: var(--jt-rec-blue-light);
+  border-color: #bfdbfe;
+  color: var(--jt-rec-blue);
+  font-weight: 700;
+}
+
+/* Badges */
+.jt-badge-sponsored {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--jt-rec-gold-bg);
+  color: var(--jt-rec-gold);
+  border: 1px solid #fde68a;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.jt-badge-organic {
+  display: inline-block;
+  background: #f1f5f9;
+  color: var(--jt-rec-muted);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Action Dropdown Menu Container in Jobs Table */
+.jt-action-cell {
+  position: relative;
+  text-align: right;
+}
+
+.jt-action-dots-btn {
+  background: transparent;
+  border: 1px solid var(--jt-rec-border);
+  color: var(--jt-rec-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jt-action-dots-btn:hover {
+  background: #f1f5f9;
+  color: var(--jt-rec-text);
+}
+
+.jt-job-action-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12);
+  min-width: 190px;
+  z-index: 1020;
+  padding: 6px;
+  display: none;
+  text-align: left;
+}
+
+.jt-job-action-menu.show {
+  display: block;
+}
+
+.jt-job-action-opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--jt-rec-text);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.jt-job-action-opt:hover {
+  background: #f1f5f9;
+  color: var(--jt-rec-blue);
+}
+
+.jt-job-action-opt.danger {
+  color: #ef4444;
+}
+
+.jt-job-action-opt.danger:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   5. View 2: Candidate ATS Pipeline
+   ========================================================================== */
+.jt-cand-job-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jt-select-pill {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--jt-rec-text);
+  outline: none;
+  cursor: pointer;
+}
+
+.jt-stage-chips-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.jt-stage-chip {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jt-rec-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.jt-stage-chip:hover {
+  border-color: #94a3b8;
+  color: var(--jt-rec-text);
+}
+
+.jt-stage-chip.active {
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  border-color: var(--jt-rec-blue);
+}
+
+.jt-cand-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.jt-cand-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.jt-cand-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.jt-cand-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.jt-cand-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+  margin: 0;
+}
+
+.jt-cand-title {
+  font-size: 12px;
+  color: var(--jt-rec-muted);
+  margin-top: 2px;
+}
+
+.jt-match-score-badge {
+  background: var(--jt-rec-green-bg);
+  color: var(--jt-rec-green);
+  border: 1px solid #bbf7d0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.jt-cand-meta-row {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #475569;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.jt-cand-quals-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.jt-qual-chip {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #334155;
+}
+
+.jt-cand-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+  gap: 8px;
+}
+
+.jt-cand-stage-select {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--jt-rec-border);
+  background: #f8fafc;
+  color: var(--jt-rec-text);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. View 3: Smart Sourcing & Resume Search
+   ========================================================================== */
+.jt-sourcing-search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.jt-sourcing-input-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  overflow: hidden !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.jt-sourcing-input-group svg {
+  flex-shrink: 0 !important;
+}
+
+.jt-sourcing-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  color: var(--jt-rec-text);
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+.jt-sourcing-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.jt-tag-chip {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 14px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.jt-tag-chip:hover {
+  border-color: var(--jt-rec-blue);
+  color: var(--jt-rec-blue);
+  background: var(--jt-rec-blue-light);
+}
+
+.jt-sourcing-results-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jt-sourcing-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.jt-sourcing-info-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.jt-sourcing-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #334155;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   7. View 4: Messages Hub (Split Panel Chat - Zero Outer Scroll Chaining)
+   ========================================================================== */
+.jt-emp-main-area.messages-active {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+#viewMessages.active {
+  height: 100vh;
+  overflow: hidden;
+  display: block;
+}
+
+.jt-chat-split-container {
+  display: flex;
+  background: #ffffff;
+  border-left: 1px solid var(--jt-rec-border);
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.jt-chat-threads-sidebar {
+  width: 300px;
+  border-right: 1px solid var(--jt-rec-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.jt-threads-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--jt-rec-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.jt-threads-list {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.jt-thread-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.jt-thread-item:hover {
+  background: #f8fafc;
+}
+
+.jt-thread-item.active {
+  background: var(--jt-rec-blue-light);
+}
+
+.jt-thread-avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #1e293b;
+  flex-shrink: 0;
+}
+
+.jt-thread-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.jt-thread-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.jt-thread-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jt-thread-time {
+  font-size: 10px;
+  color: var(--jt-rec-muted);
+}
+
+.jt-thread-preview {
+  font-size: 11px;
+  color: var(--jt-rec-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.jt-chat-dialog-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+.jt-chat-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--jt-rec-border);
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.jt-chat-head-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jt-chat-head-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+}
+
+.jt-chat-head-role {
+  font-size: 11px;
+  color: var(--jt-rec-muted);
+}
+
+/* WhatsApp-Style Selection Bar */
+.jt-chat-selection-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--jt-rec-border);
+  flex-shrink: 0;
+}
+
+.jt-selection-left, .jt-selection-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jt-selection-count {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+}
+
+.jt-btn-icon-sm {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.jt-btn-icon-sm:hover {
+  background: #e2e8f0;
+  color: var(--jt-rec-text);
+}
+
+.jt-btn-icon-sm.danger {
+  color: #ef4444;
+}
+
+.jt-btn-icon-sm.danger:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.jt-chat-stream {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+}
+
+.jt-msg-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  max-width: 80%;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.jt-msg-row.incoming {
+  align-self: flex-start;
+}
+
+.jt-msg-row.outgoing {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* WhatsApp circular selection tick */
+.jt-msg-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #ffffff;
+  transition: all 0.15s;
+}
+
+.jt-msg-checkbox svg {
+  display: none;
+}
+
+.jt-chat-stream.selection-mode .jt-msg-checkbox {
+  display: flex;
+}
+
+.jt-msg-row.selected .jt-msg-checkbox {
+  background: var(--jt-rec-blue);
+  border-color: var(--jt-rec-blue);
+  color: #ffffff;
+}
+
+.jt-msg-row.selected .jt-msg-checkbox svg {
+  display: block;
+}
+
+.jt-msg-row.selected .jt-msg-bubble.outgoing {
+  box-shadow: 0 0 0 2px #93c5fd;
+  filter: brightness(1.05);
+}
+
+.jt-msg-row.selected .jt-msg-bubble.incoming {
+  box-shadow: 0 0 0 2px #cbd5e1;
+  background: #e2e8f0;
+}
+
+.jt-msg-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: break-word;
+  transition: all 0.15s;
+}
+
+.jt-msg-bubble.incoming {
+  background: #f1f5f9;
+  color: var(--jt-rec-text);
+  border-bottom-left-radius: 2px;
+}
+
+.jt-msg-bubble.outgoing {
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  border-bottom-right-radius: 2px;
+}
+
+.jt-msg-bubble.deleted {
+  background: #f1f5f9 !important;
+  color: #94a3b8 !important;
+  font-style: italic;
+  border: 1px dashed #cbd5e1;
+}
+
+.jt-msg-time {
+  font-size: 10px;
+  margin-top: 4px;
+  display: block;
+  opacity: 0.7;
+}
+
+.jt-chat-input-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--jt-rec-border);
+  background: #ffffff;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.jt-chat-input {
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  line-height: 1.45;
+  outline: none;
+  background: #f8fafc;
+  color: var(--jt-rec-text);
+  resize: none;
+  max-height: 120px;
+  min-height: 38px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.jt-chat-input::-webkit-scrollbar {
+  width: 5px;
+}
+
+.jt-chat-input::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.jt-chat-input::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.jt-chat-input:focus {
+  background: #ffffff;
+  border-color: var(--jt-rec-blue);
+  box-shadow: 0 0 0 3px rgba(15, 90, 207, 0.12);
+}
+
+.jt-btn-chat-send {
+  background: var(--jt-rec-blue);
+  color: #ffffff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.jt-btn-chat-send:hover {
+  background: var(--jt-rec-blue-hover);
+}
+
+.jt-btn-chat-send:active {
+  transform: scale(0.94);
+}
+
+/* ==========================================================================
+   8. View 5: Analytics & Spend Snapshot (Ref: moveonn Screenshots 1 & 2)
+   ========================================================================== */
+.jt-date-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.jt-analytics-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.jt-kpi-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.jt-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jt-rec-muted);
+  margin-bottom: 6px;
+}
+
+.jt-kpi-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--jt-rec-text);
+  margin-bottom: 6px;
+}
+
+.jt-kpi-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.jt-kpi-trend.positive {
+  color: var(--jt-rec-green);
+}
+
+.jt-kpi-trend.neutral {
+  color: var(--jt-rec-muted);
+}
+
+.jt-analytics-charts-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
+}
+
+.jt-chart-card {
+  background: #ffffff;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.jt-chart-card-head {
+  margin-bottom: 20px;
+}
+
+.jt-chart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--jt-rec-text);
+  margin: 0 0 4px 0;
+}
+
+.jt-chart-sub {
+  font-size: 12px;
+  color: var(--jt-rec-muted);
+  margin: 0;
+}
+
+/* CSS Bar Chart */
+.jt-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 180px;
+  padding: 10px 0 20px 0;
+  border-bottom: 1px solid var(--jt-rec-border);
+}
+
+.jt-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  width: 40px;
+}
+
+.jt-bar-fill {
+  width: 24px;
+  background: #cbd5e1;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease;
+}
+
+.jt-bar-fill.highlighted {
+  background: var(--jt-rec-blue);
+}
+
+.jt-bar-group span {
+  font-size: 11px;
+  color: var(--jt-rec-muted);
+  margin-top: 6px;
+}
+
+.jt-chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.jt-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #475569;
+}
+
+.jt-legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.jt-legend-color.blue { background: var(--jt-rec-blue); }
+.jt-legend-color.orange { background: var(--jt-rec-orange); }
+.jt-legend-color.green { background: var(--jt-rec-green); }
+
+/* Donut SVG Chart */
+.jt-donut-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.jt-donut-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.jt-donut-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.jt-donut-center-text strong {
+  display: block;
+  font-size: 22px;
+  color: var(--jt-rec-text);
+  font-weight: 800;
+}
+
+.jt-donut-center-text span {
+  font-size: 11px;
+  color: var(--jt-rec-muted);
+}
+
+/* ==========================================================================
+   9. Modals (Post a Job, Edit Job & Delete Confirmation)
+   ========================================================================== */
+body.jt-modal-locked {
+  overflow: hidden !important;
+}
+
+body.jt-modal-locked .jt-emp-main-area,
+body.jt-modal-locked .jt-emp-rail,
+body.jt-modal-locked .jt-emp-workspace {
+  overflow: hidden !important;
+}
+
+.btn-jt-danger {
+  background: #ef4444;
+  color: #ffffff;
+  border: 1px solid #dc2626;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-jt-danger:hover {
+  background: #dc2626;
+}
+
+.jt-emp-modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  z-index: 100050 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 40px 16px;
+  box-sizing: border-box !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.jt-emp-modal-backdrop.open {
+  display: flex !important;
+}
+
+.jt-emp-modal-card {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto !important;
+  max-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000000 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  animation: jtModalSlideUp 0.2s ease-out;
+}
+
+.jt-resume-modal-card {
+  max-width: 680px;
+}
+
+@keyframes jtModalSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.jt-emp-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--jt-rec-border);
+}
+
+.jt-emp-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--jt-rec-text);
+  margin: 0 0 4px 0;
+}
+
+.jt-emp-modal-sub {
+  font-size: 12px;
+  color: var(--jt-rec-muted);
+  margin: 0;
+}
+
+.jt-emp-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--jt-rec-muted);
+  cursor: pointer;
+}
+
+.jt-emp-modal-form {
+  padding: 20px 24px;
+}
+
+.jt-form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.jt-form-group {
+  flex: 1;
+  margin-bottom: 14px;
+}
+
+.jt-form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.jt-form-input, .jt-form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--jt-rec-border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--jt-rec-text);
+  outline: none;
+  background: #ffffff;
+}
+
+.jt-form-input:focus, .jt-form-textarea:focus {
+  border-color: var(--jt-rec-blue);
+  box-shadow: 0 0 0 2px rgba(15, 90, 207, 0.1);
+}
+
+.jt-sponsor-toggle-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--jt-rec-gold-bg);
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.jt-sponsor-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--jt-rec-gold);
+  letter-spacing: 0.5px;
+}
+
+.jt-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--jt-rec-border);
+  background: #f8fafc;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Resume Preview Modal Body */
+.jt-resume-preview-body {
+  padding: 20px 24px;
+}
+
+.jt-resume-meta-bar {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #475569;
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.jt-resume-section-block {
+  margin-bottom: 16px;
+}
+
+.jt-resume-subhead {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--jt-rec-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px 0;
+}
+
+.jt-resume-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #334155;
+  margin: 0;
+}
+
+.jt-skills-pill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.jt-pill {
+  background: var(--jt-rec-blue-light);
+  color: var(--jt-rec-blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.jt-exp-item {
+  font-size: 13px;
+  color: var(--jt-rec-text);
+}
+
+.jt-btn-ghost-sm {
+  background: transparent;
+  border: 1px solid var(--jt-rec-border);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jt-rec-text);
+  cursor: pointer;
+}
+
+.jt-btn-ghost-sm:hover {
+  background: #f1f5f9;
+}
+
+/* ==========================================================================
+   Mobile Header, Drawer & Back Button Defaults (Desktop >= 901px)
+   ========================================================================== */
+.jt-emp-mobile-header {
+  display: none !important;
+}
+
+.jt-emp-mob-drawer-backdrop {
+  display: none;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999999 !important;
+  justify-content: flex-end;
+}
+
+.jt-emp-mob-drawer-backdrop.active {
+  display: flex !important;
+}
+
+.jt-emp-mob-drawer-panel {
+  background: #ffffff;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  animation: jtFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes jtFadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.jt-emp-mob-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.jt-emp-mob-drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.jt-emp-mob-drawer-close:hover {
+  color: #0f172a;
+}
+
+.jt-emp-mob-drawer-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.jt-emp-mob-drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.jt-emp-mob-drawer-link:hover,
+.jt-emp-mob-drawer-link.active {
+  background: #eff6ff;
+  color: #0f5acf;
+}
+
+.jt-emp-mob-drawer-link svg {
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+.jt-emp-chat-back-btn {
+  display: none !important;
+}
+
+/* ==========================================================================
+   10. Responsive Behavior (< 900px and < 768px)
+   ========================================================================== */
+@media (max-width: 900px) {
+  html.jt-emp-html,
+  body.jt-emp-body {
+    height: 100% !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .jt-emp-rail {
+    display: none !important;
+  }
+
+  .jt-emp-workspace {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Dedicated Mobile Top Header: Clean, Compact 50px */
+  .jt-emp-mobile-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 0 14px;
+    background: #0f172a;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-shrink: 0;
+  }
+
+  .jt-emp-mob-brand-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .jt-emp-mob-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .jt-emp-mob-logo {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .jt-emp-mob-active-view-indicator {
+    display: flex;
+    align-items: center;
+  }
+
+  .jt-emp-mob-view-badge {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #93c5fd;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .jt-emp-mob-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .jt-emp-mob-menu-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .jt-emp-mob-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Sub-nav horizontal tabs completely hidden on mobile per user directive */
+  .jt-emp-mobile-tabs {
+    display: none !important;
+  }
+
+  .jt-emp-main-area {
+    padding: 14px 14px 100px 14px !important;
+    min-width: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    flex: 1 1 0% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .jt-emp-main-area.messages-active {
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  #viewMessages.active {
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .jt-analytics-charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Single-screen mobile drilldown chat with smooth scrolling */
+  .jt-chat-split-container {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box;
+    background: #ffffff;
+  }
+
+  /* Mobile Chat State 1: Show thread list only */
+  .jt-chat-split-container:not(.mobile-chat-active) .jt-chat-threads-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .jt-chat-split-container:not(.mobile-chat-active) .jt-chat-dialog-panel {
+    display: none !important;
+  }
+
+  /* Mobile Chat State 2: Show active chat dialog only */
+  .jt-chat-split-container.mobile-chat-active .jt-chat-threads-sidebar {
+    display: none !important;
+  }
+  .jt-chat-split-container.mobile-chat-active .jt-chat-dialog-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Sleek circular back arrow button in chat header */
+  .jt-emp-chat-back-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    cursor: pointer;
+    margin-right: 6px;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .jt-emp-chat-back-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .jt-chat-panel-head {
+    padding: 10px 12px;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .jt-chat-head-user {
+    min-width: 0;
+    flex: 1 1 0%;
+    overflow: hidden;
+  }
+
+  .jt-chat-head-name {
+    font-size: 13.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .jt-chat-head-role {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .jt-chat-stream {
+    flex: 1 1 0%;
+    min-height: 0;
+    padding: 14px;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #ffffff;
+    touch-action: pan-y !important;
+  }
+
+  .jt-chat-input-bar {
+    flex-shrink: 0 !important;
+    padding: 10px 14px 16px 14px !important;
+    background: #ffffff !important;
+    border-top: 1px solid var(--jt-rec-border) !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-emp-modal-backdrop {
+    padding: 20px 12px !important;
+  }
+
+  .jt-emp-modal-card {
+    max-height: calc(100vh - 40px) !important;
+    border-radius: 10px;
+    width: 100% !important;
+    margin: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .jt-emp-header-inner {
+    padding: 0 12px;
+  }
+
+  .jt-view-title {
+    font-size: 18px;
+  }
+
+  .jt-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Responsive Candidate Cards Grid & Zero Box Overflow */
+  .jt-cand-cards-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-cand-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 14px;
+  }
+
+  .jt-cand-card-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-cand-stage-select {
+    width: 100% !important;
+    height: 36px;
+    box-sizing: border-box;
+    font-size: 12px;
+  }
+
+  .jt-cand-action-group {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+
+  .jt-cand-action-group .jt-btn-ghost-sm,
+  .jt-cand-action-group .jt-btn-secondary {
+    flex: 1 1 50%;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Stage Filter Chips & Job Selector */
+  .jt-stage-chips-bar {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding: 4px 0 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .jt-stage-chips-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .jt-stage-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .jt-cand-job-selector {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+  }
+
+  .jt-cand-job-selector .jt-select-pill {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Responsive Jobs Table Transformation on Mobile */
+  .jt-jobs-table thead {
+    display: none;
+  }
+
+  .jt-jobs-table, .jt-jobs-table tbody, .jt-jobs-table tr, .jt-jobs-table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .jt-jobs-table tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--jt-rec-border);
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 12px;
+    overflow: hidden;
+  }
+
+  .jt-pipeline-stages-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 100%;
+  }
+
+  .jt-pipeline-stage-btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    font-size: 11px;
+    padding: 4px 6px;
+    box-sizing: border-box;
+  }
+
+  .jt-jobs-table td {
+    padding: 6px 0;
+    border: none;
+  }
+
+  .jt-jobs-table td:last-child {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .jt-sourcing-search-box {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .jt-sourcing-input-group {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #jtSourcingFilterBtn {
+    width: 100%;
+    height: 38px;
+  }
+
+  .jt-sourcing-card {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Jobs Table Sub-Header & Status Tabs Strict Containment */
+  .jt-table-filter-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-status-tabs {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 2px !important;
+    gap: 2px !important;
+  }
+
+  .jt-status-tab {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 6px 2px !important;
+    justify-content: center !important;
+    font-size: 11px !important;
+    gap: 3px !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-status-tab .jt-tab-pill {
+    font-size: 10px !important;
+    padding: 1px 4px !important;
+  }
+
+  .jt-table-search-wrap {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .jt-jobs-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .jt-job-cell-title {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  .jt-job-cell-meta {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+  }
+
+  /* Universal Strict Viewport Containment: Zero Horizontal Sliding Down to 290px */
+  html.jt-emp-html,
+  body.jt-emp-body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  .jt-emp-workspace {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  .jt-emp-main-area {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    touch-action: pan-y !important;
+  }
+
+  .jt-emp-view {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Prevent Accidental Mobile Drag Selection on UI Elements */
+  .jt-emp-mobile-header,
+  .jt-emp-mob-drawer-panel,
+  .jt-status-tabs,
+  .jt-pipeline-stage-btn,
+  .jt-stage-chip,
+  .jt-tag-chip,
+  .jt-cand-card,
+  .jt-jobs-table tr,
+  .jt-btn-primary,
+  .jt-btn-secondary,
+  .jt-btn-ghost-sm {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Extra Compact Viewport Protection (<= 360px / 260px) */
+@media (max-width: 360px) {
+  .jt-emp-main-area {
+    padding: 8px 4px !important;
+  }
+  .jt-view-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .jt-view-actions {
+    width: 100% !important;
+  }
+  .jt-view-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .jt-emp-mobile-header {
+    padding: 0 8px !important;
+  }
+  .jt-cand-card {
+    padding: 10px 8px !important;
+  }
+  .jt-cand-action-group {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+  .jt-cand-action-group .jt-btn-ghost-sm,
+  .jt-cand-action-group .jt-btn-secondary {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Ultra-Compact Modal Responsiveness (<= 360px / 250px) */
+  .jt-emp-modal-backdrop {
+    padding: 6px 4px !important;
+  }
+  .jt-emp-modal-card {
+    max-height: calc(100vh - 16px) !important;
+    width: calc(100% - 4px) !important;
+    border-radius: 8px !important;
+    margin: auto !important;
+  }
+  .jt-emp-modal-head {
+    padding: 10px 8px 8px 8px !important;
+  }
+  .jt-emp-modal-title {
+    font-size: 14.5px !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+  .jt-emp-modal-sub {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+  }
+  .jt-emp-modal-form {
+    padding: 8px 8px 12px 8px !important;
+    overflow-y: auto !important;
+    max-height: calc(100dvh - 120px) !important;
+  }
+  .jt-form-group {
+    margin-bottom: 8px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .jt-form-label {
+    font-size: 11px !important;
+    margin-bottom: 3px !important;
+  }
+  .jt-form-input,
+  .jt-form-textarea {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  select.jt-form-input {
+    font-size: 11.5px !important;
+    padding: 6px 4px !important;
+    text-overflow: ellipsis !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .jt-sponsor-toggle-card {
+    padding: 8px 8px !important;
+    margin: 8px 0 10px 0 !important;
+    gap: 6px !important;
+  }
+  .jt-sponsor-toggle-card .jt-sponsor-left {
+    min-width: 0 !important;
+    flex: 1 1 0% !important;
+  }
+  .jt-modal-footer {
+    padding: 8px 8px 10px 8px !important;
+    flex-direction: column-reverse !important;
+    gap: 6px !important;
+  }
+  .jt-modal-footer button {
+    width: 100% !important;
+    min-height: 38px !important;
+    font-size: 12.5px !important;
+  }
+}
+

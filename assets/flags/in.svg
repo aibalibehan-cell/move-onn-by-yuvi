@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <rect width="640" height="160" fill="#FF9933"/>
+    <rect y="160" width="640" height="160" fill="#FFFFFF"/>
+    <rect y="320" width="640" height="160" fill="#128807"/>
+    <circle cx="320" cy="240" r="60" fill="none" stroke="#000080" stroke-width="6"/>
+    <circle cx="320" cy="240" r="14" fill="#000080"/>
+    <line x1="320" y1="240" x2="378.0" y2="240.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="376.0" y2="255.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="370.2" y2="269.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="361.0" y2="281.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="349.0" y2="290.2" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="335.0" y2="296.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="320.0" y2="298.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="305.0" y2="296.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="291.0" y2="290.2" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="279.0" y2="281.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="269.8" y2="269.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="264.0" y2="255.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="262.0" y2="240.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="264.0" y2="225.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="269.8" y2="211.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="279.0" y2="199.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="291.0" y2="189.8" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="305.0" y2="184.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="320.0" y2="182.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="335.0" y2="184.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="349.0" y2="189.8" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="361.0" y2="199.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="370.2" y2="211.0" stroke="#000080" stroke-width="3"/>
+    <line x1="320" y1="240" x2="376.0" y2="225.0" stroke="#000080" stroke-width="3"/>
+  </svg>

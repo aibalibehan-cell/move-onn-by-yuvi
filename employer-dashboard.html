@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" class="jt-emp-html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Employer Workspace & ATS | Move ONN Recruiter Suite</title>
+  <meta name="description" content="Manage job listings, review applicants, source candidates, and track recruitment campaigns in the Move ONN Employer Workspace.">
+  <link rel="icon" type="image/png" href="assets/images/moveonn-icon.png">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/employer-dashboard.css">
+
+  <!-- Instant Synchronous User Pre-Hydration -->
+  <script>
+    (function() {
+      try {
+        var raw = localStorage.getItem('moveonn_user') || null;
+        var u = raw ? JSON.parse(raw) : null;
+        var em = (u && u.email) ? u.email.toLowerCase().trim() : '';
+        var sf = em ? em.replace(/[^a-z0-9]/g, '_') : '';
+        var name = (sf ? (localStorage.getItem('moveonn_user_name__' + sf) || localStorage.getItem('Move ONN_user_name__' + sf)) : null) ||
+                   (em ? (localStorage.getItem('moveonn_user_name__' + em) || localStorage.getItem('Move ONN_user_name__' + em)) : null) ||
+                   localStorage.getItem('moveonn_user_name') ||
+                   localStorage.getItem('moveonn_user_name') ||
+                   (u && u.name ? u.name : 'Sarah Connor');
+        var email = (sf ? localStorage.getItem('jt_user_email__' + sf) : null) ||
+                    (em ? localStorage.getItem('jt_user_email__' + em) : null) ||
+                    localStorage.getItem('jt_user_email') ||
+                    (u && u.email ? u.email : 'sarah.connor@icloud.com');
+        var img = (sf ? localStorage.getItem('jt_user_avatar_img__' + sf) : null) ||
+                  (em ? localStorage.getItem('jt_user_avatar_img__' + em) : null) ||
+                  localStorage.getItem('jt_user_avatar_img') ||
+                  (u && u.avatar ? u.avatar : null);
+
+        window.__JT_PREHYDRATED_USER__ = { name: name, email: email, avatar: img };
+
+        // Instant View Pre-Hydration (persists active view across refresh without flash)
+        var validViews = ['viewJobs', 'viewCandidates', 'viewSourcing', 'viewMessages', 'viewAnalytics'];
+        var h = window.location.hash ? window.location.hash.replace('#', '') : null;
+        var savedView = (h && validViews.indexOf(h) !== -1) ? h : localStorage.getItem('jt_emp_active_view');
+        if (savedView && validViews.indexOf(savedView) !== -1 && savedView !== 'viewJobs') {
+          var style = document.createElement('style');
+          style.id = 'jtPreViewHide';
+          style.textContent = '.jt-emp-view { display: none !important; } #' + savedView + ' { display: block !important; }';
+          document.head.appendChild(style);
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="jt-emp-body">
+
+  <!-- ==========================================================================
+       Employer SaaS Workspace Shell (Rail Navigation + Main Work Area)
+       Zero Header Jitter • Full-Height Modern SaaS Layout
+       ========================================================================== -->
+  <div class="jt-emp-workspace" id="jtEmpWorkspace">
+
+    <!-- Dedicated Mobile Employer Top Header (Visible only < 900px) -->
+    <header class="jt-emp-mobile-header" id="jtEmpMobileHeader">
+      <div class="jt-emp-mob-brand-wrap">
+        <a href="employer-dashboard.html" class="jt-emp-mob-brand" aria-label="Employer Suite Home">
+          <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-emp-mob-logo">
+        </a>
+      </div>
+      <div class="jt-emp-mob-active-view-indicator">
+        <span class="jt-emp-mob-view-badge" id="jtEmpMobActiveViewBadge">Jobs</span>
+      </div>
+      <div class="jt-emp-mob-actions">
+        <button type="button" class="jt-emp-mob-menu-btn" id="jtEmpMobMenuBtn" aria-label="Open Workspace Menu" title="Menu" onclick="window.toggleEmpMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer for Navigation & Account (Full Screen < 900px) -->
+    <div class="jt-emp-mob-drawer-backdrop" id="jtEmpMobDrawerBackdrop" style="display:none;" onclick="window.closeEmpMobileMenu()">
+      <div class="jt-emp-mob-drawer-panel" onclick="event.stopPropagation()">
+        <div class="jt-emp-mob-drawer-header">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/images/moveonn-logo.png" alt="Move ONN" style="height:26px;">
+            <strong style="font-size:14px; color:#0f172a;">Employer Workspace</strong>
+          </div>
+          <button type="button" class="jt-emp-mob-drawer-close" onclick="window.closeEmpMobileMenu()" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="jt-emp-mob-drawer-body">
+          <div class="jt-emp-mob-user-card" style="display:flex; align-items:center; gap:12px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px;">
+            <div class="jt-rail-avatar-circle" id="jtEmpMobAvatar" style="width:40px; height:40px; border-radius:50%; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#64748b" style="display:block;"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" /></svg>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div id="jtEmpMobUserName" style="font-weight:700; font-size:13.5px; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Sarah Connor</div>
+              <div id="jtEmpMobUserEmail" style="font-size:12px; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">sarah.connor@icloud.com</div>
+            </div>
+          </div>
+
+          <!-- Primary Post a Job Action Inside Mobile Drawer -->
+          <div style="margin-top: 12px; margin-bottom: 14px;">
+            <button type="button" class="jt-btn-primary" id="jtDrawerPostJobBtn" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 16px; border-radius:8px; font-weight:700; font-size:13.5px; box-shadow:0 2px 6px rgba(0,70,135,0.25);" onclick="window.openPostModalFromDrawer()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Post a Job</span>
+            </button>
+          </div>
+
+          <div style="height:1px; background:#e2e8f0; margin:14px 0;"></div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#94a3b8; margin-bottom:8px;">Workspace Views</div>
+          <ul class="jt-emp-mob-drawer-nav" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:4px;">
+            <li>
+              <button type="button" class="jt-emp-mob-drawer-link" data-target="viewJobs" onclick="window.selectEmpMobView('viewJobs')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span>Jobs Pipeline</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="jt-emp-mob-drawer-link" data-target="viewCandidates" onclick="window.selectEmpMobView('viewCandidates')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>Candidates (ATS)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="jt-emp-mob-drawer-link" data-target="viewSourcing" onclick="window.selectEmpMobView('viewSourcing')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Smart Sourcing</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="jt-emp-mob-drawer-link" data-target="viewMessages" onclick="window.selectEmpMobView('viewMessages')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span>Messages</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="jt-emp-mob-drawer-link" data-target="viewAnalytics" onclick="window.selectEmpMobView('viewAnalytics')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>Analytics & Spend</span>
+              </button>
+            </li>
+          </ul>
+          <div style="height:1px; background:#e2e8f0; margin:14px 0;"></div>
+          <a href="hire.html" class="jt-emp-mob-drawer-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>Employer Landing Page</span>
+          </a>
+          <a href="index.html" class="jt-emp-mob-drawer-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>Switch to Candidate Portal</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sub-Nav Pills (Clean text-only without number badges, visible only < 900px) -->
+    <nav class="jt-emp-mobile-tabs" aria-label="Employer Navigation Tabs">
+      <button type="button" class="jt-mobile-tab-btn active" data-target="viewJobs">
+        <span>Jobs</span>
+        <span class="jt-tab-count" id="jtMobileJobsCount" style="display:none;">3</span>
+      </button>
+      <button type="button" class="jt-mobile-tab-btn" data-target="viewCandidates">
+        <span>Candidates</span>
+        <span class="jt-tab-count" id="jtMobileCandCount" style="display:none;">7</span>
+      </button>
+      <button type="button" class="jt-mobile-tab-btn" data-target="viewSourcing">
+        <span>Sourcing</span>
+      </button>
+      <button type="button" class="jt-mobile-tab-btn" data-target="viewMessages">
+        <span>Messages</span>
+        <span class="jt-tab-count jt-unread-pill" id="jtMobileMessagesCount" style="display:none;">2</span>
+      </button>
+      <button type="button" class="jt-mobile-tab-btn" data-target="viewAnalytics">
+        <span>Analytics</span>
+      </button>
+    </nav>
+
+    <!-- Desktop Left Collapsible Rail (Desktop >= 900px) -->
+    <aside class="jt-emp-rail" id="jtEmpRail">
+      <div class="jt-emp-rail-top">
+        
+        <!-- Rail Header: Brand + 3-Line Hamburger Collapse Toggle Button -->
+        <div class="jt-rail-header" id="jtCompanySelector">
+          <div class="jt-rail-brand jt-emp-brand-area">
+            <a href="employer-dashboard.html" class="jt-rail-logo-link" aria-label="Move ONN Employer Workspace">
+              <img src="assets/images/moveonn-logo.png" alt="Move ONN" class="jt-rail-logo-img">
+              <span class="jt-rail-brand-text jt-rail-text">Employer Workspace</span>
+            </a>
+          </div>
+          <button type="button" class="jt-rail-collapse-btn" id="jtRailCollapseToggle" aria-label="Toggle navigation rail" title="Toggle sidebar">
+            <svg class="jt-hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Authoritative Single Primary Post a Job CTA -->
+        <button type="button" class="jt-btn-rail-post" id="jtRailPostJobBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span class="jt-rail-text">Post a Job</span>
+        </button>
+
+        <ul class="jt-rail-nav">
+          <li>
+            <button type="button" class="jt-rail-link active" data-target="viewJobs" title="Jobs">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              <span class="jt-rail-text">Jobs</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="jt-rail-link" data-target="viewCandidates" title="Candidates (ATS)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span class="jt-rail-text">Candidates (ATS)</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="jt-rail-link" data-target="viewSourcing" title="Smart Sourcing">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span class="jt-rail-text">Smart Sourcing</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="jt-rail-link" data-target="viewMessages" title="Messages">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <span class="jt-rail-text">Messages</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="jt-rail-link" data-target="viewAnalytics" title="Analytics & Spend">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span class="jt-rail-text">Analytics & Spend</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom: Recruiter Profile & Settings Dropup -->
+      <div class="jt-emp-rail-bottom">
+        <div class="jt-rail-profile-wrap" id="jtEmpProfileWrap">
+          <button type="button" class="jt-rail-profile-btn" id="jtEmpAvatarBtn" aria-label="Recruiter profile and settings">
+            <div class="jt-rail-avatar-circle" id="jtEmpAvatarInitial" style="background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#64748b" style="display:block;"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" /></svg>
+            </div>
+            <div class="jt-rail-profile-meta jt-rail-text">
+              <span class="jt-rail-user-name" id="jtEmpUserName">Sarah Connor</span>
+            </div>
+            <svg class="jt-rail-chevron-icon jt-rail-text" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="jt-emp-dropdown-menu jt-menu-dropup" id="jtEmpProfileMenu">
+            <div class="jt-emp-menu-email-row">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span id="jtEmpMenuEmail" style="font-size:12px; font-weight:600; color:#334155; word-break:break-all;">sarah.connor@icloud.com</span>
+            </div>
+            <div class="jt-emp-menu-divider"></div>
+            <a href="hire.html" class="jt-emp-menu-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Employer Landing Page</span>
+            </a>
+            <a href="index.html" class="jt-emp-menu-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <span>Switch to Candidate Portal</span>
+            </a>
+          </div>
+        </div>
+        <script>
+          (function() {
+            try {
+              var u = window.__JT_PREHYDRATED_USER__;
+              if (!u) return;
+              var elName = document.getElementById('jtEmpUserName');
+              var elInit = document.getElementById('jtEmpAvatarInitial');
+              var elEmail = document.getElementById('jtEmpMenuEmail');
+              if (elName && u.name) elName.textContent = u.name;
+              if (elEmail && u.email) elEmail.textContent = u.email;
+              if (elInit) {
+                if (u.avatar && typeof u.avatar === 'string' && (u.avatar.indexOf('data:image/') === 0 || u.avatar.indexOf('http') === 0 || u.avatar.indexOf('assets/') === 0)) {
+                  elInit.innerHTML = '<img src="' + u.avatar + '" alt="' + u.name + '" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">';
+                } else {
+                  elInit.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="#64748b" style="display:block;"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" /></svg>';
+                }
+              }
+            } catch(e) {}
+          })();
+        </script>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Work Area -->
+    <main class="jt-emp-main-area">
+
+      <!-- ======================================================================
+           VIEW 1: JOBS MANAGEMENT TABLE (Move ONN Screenshot 3 Standard)
+           ====================================================================== -->
+      <section class="jt-emp-view active" id="viewJobs">
+        <div class="jt-view-header">
+          <div class="jt-view-title-wrap">
+            <h1 class="jt-view-title">Jobs</h1>
+            <p class="jt-view-subtitle">Manage open job requisitions, track pipeline velocity, and review candidates.</p>
+          </div>
+          <div class="jt-view-actions">
+            <button type="button" class="jt-btn-secondary" onclick="window.exportJobsCsv()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Sub-Header -->
+        <div class="jt-table-filter-bar">
+          <div class="jt-status-tabs" id="jtJobStatusTabs">
+            <button type="button" class="jt-status-tab active" data-status="active">
+              Active <span class="jt-tab-pill" id="jtCountActive">3</span>
+            </button>
+            <button type="button" class="jt-status-tab" data-status="paused">
+              Paused <span class="jt-tab-pill" id="jtCountPaused">1</span>
+            </button>
+            <button type="button" class="jt-status-tab" data-status="closed">
+              Closed <span class="jt-tab-pill" id="jtCountClosed">1</span>
+            </button>
+          </div>
+
+          <div class="jt-table-search-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="jtJobsTableSearch" class="jt-table-search-input" placeholder="Search jobs or location...">
+          </div>
+        </div>
+
+        <!-- Desktop Table & Mobile Stack Cards Container -->
+        <div class="jt-jobs-table-wrap">
+          <table class="jt-jobs-table" id="jtJobsTable">
+            <thead>
+              <tr>
+                <th style="width:34%;">Job Title & Location</th>
+                <th style="width:28%;">Candidate Pipeline</th>
+                <th style="width:12%;">Sponsorship</th>
+                <th style="width:12%;">Posted Date</th>
+                <th style="width:14%; text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="jtJobsTableBody">
+              <!-- Dynamically rendered via js/employer-dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 2: CANDIDATE ATS PIPELINE (Applicant Management)
+           ====================================================================== -->
+      <section class="jt-emp-view" id="viewCandidates">
+        <div class="jt-view-header">
+          <div class="jt-view-title-wrap">
+            <h1 class="jt-view-title">Candidates (ATS Pipeline)</h1>
+            <p class="jt-view-subtitle">Screen applicants, review match qualifications, change stages, and schedule interviews.</p>
+          </div>
+          <div class="jt-cand-job-selector">
+            <label for="jtCandJobFilter" style="font-size:12px; font-weight:600; color:#475569;">Job Filter:</label>
+            <select id="jtCandJobFilter" class="jt-select-pill">
+              <option value="all">All Active Job Requisitions</option>
+              <option value="job-101">Senior React & Node.js Engineer</option>
+              <option value="job-102">Principal Cloud & DevOps Architect</option>
+              <option value="job-103">Senior Technical Product Manager</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Stage Filter Chips -->
+        <div class="jt-stage-chips-bar" id="jtStageChipsBar">
+          <button type="button" class="jt-stage-chip active" data-stage="all">All Stages (7)</button>
+          <button type="button" class="jt-stage-chip" data-stage="awaiting">Awaiting Review (2)</button>
+          <button type="button" class="jt-stage-chip" data-stage="reviewing">Reviewing (2)</button>
+          <button type="button" class="jt-stage-chip" data-stage="interviewing">Interviewing (2)</button>
+          <button type="button" class="jt-stage-chip" data-stage="hired">Hired (1)</button>
+          <button type="button" class="jt-stage-chip" data-stage="rejected">Rejected (0)</button>
+        </div>
+
+        <!-- Candidate Cards Grid -->
+        <div class="jt-cand-cards-grid" id="jtCandCardsGrid">
+          <!-- Dynamically populated via js/employer-dashboard.js -->
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 3: SMART SOURCING & RESUME SEARCH
+           ====================================================================== -->
+      <section class="jt-emp-view" id="viewSourcing">
+        <div class="jt-view-header">
+          <div class="jt-view-title-wrap">
+            <h1 class="jt-view-title">Smart Sourcing</h1>
+            <p class="jt-view-subtitle">Search over 20M+ verified active candidates and invite top talent directly.</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="jt-sourcing-search-box">
+          <div class="jt-sourcing-input-group">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="jtSourcingKeywordInput" class="jt-sourcing-input" placeholder="Search skills or keywords...">
+          </div>
+          <button type="button" class="jt-btn-primary" id="jtSourcingFilterBtn">Filter Talent</button>
+        </div>
+
+        <!-- Quick Filter Tags -->
+        <div class="jt-sourcing-tags" id="jtSourcingQuickTags">
+          <span style="font-size:12px; font-weight:600; color:#64748b; margin-right:6px;">Popular:</span>
+          <button type="button" class="jt-tag-chip" data-query="React">React.js</button>
+          <button type="button" class="jt-tag-chip" data-query="DevOps">DevOps & Cloud</button>
+          <button type="button" class="jt-tag-chip" data-query="Node.js">Node.js</button>
+          <button type="button" class="jt-tag-chip" data-query="Product">Product Management</button>
+          <button type="button" class="jt-tag-chip" data-query="Python">Python & AI</button>
+        </div>
+
+        <!-- Sourcing Talent Cards Feed -->
+        <div class="jt-sourcing-results-wrap" id="jtSourcingResults">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 4: MESSAGES HUB (Recruiter Applicant Inbox)
+           ====================================================================== -->
+       <section class="jt-emp-view" id="viewMessages">
+        <div class="jt-chat-split-container" id="jtEmpChatContainer">
+          <!-- Left Conversations List -->
+          <div class="jt-chat-threads-sidebar">
+            <div class="jt-threads-header">
+              <span style="font-weight:700; color:#1e293b; font-size:14px;">Conversations</span>
+              <span class="jt-tab-pill" id="jtActiveThreadsCount">3 Active</span>
+            </div>
+            <div class="jt-threads-list" id="jtEmpChatThreads">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Right Chat Conversation Panel -->
+          <div class="jt-chat-dialog-panel" id="jtEmpChatDialog">
+            <div class="jt-chat-panel-head" id="jtEmpChatHead">
+              <button type="button" class="jt-emp-chat-back-btn" id="jtEmpChatBackBtn" onclick="window.exitEmpMobileChat()" aria-label="Back to conversations list" title="Back to conversations">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <div class="jt-chat-head-user" onclick="window.viewActiveCandidateProfile()" style="cursor:pointer; min-width:0; flex:1 1 0%;" title="Click to view candidate profile">
+                <div class="jt-thread-avatar-circle" id="jtChatHeadAvatar" style="flex-shrink:0;">AM</div>
+                <div style="min-width:0; overflow:hidden;">
+                  <div class="jt-chat-head-name" id="jtChatHeadName">Alex Mercer</div>
+                  <div class="jt-chat-head-role" id="jtChatHeadRole">Applicant for Lead Full-Stack Cloud Engineer</div>
+                </div>
+              </div>
+              <div class="jt-chat-head-actions">
+                <div class="jt-chat-more-wrap" style="position:relative;">
+                  <button type="button" class="jt-action-dots-btn" id="jtChatMoreBtn" title="Chat actions" aria-label="Chat actions" onclick="window.toggleChatDropdown(event)">⋮</button>
+                  <div class="jt-job-action-menu" id="jtChatActionsMenu">
+                    <button type="button" class="jt-job-action-opt" onclick="window.viewActiveCandidateProfile()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      <span>Candidate Profile</span>
+                    </button>
+                    <button type="button" class="jt-job-action-opt" onclick="window.openClearChatModal()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                      <span>Clear Chat</span>
+                    </button>
+                    <div style="height:1px; background:#f1f5f9; margin:4px 0;"></div>
+                    <button type="button" class="jt-job-action-opt danger" onclick="window.openRemoveCandModal()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+                      <span>Remove Candidate</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- WhatsApp-Style Selection Bar -->
+            <div class="jt-chat-selection-bar" id="jtChatSelectionBar" style="display:none;">
+              <div class="jt-selection-left">
+                <button type="button" class="jt-btn-icon-sm" onclick="window.exitChatSelectionMode()" title="Cancel selection" aria-label="Cancel selection">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="12" x2="18" y2="18"></line></svg>
+                </button>
+                <span class="jt-selection-count" id="jtSelectionCount">0 selected</span>
+              </div>
+              <div class="jt-selection-right">
+                <button type="button" class="jt-btn-icon-sm danger" onclick="window.promptDeleteSelectedMessages()" title="Delete selected messages" aria-label="Delete selected messages">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="jt-chat-stream" id="jtEmpChatStream">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Chat Input Form -->
+            <form class="jt-chat-input-bar" id="jtEmpChatForm">
+              <textarea class="jt-chat-input" id="jtEmpChatInput" rows="1" placeholder="Type a message..." autocomplete="off"></textarea>
+              <button type="submit" class="jt-btn-chat-send" aria-label="Send message">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 5: ANALYTICS & SPEND SNAPSHOT (Move ONN Screenshots 1 & 2 Ref)
+           ====================================================================== -->
+      <section class="jt-emp-view" id="viewAnalytics">
+        <div class="jt-view-header">
+          <div class="jt-view-title-wrap">
+            <h1 class="jt-view-title">Analytics & Campaigns Snapshot</h1>
+            <p class="jt-view-subtitle">Review hiring ROI, spend breakdown, applicant velocity, and candidate source attribution.</p>
+          </div>
+          <div class="jt-date-filter-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Last 30 Days (Sep 2 - Oct 2, 2026)</span>
+          </div>
+        </div>
+
+        <!-- 4 KPI Summary Metric Cards -->
+        <div class="jt-analytics-kpi-grid">
+          <div class="jt-kpi-card">
+            <div class="jt-kpi-label">Total Spend (Budget Used)</div>
+            <div class="jt-kpi-val">₹18,450</div>
+            <div class="jt-kpi-trend positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span>₹1,550 Remaining of ₹20,000 Cap</span>
+            </div>
+          </div>
+          <div class="jt-kpi-card">
+            <div class="jt-kpi-label">Cost per Application</div>
+            <div class="jt-kpi-val">₹129.92</div>
+            <div class="jt-kpi-trend positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <span>18% Lower than Industry Avg</span>
+            </div>
+          </div>
+          <div class="jt-kpi-card">
+            <div class="jt-kpi-label">Total Qualified Applications</div>
+            <div class="jt-kpi-val">142</div>
+            <div class="jt-kpi-trend positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span>+34 new this week</span>
+            </div>
+          </div>
+          <div class="jt-kpi-card">
+            <div class="jt-kpi-label">Candidates in Pipeline</div>
+            <div class="jt-kpi-val">14 Active</div>
+            <div class="jt-kpi-trend neutral">
+              <span>3 in Final Round Interview</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="jt-analytics-charts-grid">
+          <!-- Chart 1: Application Velocity Trend -->
+          <div class="jt-chart-card">
+            <div class="jt-chart-card-head">
+              <div>
+                <h3 class="jt-chart-title">Application Volume & Clicks (Daily)</h3>
+                <p class="jt-chart-sub">Comparing Organic vs Sponsored clicks over past 30 days</p>
+              </div>
+            </div>
+            <div class="jt-bars-container">
+              <!-- Visual CSS/SVG Bar Chart -->
+              <div class="jt-bar-group"><div class="jt-bar-fill" style="height:45%;"></div><span>W1</span></div>
+              <div class="jt-bar-group"><div class="jt-bar-fill" style="height:62%;"></div><span>W2</span></div>
+              <div class="jt-bar-group"><div class="jt-bar-fill" style="height:85%;"></div><span>W3</span></div>
+              <div class="jt-bar-group"><div class="jt-bar-fill highlighted" style="height:94%;"></div><span>W4</span></div>
+              <div class="jt-bar-group"><div class="jt-bar-fill" style="height:76%;"></div><span>W5</span></div>
+            </div>
+            <div class="jt-chart-legend">
+              <span class="jt-legend-item"><span class="jt-legend-color blue"></span> Sponsored Campaigns (68%)</span>
+              <span class="jt-legend-item"><span class="jt-legend-color green"></span> Organic Talent Inflow (32%)</span>
+            </div>
+          </div>
+
+          <!-- Chart 2: Source Breakdown Donut -->
+          <div class="jt-chart-card">
+            <div class="jt-chart-card-head">
+              <div>
+                <h3 class="jt-chart-title">Applicant Source Distribution</h3>
+                <p class="jt-chart-sub">Breakdown of total candidates by acquisition channel</p>
+              </div>
+            </div>
+            <div class="jt-donut-wrapper">
+              <svg viewBox="0 0 36 36" class="jt-donut-svg">
+                <path class="jt-donut-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f1f5f9" stroke-width="3.8"/>
+                <path class="jt-donut-seg seg-1" stroke-dasharray="48, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#004687" stroke-width="4.2"/>
+                <path class="jt-donut-seg seg-2" stroke-dasharray="34, 100" stroke-dashoffset="-48" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#0ccbe8" stroke-width="4.2"/>
+                <path class="jt-donut-seg seg-3" stroke-dasharray="18, 100" stroke-dashoffset="-82" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="4.2"/>
+              </svg>
+              <div class="jt-donut-center-text">
+                <strong>142</strong>
+                <span>Candidates</span>
+              </div>
+            </div>
+            <div class="jt-chart-legend">
+              <span class="jt-legend-item"><span class="jt-legend-color blue"></span> Direct Search (48%)</span>
+              <span class="jt-legend-item"><span class="jt-legend-color orange"></span> Sponsored Job Ad (34%)</span>
+              <span class="jt-legend-item"><span class="jt-legend-color green"></span> Smart Sourcing Invite (18%)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       3. Modals: Post a Job, Edit Job & Delete Confirmation
+       ========================================================================== -->
+  <!-- POST A JOB MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpPostJobModal" aria-hidden="true" role="dialog">
+    <div class="jt-emp-modal-card">
+      <div class="jt-emp-modal-head">
+        <div>
+          <h2 class="jt-emp-modal-title">Post a New Job Requisition</h2>
+          <p class="jt-emp-modal-sub">Published jobs appear immediately in the Candidate Jobs feed and Recruiter Table.</p>
+        </div>
+        <button type="button" class="jt-emp-modal-close" id="jtEmpPostJobClose" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="jtEmpPostJobForm" class="jt-emp-modal-form">
+        <div class="jt-form-row">
+          <div class="jt-form-group">
+            <label for="jtNewJobTitle" class="jt-form-label">Job Title *</label>
+            <input type="text" id="jtNewJobTitle" class="jt-form-input" placeholder="Job title" required>
+          </div>
+          <div class="jt-form-group">
+            <label for="jtNewJobDept" class="jt-form-label">Department / Industry *</label>
+            <select id="jtNewJobDept" class="jt-form-input">
+              <option value="Engineering & Technology">Engineering & Technology</option>
+              <option value="Cloud Architecture & DevOps">Cloud Architecture & DevOps</option>
+              <option value="Product & Design">Product & Design</option>
+              <option value="Sales & Enterprise Growth">Sales & Enterprise Growth</option>
+              <option value="Finance & Operations">Finance & Operations</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="jt-form-row">
+          <div class="jt-form-group">
+            <label for="jtNewJobLoc" class="jt-form-label">Job Location *</label>
+            <input type="text" id="jtNewJobLoc" class="jt-form-input" placeholder="Job location" required>
+          </div>
+          <div class="jt-form-group">
+            <label for="jtNewJobType" class="jt-form-label">Workplace Policy *</label>
+            <select id="jtNewJobType" class="jt-form-input">
+              <option value="Hybrid">Hybrid</option>
+              <option value="On-site">On-site</option>
+              <option value="Fully Remote">Fully Remote</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="jt-form-row">
+          <div class="jt-form-group">
+            <label for="jtNewJobExp" class="jt-form-label">Required Experience *</label>
+            <input type="text" id="jtNewJobExp" class="jt-form-input" placeholder="Required experience" required>
+          </div>
+          <div class="jt-form-group">
+            <label for="jtNewJobSalary" class="jt-form-label">Compensation / CTC *</label>
+            <input type="text" id="jtNewJobSalary" class="jt-form-input" placeholder="Salary / CTC" required>
+          </div>
+        </div>
+
+        <div class="jt-form-group">
+          <label for="jtNewJobDesc" class="jt-form-label">Key Responsibilities & Skills *</label>
+          <textarea id="jtNewJobDesc" class="jt-form-textarea" rows="3" placeholder="Role responsibilities and skills" required></textarea>
+        </div>
+
+        <!-- Sponsorship Upsell Toggle (Move ONN) -->
+        <div class="jt-sponsor-toggle-card">
+          <div class="jt-sponsor-left">
+            <span class="jt-sponsor-badge">SPONSOR REQUISITION</span>
+            <div style="font-weight:700; color:#1e293b; font-size:13px; margin-top:3px;">Boost Visibility by 3.5x</div>
+            <p style="font-size:11px; color:#64748b; margin:2px 0 0;">Sponsored posts receive premier placement in candidate search feeds and top alerts.</p>
+          </div>
+          <label class="jt-toggle-switch">
+            <input type="checkbox" id="jtNewJobSponsor" checked>
+            <span class="jt-toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="jt-modal-footer">
+          <button type="button" class="jt-btn-secondary" id="jtEmpPostJobCancel">Cancel</button>
+          <button type="submit" class="jt-btn-primary" id="jtEmpPostJobSubmitBtn">
+            <span>Publish Requisition</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT JOB MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpEditJobModal" aria-hidden="true" role="dialog">
+    <div class="jt-emp-modal-card">
+      <div class="jt-emp-modal-head">
+        <div>
+          <h2 class="jt-emp-modal-title">Edit Job Requisition</h2>
+          <p class="jt-emp-modal-sub">Update job details, salary, and requirements.</p>
+        </div>
+        <button type="button" class="jt-emp-modal-close" id="jtEmpEditJobClose" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="jtEmpEditJobForm" class="jt-emp-modal-form">
+        <input type="hidden" id="jtEditJobId">
+        <div class="jt-form-row">
+          <div class="jt-form-group">
+            <label for="jtEditJobTitle" class="jt-form-label">Job Title *</label>
+            <input type="text" id="jtEditJobTitle" class="jt-form-input" required>
+          </div>
+          <div class="jt-form-group">
+            <label for="jtEditJobDept" class="jt-form-label">Department *</label>
+            <input type="text" id="jtEditJobDept" class="jt-form-input" required>
+          </div>
+        </div>
+
+        <div class="jt-form-row">
+          <div class="jt-form-group">
+            <label for="jtEditJobLoc" class="jt-form-label">Location *</label>
+            <input type="text" id="jtEditJobLoc" class="jt-form-input" required>
+          </div>
+          <div class="jt-form-group">
+            <label for="jtEditJobSalary" class="jt-form-label">Compensation / CTC *</label>
+            <input type="text" id="jtEditJobSalary" class="jt-form-input" required>
+          </div>
+        </div>
+
+        <div class="jt-modal-footer">
+          <button type="button" class="jt-btn-secondary" id="jtEmpEditJobCancel">Cancel</button>
+          <button type="submit" class="jt-btn-primary" id="jtEmpEditJobSubmitBtn">
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE REQUISITION CONFIRMATION MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpDeleteJobModal" aria-hidden="true" role="dialog">
+    <div class="jt-emp-modal-card" style="max-width: 440px;">
+      <div class="jt-emp-modal-head">
+        <h2 class="jt-emp-modal-title" style="color: #ef4444;">Delete Requisition?</h2>
+        <button type="button" class="jt-emp-modal-close" id="jtEmpDeleteJobClose" aria-label="Close modal">&times;</button>
+      </div>
+      <div style="padding: 20px 24px; font-size: 13.5px; color: #475569; line-height: 1.5;">
+        Are you sure you want to permanently remove <strong id="jtDeleteJobTitle">this job</strong>? This action cannot be undone and will close all candidate pipelines.
+      </div>
+      <div class="jt-modal-footer">
+        <button type="button" class="jt-btn-secondary" id="jtEmpDeleteJobCancel">Cancel</button>
+        <button type="button" class="jt-btn-primary" id="jtEmpDeleteJobConfirmBtn" style="background: #ef4444;">
+          <span>Delete Requisition</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP-STYLE DELETE MESSAGE MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpDeleteMsgModal" aria-hidden="true" role="dialog" style="display:none;">
+    <div class="jt-emp-modal-card" style="max-width: 380px; text-align: left;">
+      <div style="padding: 24px;">
+        <h3 style="margin: 0 0 8px; font-size: 17px; color: #0f172a; font-weight: 700;">Delete message?</h3>
+        <p style="margin: 0 0 20px; font-size: 13.5px; color: #64748b; line-height: 1.5;">Choose how you want to delete the selected message(s).</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button type="button" class="btn-jt-danger" id="jtDeleteForEveryoneBtn" style="width: 100%; padding: 11px; border-radius: 6px; font-weight: 700; font-size: 13.5px; text-align: center;">Delete for everyone</button>
+          <button type="button" class="jt-btn-secondary" id="jtDeleteForMeBtn" style="width: 100%; padding: 11px; border-radius: 6px; font-weight: 700; font-size: 13.5px; background: #eff6ff; color: #004687; border-color: #bfdbfe; text-align: center;">Delete for me</button>
+          <button type="button" class="jt-btn-secondary" id="jtDeleteMsgCancelBtn" style="width: 100%; padding: 11px; border-radius: 6px; font-weight: 600; font-size: 13.5px; text-align: center;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLEAR CHAT CONFIRMATION MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpClearChatModal" aria-hidden="true" role="dialog" style="display:none;">
+    <div class="jt-emp-modal-card" style="max-width: 400px; text-align: left;">
+      <div style="padding: 24px;">
+        <h3 style="margin: 0 0 8px; font-size: 17px; color: #0f172a; font-weight: 700;">Clear chat history?</h3>
+        <p style="margin: 0 0 20px; font-size: 13.5px; color: #64748b; line-height: 1.5;">Are you sure you want to clear all messages with <strong id="jtClearChatCandidateName" style="color:#0f172a;">this candidate</strong>? This action cannot be undone.</p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="jt-btn-secondary" onclick="window.closeClearChatModal()" style="padding: 9px 18px; font-weight: 600;">Cancel</button>
+          <button type="button" class="btn-jt-danger" onclick="window.confirmClearActiveChat()" style="padding: 9px 18px; font-weight: 700; border-radius: 6px;">Clear Chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMOVE CANDIDATE CONFIRMATION MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpRemoveCandModal" aria-hidden="true" role="dialog" style="display:none;">
+    <div class="jt-emp-modal-card" style="max-width: 400px; text-align: left;">
+      <div style="padding: 24px;">
+        <h3 style="margin: 0 0 8px; font-size: 17px; color: #ef4444; font-weight: 700;">Remove candidate?</h3>
+        <p style="margin: 0 0 20px; font-size: 13.5px; color: #64748b; line-height: 1.5;">Are you sure you want to remove <strong id="jtRemoveCandName" style="color:#0f172a;">this candidate</strong> from your active conversations?</p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="jt-btn-secondary" onclick="window.closeRemoveCandModal()" style="padding: 9px 18px; font-weight: 600;">Cancel</button>
+          <button type="button" class="btn-jt-danger" onclick="window.confirmRemoveCandidateConversation()" style="padding: 9px 18px; font-weight: 700; border-radius: 6px;">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CHAT CONVERSATION CONFIRMATION MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtEmpDeleteChatModal" aria-hidden="true" role="dialog" style="display:none;">
+    <div class="jt-emp-modal-card" style="max-width: 420px;">
+      <div class="jt-emp-modal-head">
+        <h2 class="jt-emp-modal-title" style="color: #ef4444;">Delete Conversation?</h2>
+        <button type="button" class="jt-emp-modal-close" onclick="window.closeDeleteChatModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div style="padding: 20px 24px; font-size: 13.5px; color: #475569; line-height: 1.5;">
+        Are you sure you want to permanently delete the conversation with <strong id="jtDeleteChatCandidateName">this candidate</strong>? All message history will be cleared.
+      </div>
+      <div class="jt-modal-footer">
+        <button type="button" class="jt-btn-secondary" onclick="window.closeDeleteChatModal()">Cancel</button>
+        <button type="button" class="jt-btn-primary" style="background: #ef4444;" onclick="window.confirmDeleteChatConversation()">
+          <span>Delete Chat</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANDIDATE RESUME PREVIEW MODAL -->
+  <div class="jt-emp-modal-backdrop" id="jtResumePreviewModal" aria-hidden="true" role="dialog">
+    <div class="jt-emp-modal-card jt-resume-modal-card">
+      <div class="jt-emp-modal-head">
+        <div>
+          <h2 class="jt-emp-modal-title" id="jtPreviewCandName">Alex Mercer</h2>
+          <p class="jt-emp-modal-sub" id="jtPreviewCandRole">Lead Full-Stack Cloud Engineer • Verified Candidate</p>
+        </div>
+        <button type="button" class="jt-emp-modal-close" id="jtResumePreviewClose" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="jt-resume-preview-body">
+        <div class="jt-resume-meta-bar">
+          <span id="jtPreviewCandExp">6+ Years Exp</span>
+          <span>•</span>
+          <span id="jtPreviewCandCtc">₹24 LPA</span>
+          <span>•</span>
+          <span id="jtPreviewCandLoc">Bengaluru, India</span>
+          <span>•</span>
+          <span style="color:#16a34a; font-weight:700;">Immediate Joiner</span>
+        </div>
+
+        <div class="jt-resume-section-block">
+          <h3 class="jt-resume-subhead">Executive Profile Summary</h3>
+          <p id="jtPreviewCandSummary" class="jt-resume-text">
+            Seasoned Lead Full-Stack Cloud Engineer with 6+ years designing, building, and deploying fault-tolerant distributed cloud architectures and responsive modern web applications. Expert in React, Node.js, TypeScript, AWS serverless, microservices, and high-concurrency event processing.
+          </p>
+        </div>
+
+        <div class="jt-resume-section-block">
+          <h3 class="jt-resume-subhead">Core Verified Skills</h3>
+          <div class="jt-skills-pill-wrap" id="jtPreviewCandSkills">
+            <span class="jt-pill">React 18</span>
+            <span class="jt-pill">Node.js / Express</span>
+            <span class="jt-pill">TypeScript</span>
+            <span class="jt-pill">AWS (Lambda, S3, ECS)</span>
+            <span class="jt-pill">PostgreSQL / Redis</span>
+            <span class="jt-pill">Docker & Kubernetes</span>
+            <span class="jt-pill">Microservices Architecture</span>
+          </div>
+        </div>
+
+        <div class="jt-resume-section-block">
+          <h3 class="jt-resume-subhead">Recent Professional Experience</h3>
+          <div class="jt-exp-item">
+            <strong>Lead Full-Stack Engineer</strong> • CloudScale Systems Pvt Ltd (2022 - Present)
+            <p class="jt-resume-text">Architected multi-tenant SaaS frontend in React & Next.js serving 2.4M monthly active users. Reduced latency by 42% via edge caching and redis pub/sub pipelines.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="jt-modal-footer">
+        <button type="button" class="jt-btn-secondary" id="jtResumePreviewDismiss" style="min-width: 100px;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Common Shared Toast notification container -->
+  <div id="jtToast" class="jt-toast" role="status" aria-live="polite"></div>
+
+  <!-- Workspace Controller Script -->
+  <script src="js/employer-dashboard.js"></script>
+</body>
+</html>

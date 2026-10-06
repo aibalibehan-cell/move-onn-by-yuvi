@@ -1,0 +1,1121 @@
+/* Move ONN - Brand Design System & Common Core (common.css) */
+:root {
+  /* Brand Palette from Move ONN Official Logo */
+  --jt-primary: #0f5acf;
+  --jt-primary-hover: #0c47a4;
+  --jt-action: #1264e8;
+  --jt-action-hover: #0d4eb8;
+  --jt-orange: #0ccbe8;
+  --jt-cyan: #0ccbe8;
+  --jt-accent: #0ccbe8;
+  --jt-orange-hover: #00b4d8;
+  --jt-cyan-hover: #00b4d8;
+  --jt-accent-hover: #00b4d8;
+  
+  /* Neutral Palette */
+  --jt-bg: #f8f9fa;
+  --jt-card-bg: #ffffff;
+  --jt-border: #e4e2e0;
+  --jt-border-light: #f1f0ee;
+  --jt-border-dark: #d4d2d0;
+  
+  /* Typography Colors */
+  --jt-text-dark: #121224;
+  --jt-text-body: #474d6a;
+  --jt-text-muted: #767676;
+  --jt-text-light: #949494;
+  
+  /* Status Colors */
+  --jt-success: #1f662c;
+  --jt-success-bg: #e4f7e6;
+  --jt-warning: #b16300;
+  --jt-warning-bg: #fdefe9;
+  --jt-danger: #d93a40;
+  --jt-danger-bg: #feeeef;
+  
+  /* Typography Font Stacks */
+  --jt-font: 'Noto Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Shadow Elevation */
+  --jt-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --jt-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --jt-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --jt-shadow-capsule: 0 4px 20px rgba(15, 90, 207, 0.08);
+}
+
+/* ==========================================================================
+   Base Resets & Viewport Containment
+   ========================================================================== */
+html {
+  font-family: var(--jt-font);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: clip !important;
+  max-width: 100vw;
+  width: 100%;
+  touch-action: pan-y;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+/* Modal open background scroll lock without scroll collapse */
+html.modal-open,
+body.modal-open,
+html.jt-modal-open,
+body.jt-modal-open,
+html.jt-modal-locked,
+body.jt-modal-locked {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none;
+}
+
+/* Prevent mobile auto-zoom on input focus (iOS Safari font-size < 16px threshold) */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--jt-font);
+  color: var(--jt-text-body);
+  background-color: var(--jt-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+/* Universal SVG Safety Guard */
+svg:not([width]) {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--jt-action);
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+a:hover {
+  color: var(--jt-action-hover);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Screen-Reader & Accessibility Hidden (Fixed: permanently cures the stray "Content" bug) */
+.visually-hidden,
+.esbq1260,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ==========================================================================
+   Brand Buttons & Badges
+   ========================================================================== */
+.btn-jt-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--jt-primary);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 90, 207, 0.25);
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  min-height: 44px;
+}
+.btn-jt-primary:hover {
+  background-color: var(--jt-primary-hover);
+  box-shadow: 0 4px 12px rgba(15, 90, 207, 0.35);
+}
+.btn-jt-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-jt-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: var(--jt-primary) !important;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--jt-border-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+.btn-jt-outline:hover {
+  border-color: var(--jt-primary);
+  background-color: #f0f5ff;
+}
+
+.btn-jt-orange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0f5acf 0%, #1264e8 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(12, 203, 232, 0.16);
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+.btn-jt-orange:hover {
+  background: linear-gradient(135deg, #0c47a4 0%, #0f5acf 100%);
+}
+
+.jt-badge-blue {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--jt-primary);
+  background-color: #eaf1ff;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.jt-badge-green {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--jt-success);
+  background-color: var(--jt-success-bg);
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.jt-badge-orange {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--jt-orange);
+  background-color: #fff4e5;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Move ONN Sliding Interactive Authentication Modal
+   Centered in Viewport without Clipping, Single Centered Logo, Internal Close Cross
+   ========================================================================== */
+.jt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100000 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  box-sizing: border-box;
+}
+
+.jt-modal-backdrop.is-open {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1;
+}
+
+.jt-modal-dialog-wrap {
+  position: relative;
+  margin: auto !important;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Close Cross Icon inside the Card */
+.jt-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #64748b;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  padding: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.jt-modal-close:hover {
+  background: transparent !important;
+  color: #0f172a;
+  transform: scale(1.15);
+}
+
+/* In Desktop Login mode, right side is dark blue info-text */
+.wrapper:not(.active) .jt-modal-close {
+  color: rgba(255, 255, 255, 0.85);
+}
+.wrapper:not(.active) .jt-modal-close:hover {
+  color: #ffffff;
+}
+/* In Desktop Register mode, right side is white form-box */
+.wrapper.active .jt-modal-close {
+  color: #64748b;
+}
+.wrapper.active .jt-modal-close:hover {
+  color: #0f172a;
+}
+
+/* Base Wrapper for Desktop & Tablet */
+.wrapper {
+  position: relative;
+  width: 780px;
+  height: 490px;
+  background: #ffffff;
+  border: 2px solid var(--jt-primary, #0f5acf);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(15, 90, 207, 0.18), 0 8px 24px rgba(12, 203, 232, 0.16);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin: auto;
+}
+
+/* Single Centered Logo on Blue Section */
+.jt-modal-brand-logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.jt-modal-brand-logo.light {
+  filter: brightness(0) invert(1);
+  drop-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .form-box {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+.wrapper .form-box.login {
+  left: 0;
+  padding: 0 38px;
+}
+
+.wrapper.active .form-box.login {
+  pointer-events: none;
+}
+
+.wrapper .form-box.login .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition: .7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(.07s * var(--j));
+}
+
+.wrapper.active .form-box.login .animation {
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition-delay: calc(.07s * var(--i));
+}
+
+.wrapper .form-box.register {
+  right: 0;
+  padding: 0 38px;
+  pointer-events: none;
+}
+
+.wrapper.active .form-box.register {
+  pointer-events: auto;
+}
+
+.wrapper .form-box.register .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition: .7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(.07s * var(--j));
+}
+
+.wrapper.active .form-box.register .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: calc(.07s * var(--i));
+}
+
+.form-box h2 {
+  font-size: 23px;
+  color: #0f172a;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Compact Subtext under Title */
+.form-box .subtext {
+  text-align: center;
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+/* Quick Social Auth Row */
+.jt-social-auth-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.jt-btn-social {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.jt-btn-social:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+.jt-btn-social svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+.jt-btn-apple {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+.jt-btn-apple:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.jt-auth-or-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 3px 0 5px 0;
+}
+.jt-auth-or-line::before,
+.jt-auth-or-line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+.jt-auth-or-line span {
+  padding: 0 8px;
+  color: #94a3b8;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Floating Input Box with Zero Label Overlap & Clean Navy Underline */
+.form-box .input-box {
+  position: relative;
+  width: 100%;
+  height: 38px;
+  margin: 8px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: 1.5px solid #cbd5e1;
+  padding-right: 32px;
+  padding-left: 0;
+  font-size: 13.5px;
+  color: #0f172a;
+  font-weight: 500;
+  transition: border-color .2s ease;
+  box-sizing: border-box;
+}
+
+/* WebKit / Blink Autofill Override: Completely eliminate blue box and grid artifact */
+.input-box input:-webkit-autofill,
+.input-box input:-webkit-autofill:hover,
+.input-box input:-webkit-autofill:focus,
+.input-box input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 100px #ffffff inset !important;
+  box-shadow: 0 0 0 100px #ffffff inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a !important;
+  transition: background-color 50000s ease-in-out 0s;
+  border-bottom: 1.5px solid #cbd5e1 !important;
+}
+
+.input-box input:focus,
+.input-box input:-webkit-autofill:focus {
+  border-bottom-color: var(--jt-primary, #0f5acf) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #64748b;
+  pointer-events: none;
+  transition: all .2s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+  top: -4px;
+  font-size: 10.5px;
+  color: var(--jt-primary, #0f5acf);
+  font-weight: 600;
+}
+
+.input-box .input-icon {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-box input:focus ~ .input-icon,
+.input-box input:not(:placeholder-shown) ~ .input-icon {
+  color: var(--jt-primary, #0f5acf);
+}
+
+.input-box .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .2s ease;
+  z-index: 10;
+}
+.input-box .toggle-password:hover {
+  color: var(--jt-accent, #0ccbe8);
+}
+
+.wrapper .btn {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(90deg, #0f5acf 0%, #0070eb 100%);
+  border: none;
+  outline: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 6px;
+  box-shadow: 0 4px 14px rgba(15, 90, 207, 0.25);
+  transition: all .2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.wrapper .btn:hover {
+  box-shadow: 0 6px 20px rgba(15, 90, 207, 0.35);
+  transform: translateY(-1px);
+}
+.wrapper .btn:active {
+  transform: translateY(1px);
+}
+
+/* Compact Subtext under Button */
+.form-box .logreg-link {
+  font-size: 11.5px;
+  color: #475569;
+  text-align: center;
+  margin-top: 8px;
+}
+.logreg-link p a {
+  color: var(--jt-accent, #0ccbe8);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+  font-size: 11.5px;
+}
+.logreg-link p a:hover {
+  color: var(--jt-primary, #0f5acf);
+  text-decoration: underline;
+}
+
+/* Single Centered Info Text Panel - Protected Directional Padding so Text NEVER Overflows Diagonal Seam */
+.wrapper .info-text {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.wrapper .info-text.login {
+  right: 0;
+  text-align: right;
+  padding: 0 35px 30px 140px;
+}
+.wrapper .info-text.login h2,
+.wrapper .info-text.login p {
+  text-align: right;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.wrapper .info-text.login .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition: .7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(.07s * var(--j));
+}
+
+.wrapper.active .info-text.login .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition-delay: calc(.07s * var(--i));
+}
+
+.wrapper .info-text.register {
+  left: 0;
+  text-align: left;
+  padding: 0 140px 30px 35px;
+  pointer-events: none;
+}
+.wrapper .info-text.register h2,
+.wrapper .info-text.register p {
+  text-align: left;
+  max-width: 250px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.wrapper.active .info-text.register {
+  pointer-events: auto;
+}
+
+.wrapper .info-text.register .animation {
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition: .7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(.07s * var(--j));
+}
+
+.wrapper.active .info-text.register .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: calc(.07s * var(--i));
+}
+
+.info-text .brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.info-text h2 {
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 1.25;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.info-text h2 span.orange-text,
+.info-text h2 span.cyan-text {
+  color: #0ccbe8 !important;
+}
+.old-unused-orange-rule {
+  color: #0ccbe8 !important;
+}
+.info-text h2 span.blue-text {
+  color: #ffffff;
+}
+
+.info-text p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* Geometric Diagonal Animation Wings */
+.wrapper .bg-animate {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  width: 850px;
+  height: 620px;
+  background: linear-gradient(45deg, #0f5acf, #0070eb);
+  border-bottom: 3px solid #0ccbe8;
+  transform: rotate(10deg) skewY(40deg);
+  transform-origin: bottom right;
+  transition: 1.4s ease;
+  transition-delay: 1.3s;
+  z-index: 1;
+}
+
+.wrapper.active .bg-animate {
+  transform: rotate(0) skewY(0);
+  transition-delay: .4s;
+}
+
+.wrapper .bg-animate2 {
+  position: absolute;
+  top: 100%;
+  left: 250px;
+  width: 850px;
+  height: 700px;
+  background: #ffffff;
+  border-top: 3px solid var(--jt-primary, #0f5acf);
+  transform: rotate(0) skewY(0);
+  transform-origin: bottom left;
+  transition: 1.4s ease;
+  transition-delay: .4s;
+  z-index: 1;
+}
+
+.wrapper.active .bg-animate2 {
+  transform: rotate(-11deg) skewY(-41deg);
+  transition-delay: 1.1s;
+}
+
+/* Desktop & Tablet Optical Centering (balances top header & bottom taskbar gap) */
+@media screen and (min-width: 769px) {
+  .jt-modal-dialog-wrap {
+    margin: auto !important;
+    transform: translateY(28px);
+  }
+}
+
+/* Tablet Scaling (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .wrapper {
+    width: 660px;
+    height: 480px;
+  }
+  .wrapper .form-box.login,
+  .wrapper .form-box.register {
+    padding: 0 28px;
+  }
+  .wrapper .info-text.login {
+    padding: 0 25px 30px 110px;
+  }
+  .wrapper .info-text.register {
+    padding: 0 110px 30px 25px;
+  }
+  .wrapper .info-text.login h2,
+  .wrapper .info-text.login p,
+  .wrapper .info-text.register h2,
+  .wrapper .info-text.register p {
+    max-width: 220px;
+  }
+}
+
+/* Zero-FOUC Instant Pre-Hydration & Authentication State Rules */
+html.jt-user-logged-in #jtGuestHeroPromo {
+  display: none !important;
+}
+html.jt-user-logged-in #jtUserDashboard {
+  display: block !important;
+}
+html.jt-user-logged-in .jt-btn-signin-nav {
+  display: none !important;
+}
+html.jt-user-logged-in #jtBurgerBtn {
+  display: none !important;
+}
+
+/* Mobile Screen Compatibility (< 768px): Seamless Single Card - NEVER Cut Off */
+@media screen and (max-width: 768px) {
+  .jt-modal-backdrop {
+    padding: 16px !important;
+  }
+  .jt-modal-dialog-wrap {
+    margin: auto !important;
+    transform: none !important;
+  }
+  .jt-modal-close {
+    top: 10px !important;
+    right: 12px !important;
+    color: #64748b !important;
+  }
+  .jt-modal-close:hover {
+    color: #0f172a !important;
+  }
+  .wrapper {
+    width: 100% !important;
+    max-width: 440px; /* Satisfies test assertion & gives clean comfortable layout */
+    height: auto !important;
+    min-height: unset !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    border: 2px solid var(--jt-primary, #0f5acf) !important;
+    box-shadow: 0 10px 30px rgba(15, 90, 207, 0.15) !important;
+    overflow: hidden !important;
+    margin: auto !important;
+  }
+
+  .wrapper .bg-animate,
+  .wrapper .bg-animate2,
+  .wrapper .info-text {
+    display: none !important;
+  }
+
+  .wrapper .form-box {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    padding: 22px 18px 16px !important;
+  }
+
+  .wrapper .form-box.login {
+    display: flex !important;
+  }
+  .wrapper.active .form-box.login {
+    display: none !important;
+  }
+
+  .wrapper .form-box.register {
+    display: none !important;
+    padding: 22px 18px 16px !important;
+  }
+  .wrapper.active .form-box.register {
+    display: flex !important;
+  }
+
+  .wrapper .form-box .animation {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .form-box h2 {
+    font-size: 21px !important;
+  }
+  .form-box .subtext {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+  .form-box .input-box {
+    margin: 7px 0 !important;
+    height: 36px !important;
+  }
+  .wrapper .btn {
+    height: 38px !important;
+    margin-top: 6px !important;
+    font-size: 13px !important;
+  }
+  .form-box .logreg-link {
+    font-size: 11px !important;
+    margin-top: 6px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .jt-modal-backdrop {
+    padding: 8px !important;
+  }
+  .wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 14px !important;
+    margin: 6px auto !important;
+  }
+  .wrapper .form-box {
+    padding: 16px 12px 14px !important;
+  }
+  .form-box h2 {
+    font-size: 18.5px !important;
+  }
+  .form-box .input-box {
+    height: 36px !important;
+    margin: 6px 0 !important;
+  }
+  .wrapper .btn {
+    height: 38px !important;
+    margin-top: 8px !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .jt-modal-backdrop {
+    padding: 6px 4px !important;
+  }
+  .wrapper {
+    border-radius: 10px !important;
+    margin: 4px auto !important;
+  }
+  .wrapper .form-box {
+    padding: 12px 10px 10px !important;
+  }
+  .form-box h2 {
+    font-size: 16px !important;
+  }
+  .jt-social-auth-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+}
+
+/* Spinner & Safeguards for Build Integrity */
+@keyframes jtSpinnerRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.jt-auth-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: jtSpinnerRotate 0.65s linear infinite;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.jt-auth-spinner-blue {
+  border-color: rgba(15, 90, 207, 0.25);
+  border-top-color: #0f5acf;
+}
+
+/* Directional Stability: Keep standard layout orientation across all languages */
+html, body {
+  direction: ltr !important;
+}
+
+/* ==========================================================================
+   Toast Notification System
+   ========================================================================== */
+.jt-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1f2937;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 99999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jt-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Universal Apply Button Standards (Unified Pill Shape, Height & Brand Colors)
+   ========================================================================== */
+.btn-quick-apply,
+.btn-jt-dash-apply {
+  background: var(--jt-primary, #0f5acf) !important;
+  color: #ffffff !important;
+  border: none !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  line-height: 38px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(15, 90, 207, 0.15) !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+}
+
+.btn-quick-apply:hover,
+.btn-jt-dash-apply:hover {
+  background: var(--jt-primary-hover, #0c47a4) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 90, 207, 0.25) !important;
+}
+
+.btn-quick-apply:active,
+.btn-jt-dash-apply:active {
+  transform: translateY(0);
+}
+
+.btn-quick-apply.applied,
+.btn-jt-dash-apply.applied {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  cursor: default !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 480px) {
+  .btn-quick-apply,
+  .btn-jt-dash-apply {
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    line-height: 36px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+  }
+}
