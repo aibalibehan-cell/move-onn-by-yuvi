@@ -5,13 +5,8 @@
 
 ---
 
-### 🌐 Live Website (Cloudflare Pages)
-👉 **[https://move-onn-by-yuvi.pages.dev](https://move-onn-by-yuvi.pages.dev)**
-
----
-
-### ⚡ Direct Root-Level ZIP Download (Zero Subfolders)
-If you want a ZIP that opens immediately with all files without any outer folder, download directly from here:  
+### 📦 Production Backup ZIP (Root-Level / Direct Files)
+Direct root-level ZIP download that extracts immediately with all files and folders without nested wrapper directories:  
 👉 **[Download move-onn-by-yuvi.zip](https://github.com/aibalibehan-cell/move-onn-by-yuvi/releases/download/v1.0.0/move-onn-by-yuvi.zip)**
 
 ---

@@ -3425,10 +3425,10 @@
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16) !important;
   padding: 6px;
   min-width: 180px;
-  z-index: 100;
+  z-index: 99999 !important;
 }
 
 .jt-job-action-opt {
@@ -3520,6 +3520,54 @@
   max-width: 80%;
   cursor: pointer;
   transition: all 0.15s;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.jt-cand-msg-bubble {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.jt-msg-bubble-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.jt-msg-quick-del-btn {
+  background: transparent;
+  border: none;
+  padding: 2px;
+  margin: 0;
+  cursor: pointer;
+  opacity: 0.6;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  line-height: 1;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.jt-msg-quick-del-btn:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.jt-msg-row.outgoing .jt-msg-quick-del-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .jt-msg-row.incoming {

@@ -892,10 +892,14 @@
                     <!-- Three-Dot Menu (Matching Employer Workspace Exactly) -->
                     <div class="jt-chat-more-wrap" style="position:relative;">
                       <button type="button" class="jt-action-dots-btn" id="jtCandChatMoreBtn" title="Chat actions" aria-label="Chat actions" onclick="window.toggleCandChatDropdown(event)">⋮</button>
-                      <div class="jt-job-action-menu" id="jtCandChatActionsMenu" style="display:none; position:absolute; right:0; top:calc(100% + 4px); z-index:100; min-width:180px;">
+                      <div class="jt-job-action-menu" id="jtCandChatActionsMenu" style="display:none; position:absolute; right:0; top:calc(100% + 4px); z-index:99999; min-width:180px;">
                         <button type="button" class="jt-job-action-opt" onclick="window.openCandRecruiterAboutModal()">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                           <span>About Recruiter</span>
+                        </button>
+                        <button type="button" class="jt-job-action-opt" onclick="window.enterCandChatSelectionMode()">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                          <span>Select Messages</span>
                         </button>
                         <button type="button" class="jt-job-action-opt" onclick="window.openCandClearChatModal()">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
@@ -919,7 +923,8 @@
                     </button>
                     <span class="jt-selection-count" id="jtCandSelectionCount">0 selected</span>
                   </div>
-                  <div class="jt-selection-right">
+                  <div class="jt-selection-right" style="display:flex; align-items:center; gap:8px;">
+                    <button type="button" class="jt-btn-secondary" style="padding:4px 8px; font-size:11px; font-weight:600;" onclick="window.selectAllCandChatMessages()">Select All</button>
                     <button type="button" class="jt-btn-icon-sm danger" onclick="window.promptDeleteCandSelectedMessages()" title="Delete selected messages" aria-label="Delete selected messages">
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                     </button>

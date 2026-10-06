@@ -970,22 +970,22 @@ body.jt-emp-body {
 }
 
 .jt-job-action-menu {
-  position: absolute;
-  right: 0;
+  position: absolute !important;
+  right: 0 !important;
   top: calc(100% + 4px);
-  background: #ffffff;
-  border: 1px solid var(--jt-rec-border);
-  border-radius: 8px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12);
-  min-width: 190px;
-  z-index: 1020;
-  padding: 6px;
+  background: #ffffff !important;
+  border: 1px solid var(--jt-rec-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16) !important;
+  min-width: 210px !important;
+  z-index: 99999 !important;
+  padding: 6px !important;
   display: none;
-  text-align: left;
+  text-align: left !important;
 }
 
 .jt-job-action-menu.show {
-  display: block;
+  display: block !important;
 }
 
 .jt-job-action-opt {
@@ -1488,6 +1488,9 @@ body.jt-emp-body {
   max-width: 80%;
   cursor: pointer;
   transition: all 0.15s;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 .jt-msg-row.incoming {
@@ -1501,8 +1504,8 @@ body.jt-emp-body {
 
 /* WhatsApp circular selection tick */
 .jt-msg-checkbox {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid #cbd5e1;
   display: none;
@@ -1511,6 +1514,7 @@ body.jt-emp-body {
   flex-shrink: 0;
   background: #ffffff;
   transition: all 0.15s;
+  cursor: pointer;
 }
 
 .jt-msg-checkbox svg {
@@ -1518,7 +1522,7 @@ body.jt-emp-body {
 }
 
 .jt-chat-stream.selection-mode .jt-msg-checkbox {
-  display: flex;
+  display: flex !important;
 }
 
 .jt-msg-row.selected .jt-msg-checkbox {
@@ -1548,6 +1552,47 @@ body.jt-emp-body {
   line-height: 1.4;
   word-break: break-word;
   transition: all 0.15s;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  position: relative;
+}
+
+.jt-msg-bubble-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.jt-msg-quick-del-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.jt-msg-quick-del-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  opacity: 1;
+}
+
+.jt-msg-row:hover .jt-msg-quick-del-btn {
+  opacity: 1;
+}
+
+.jt-chat-stream.selection-mode .jt-msg-quick-del-btn {
+  display: none !important;
 }
 
 .jt-msg-bubble.incoming {
@@ -1571,9 +1616,8 @@ body.jt-emp-body {
 
 .jt-msg-time {
   font-size: 10px;
-  margin-top: 4px;
-  display: block;
-  opacity: 0.7;
+  display: inline-block;
+  opacity: 0.75;
 }
 
 .jt-chat-input-bar {
@@ -2582,7 +2626,14 @@ body.jt-modal-locked .jt-emp-workspace {
     border-radius: 8px;
     background: #ffffff;
     padding: 12px;
-    overflow: hidden;
+    overflow: visible !important;
+    position: relative !important;
+  }
+
+  .jt-jobs-table tr.menu-open,
+  .jt-jobs-table tr:has(.jt-job-action-menu.show) {
+    z-index: 1000 !important;
+    position: relative !important;
   }
 
   .jt-pipeline-stages-summary {
@@ -2682,7 +2733,10 @@ body.jt-modal-locked .jt-emp-workspace {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .jt-job-cell-title {

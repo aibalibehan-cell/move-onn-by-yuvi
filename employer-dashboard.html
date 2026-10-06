@@ -456,6 +456,10 @@
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                       <span>Candidate Profile</span>
                     </button>
+                    <button type="button" class="jt-job-action-opt" onclick="window.enterChatSelectionMode()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                      <span>Select Messages</span>
+                    </button>
                     <button type="button" class="jt-job-action-opt" onclick="window.openClearChatModal()">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                       <span>Clear Chat</span>
@@ -474,11 +478,12 @@
             <div class="jt-chat-selection-bar" id="jtChatSelectionBar" style="display:none;">
               <div class="jt-selection-left">
                 <button type="button" class="jt-btn-icon-sm" onclick="window.exitChatSelectionMode()" title="Cancel selection" aria-label="Cancel selection">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="12" x2="18" y2="18"></line></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
                 <span class="jt-selection-count" id="jtSelectionCount">0 selected</span>
               </div>
-              <div class="jt-selection-right">
+              <div class="jt-selection-right" style="display:flex; align-items:center; gap:8px;">
+                <button type="button" class="jt-btn-secondary" style="padding:4px 8px; font-size:11px; font-weight:600;" onclick="window.selectAllChatMessages()">Select All</button>
                 <button type="button" class="jt-btn-icon-sm danger" onclick="window.promptDeleteSelectedMessages()" title="Delete selected messages" aria-label="Delete selected messages">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>

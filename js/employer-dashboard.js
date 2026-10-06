@@ -619,7 +619,14 @@
     let currentStatus = 'active';
 
     function closeAllActionMenus() {
-      document.querySelectorAll('.jt-job-action-menu').forEach(m => m.classList.remove('show'));
+      document.querySelectorAll('.jt-job-action-menu').forEach(m => {
+        m.classList.remove('show');
+        m.style.top = '';
+        m.style.bottom = '';
+      });
+      document.querySelectorAll('.jt-jobs-table tr.menu-open').forEach(tr => {
+        tr.classList.remove('menu-open');
+      });
     }
 
     function renderJobs() {
@@ -749,9 +756,23 @@
       e.stopPropagation();
       const menu = document.getElementById(`menu-${jobId}`);
       if (!menu) return;
+      const btn = e.currentTarget;
       const isShown = menu.classList.contains('show');
       closeAllActionMenus();
-      if (!isShown) menu.classList.add('show');
+      if (!isShown) {
+        const rect = btn.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        if (spaceBelow < 220 && rect.top > 220) {
+          menu.style.top = 'auto';
+          menu.style.bottom = 'calc(100% + 4px)';
+        } else {
+          menu.style.top = 'calc(100% + 4px)';
+          menu.style.bottom = 'auto';
+        }
+        menu.classList.add('show');
+        const tr = btn.closest('tr');
+        if (tr) tr.classList.add('menu-open');
+      }
     };
 
     document.addEventListener('click', closeAllActionMenus);
@@ -1218,12 +1239,19 @@
                ontouchmove="window.handleEmpMsgTouchMove(event)"
                ontouchend="window.handleEmpMsgTouchEnd(event)"
                ontouchcancel="window.handleEmpMsgTouchEnd(event)">
-            <div class="jt-msg-checkbox" title="Select message">
+            <div class="jt-msg-checkbox" title="Select message" onclick="event.stopPropagation(); window.toggleSelectMessage(${idx});">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="jt-msg-bubble ${isMe ? 'outgoing' : 'incoming'} ${isDel ? 'deleted' : ''}">
               <div>${m.text}</div>
-              <span class="jt-msg-time">${m.time}</span>
+              <div class="jt-msg-bubble-footer">
+                <span class="jt-msg-time">${m.time}</span>
+                ${!isDel && isMe ? `
+                  <button type="button" class="jt-msg-quick-del-btn" title="Delete message" onclick="event.stopPropagation(); window.promptDeleteMessage('${candId}', ${idx});">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  </button>
+                ` : ''}
+              </div>
             </div>
           </div>
         `;
@@ -1233,7 +1261,7 @@
       renderThreads();
     }
 
-    // Mobile touch long-press (500ms) to trigger selection mode like WhatsApp
+    // Mobile touch long-press (260ms) to trigger selection mode like WhatsApp
     let empTouchTimer = null;
     let empTouchStartX = 0;
     let empTouchStartY = 0;
@@ -1254,7 +1282,7 @@
           } else {
             toggleSelectMessage(idx);
           }
-        }, 500);
+        }, 260);
       }
     };
 
@@ -1297,6 +1325,7 @@
     };
 
     function enterChatSelectionMode(initialIdx) {
+      document.querySelectorAll('.jt-job-action-menu').forEach(m => m.classList.remove('show'));
       isSelectionMode = true;
       selectedMessageIndices.clear();
       if (initialIdx !== undefined) {
@@ -1337,6 +1366,22 @@
       updateSelectionBar();
       updateMessageRowHighlights();
     }
+    window.toggleSelectMessage = toggleSelectMessage;
+
+    window.selectAllChatMessages = function () {
+      const conv = CHAT_CONVERSATIONS[activeChatCandidateId];
+      if (!conv || !conv.messages) return;
+      if (!isSelectionMode) {
+        enterChatSelectionMode();
+      }
+      conv.messages.forEach((m, idx) => {
+        if (!m.deleted) {
+          selectedMessageIndices.add(idx);
+        }
+      });
+      updateSelectionBar();
+      updateMessageRowHighlights();
+    };
 
     function updateSelectionBar() {
       const countEl = document.getElementById('jtSelectionCount');

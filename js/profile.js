@@ -1632,12 +1632,32 @@ function initCandidateChatAndJobs() {
     const menu = document.getElementById('jtCandChatActionsMenu');
     if (!menu) return;
     const isShown = menu.style.display === 'block';
-    menu.style.display = isShown ? 'none' : 'block';
+    if (!isShown) {
+      const btn = e ? e.currentTarget : null;
+      if (btn) {
+        const rect = btn.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        if (spaceBelow < 220 && rect.top > 220) {
+          menu.style.top = 'auto';
+          menu.style.bottom = 'calc(100% + 4px)';
+        } else {
+          menu.style.top = 'calc(100% + 4px)';
+          menu.style.bottom = 'auto';
+        }
+      }
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
   };
 
   window.closeCandChatDropdown = function() {
     const menu = document.getElementById('jtCandChatActionsMenu');
-    if (menu) menu.style.display = 'none';
+    if (menu) {
+      menu.style.display = 'none';
+      menu.style.top = '';
+      menu.style.bottom = '';
+    }
   };
 
   document.addEventListener('click', () => {
@@ -1691,7 +1711,7 @@ function initCandidateChatAndJobs() {
         } else {
           window.toggleCandMsgSelection(idx);
         }
-      }, 500);
+      }, 260);
     }
   };
 
@@ -1744,6 +1764,28 @@ function initCandidateChatAndJobs() {
     }
     updateCandSelectionBar();
     updateCandMsgHighlights();
+  };
+
+  window.selectAllCandChatMessages = function() {
+    if (!activeThreadId) return;
+    const thread = CANDIDATE_THREADS[activeThreadId];
+    if (!thread || !thread.messages) return;
+    if (!isCandSelectionMode) {
+      window.enterCandChatSelectionMode();
+    }
+    thread.messages.forEach((m, idx) => {
+      if (!m.deleted) {
+        selectedCandMsgIndices.add(idx);
+      }
+    });
+    updateCandSelectionBar();
+    updateCandMsgHighlights();
+  };
+
+  window.promptDeleteCandSingleMsg = function(threadId, idx) {
+    selectedCandMsgIndices.clear();
+    selectedCandMsgIndices.add(idx);
+    window.promptDeleteCandSelectedMessages();
   };
 
   function updateCandSelectionBar() {
@@ -1932,7 +1974,7 @@ function initCandidateChatAndJobs() {
              ontouchmove="window.handleCandMsgTouchMove(event)"
              ontouchend="window.handleCandMsgTouchEnd(event)"
              ontouchcancel="window.handleCandMsgTouchEnd(event)">
-          <div class="jt-msg-checkbox" title="Select message">
+          <div class="jt-msg-checkbox" title="Select message" onclick="event.stopPropagation(); window.toggleCandMsgSelection(${idx});">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
           <div class="jt-cand-msg-bubble ${isMe ? 'outgoing' : 'incoming'} ${isDel ? 'deleted-msg' : ''}">
@@ -1940,7 +1982,14 @@ function initCandidateChatAndJobs() {
               ${isDel ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>' : ''}
               ${msg.text}
             </div>
-            <span class="jt-cand-msg-time">${msg.time}</span>
+            <div class="jt-msg-bubble-footer">
+              <span class="jt-cand-msg-time">${msg.time}</span>
+              ${!isDel && isMe ? `
+                <button type="button" class="jt-msg-quick-del-btn" title="Delete message" onclick="event.stopPropagation(); window.promptDeleteCandSingleMsg('${activeThreadId}', ${idx})">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              ` : ''}
+            </div>
           </div>
         </div>
       `;
